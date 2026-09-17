@@ -1,0 +1,21 @@
+{
+  "what": "Hand-maintained facts about the current race that the FEC API does not state: which candidates are the general-election nominees, and the key dates. Everything else in sources/ is fetched. display_names overrides the FEC's legal-name form for the names shown on the page.",
+  "cycle": 2026,
+  "district": "PA-07",
+  "office": "US House",
+  "election_date": "2026-11-03",
+  "primary_date": "2026-05-19",
+  "nominees": {
+    "DEM": "H6PA07188",
+    "REP": "H8PA15195"
+  },
+  "next_periodic_report": {
+    "name": "October Quarterly",
+    "due": "2026-10-15",
+    "covers_through": "2026-09-30"
+  },
+  "display_names": {
+    "H8PA15195": "Ryan Mackenzie",
+    "H6PA07188": "Bob Brooks"
+  }
+}

@@ -1,0 +1,81 @@
+# Pull fresh figures from the FEC, rebuild the workbook, run the gate, export
+# the site payload, commit the result, and publish.
+#
+# verify.py exits 1 when the freshly built workbook fails any check. That fails
+# this job on purpose: nothing is committed and the published site keeps the
+# last version that passed.
+name: Refresh data
+
+on:
+  schedule:
+    # 12:23 UTC daily, roughly 08:23 US Eastern in summer. Off the hour on
+    # purpose; GitHub's scheduler is congested on the hour.
+    - cron: "23 12 * * *"
+  workflow_dispatch:
+
+# The commit is authored with GITHUB_TOKEN, and GitHub never lets one
+# workflow's token trigger another, so pages.yml would not fire. This job
+# deploys the site itself, in the same run, right after committing.
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install --quiet openpyxl formulas
+
+      # FEC_API_KEY is an optional repository secret. Without it the collector
+      # uses FEC's public DEMO_KEY, which is rate-limited but sufficient for
+      # this run's roughly forty calls.
+      - name: Collect from the FEC
+        env:
+          FEC_API_KEY: ${{ secrets.FEC_API_KEY }}
+        run: python collect_fec.py
+
+      - name: Build the workbook
+        run: python build_workbook.py
+
+      - name: Gate
+        run: python verify.py
+
+      - name: Export the site payload
+        run: python export_site.py
+
+      - name: Commit the refreshed payload
+        run: |
+          git config user.name "pa07-finance-refresh"
+          git config user.email "pa07-finance-refresh@users.noreply.github.com"
+          git add sources/fec.json sources/fec_history.json site/data site/PA07_Campaign_Finance.xlsx
+          if git diff --cached --quiet; then
+            echo "No change in the published payload."
+          else
+            git commit -m "Refresh FEC data $(date -u '+%Y-%m-%d %H:%M UTC')"
+            # A pull request may have merged since checkout. This job only
+            # touches the files above, which CI forbids branches from editing,
+            # so a rebase onto the new tip cannot conflict.
+            git pull --rebase --quiet origin main
+            git push
+          fi
+
+      - name: Publish the site
+        uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+      - id: deployment
+        uses: actions/deploy-pages@v4

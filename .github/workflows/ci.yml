@@ -1,0 +1,53 @@
+# Build, verify and test on every pull request and every push to main.
+#
+# The workbook is never committed at the root; CI rebuilds it from the committed
+# sources/ and runs the gate on the result, so a pull request is checked against
+# exactly the data it would publish.
+name: Tests
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+    paths-ignore: ["site/data/**", "site/*.xlsx", "sources/fec.json", "sources/fec_history.json"]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # The refresh job rewrites these on main every day. A branch that edits
+      # them too will conflict with the bot by the time it is reviewed, so a
+      # modification is refused here instead. Adding them in a first commit,
+      # or leaving them alone, is fine.
+      - name: Refuse edits to files the refresh job owns
+        if: github.event_name == 'pull_request'
+        run: |
+          owned=$(git diff --name-only --diff-filter=MD "origin/${{ github.base_ref }}...HEAD" -- \
+                    'site/data/**' 'site/*.xlsx' 'sources/fec.json' 'sources/fec_history.json')
+          if [ -n "$owned" ]; then
+            echo "These files are written by the refresh job and must not be edited on a branch:"
+            echo "$owned"
+            echo "Restore them (git checkout origin/main -- <file>) and push again."
+            exit 1
+          fi
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install --quiet openpyxl formulas
+
+      - name: Build the workbook from committed sources
+        run: python build_workbook.py
+
+      - name: Gate
+        run: python verify.py
+
+      - name: Export the site payload
+        run: python export_site.py
+
+      - name: Offline test suite
+        run: python tests/run_tests.py
