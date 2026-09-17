@@ -39,13 +39,19 @@ jobs:
           python-version: "3.11"
       - run: pip install --quiet openpyxl formulas
 
-      # FEC_API_KEY is an optional repository secret. Without it the collector
-      # uses FEC's public DEMO_KEY, which is rate-limited but sufficient for
-      # this run's roughly forty calls.
+      # FEC_API_KEY is a required repository secret. FEC's public DEMO_KEY
+      # allows 30 calls an hour and this run makes about 37, so there is no
+      # useful fallback: fail here, in seconds, with the fix in the log.
       - name: Collect from the FEC
         env:
           FEC_API_KEY: ${{ secrets.FEC_API_KEY }}
-        run: python collect_fec.py
+        run: |
+          test -n "$FEC_API_KEY" || {
+            echo "FEC_API_KEY secret is not set. Add it with:"
+            echo "  gh secret set FEC_API_KEY --repo ${{ github.repository }}"
+            exit 1
+          }
+          python collect_fec.py
 
       - name: Build the workbook
         run: python build_workbook.py

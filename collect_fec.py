@@ -27,7 +27,7 @@ Conventions that matter for correctness:
     candidate_id, never by district.
   - The API key is read at the point of use and asserted absent from the output.
 
-    FEC_API_KEY=... python3 collect_fec.py        # CI
+    FEC_API_KEY=... python3 collect_fec.py        # CI (repository secret)
     python3 collect_fec.py                        # local: reads fec_key.txt
 """
 import datetime
@@ -45,7 +45,11 @@ SRC = os.path.join(ROOT, "sources")
 BASE = "https://api.open.fec.gov/v1"
 
 
-def api_key():
+def api_key(required=True):
+    """The OpenFEC key, from the environment or a local file. There is no public
+    fallback: FEC's DEMO_KEY allows 30 calls an hour and this run makes about 37,
+    so it fails partway through after minutes of retries. Better to stop now and
+    say what to do."""
     k = os.environ.get("FEC_API_KEY", "").strip()
     if k:
         return k
@@ -53,8 +57,12 @@ def api_key():
               os.path.expanduser("~/pa07-tracker/fec_key.txt")):
         if os.path.exists(p):
             return open(p).read().strip()
-    # FEC's public demo key. Rate-limited, but enough for this ~40-call run.
-    return "DEMO_KEY"
+    if not required:
+        return ""
+    sys.exit("collect_fec.py: no FEC API key. Export FEC_API_KEY, or put the key in fec_key.txt.\n"
+             "In GitHub Actions, add it as a repository secret:\n"
+             "  gh secret set FEC_API_KEY --repo weinsteincharles27-del/pa07-finance\n"
+             "Request a key at https://api.data.gov/signup/ (free, read-only, gates rate limits only).")
 
 
 def fetch(path, **params):
@@ -275,9 +283,9 @@ def now():
 
 
 def write(path, obj):
-    key = api_key()
+    key = api_key(required=False)
     text = json.dumps(obj, indent=2)
-    assert key not in text, "API key leaked into %s" % path
+    assert not key or key not in text, "API key leaked into %s" % path
     with open(path, "w") as f:
         f.write(text + "\n")
 

@@ -88,8 +88,9 @@ def test_nominee_flag_comes_from_race_json():
     assert by == {"H1": "DEM", "H2": "REP", "H3": None}
 
 
-def test_api_key_never_reaches_the_output(tmp=None):
+def test_api_key_never_reaches_the_output():
     mod = support.load("collect_fec")
+    saved = os.environ.get("FEC_API_KEY")
     os.environ["FEC_API_KEY"] = "sekrit-key-123"
     try:
         with support.fake_fetch(responses()) as ff:
@@ -109,4 +110,30 @@ def test_api_key_never_reaches_the_output(tmp=None):
             import shutil
             shutil.rmtree(d)
     finally:
-        del os.environ["FEC_API_KEY"]
+        if saved is None:
+            del os.environ["FEC_API_KEY"]
+        else:
+            os.environ["FEC_API_KEY"] = saved
+
+
+def test_missing_key_fails_fast_with_instructions():
+    mod = support.load("collect_fec")
+    saved = os.environ.pop("FEC_API_KEY", None)
+    orig = mod.ROOT
+    try:
+        mod.ROOT = "/nonexistent"                     # no fec_key.txt to find
+        real_exists = os.path.exists
+        os.path.exists = lambda p: False            # nor the tracker's copy
+        try:
+            try:
+                mod.api_key()
+                assert False, "should have exited"
+            except SystemExit as e:
+                assert "gh secret set FEC_API_KEY" in str(e)
+            assert mod.api_key(required=False) == ""
+        finally:
+            os.path.exists = real_exists
+    finally:
+        mod.ROOT = orig
+        if saved is not None:
+            os.environ["FEC_API_KEY"] = saved
