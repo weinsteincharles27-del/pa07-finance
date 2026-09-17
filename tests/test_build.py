@@ -71,8 +71,28 @@ def test_detail_sheets_reconcile_to_source():
             total = sum(sd.cell(r, col).value or 0 for r in range(A["SD_CAT_FIRST"], A["SD_CAT_LAST"] + 1))
             assert abs(total - det["committees"][cid]["spending"]["itemized_total"]) < 0.02
         od = wb["Outside Detail"]
+        nominees = {c["candidate_id"] for c in fec["candidates"] if c["nominee"]}
         total = sum(od.cell(r, 8).value or 0 for r in range(A["OI_FIRST"], A["OI_LAST"] + 1))
-        assert abs(total - sum(x["amount"] for x in fec["independent_expenditures"])) < 0.01
+        assert abs(total - sum(x["amount"] for x in fec["independent_expenditures"]
+                               if x["target_candidate_id"] in nominees)) < 0.01
+
+
+def test_outside_spending_shows_nominees_only():
+    """Spending about primary candidates not on the November ballot is in sources/ but not displayed."""
+    import json
+    with support.sandbox() as (src, work):
+        out, A = support.built(src, work)
+        fec = json.load(open(src + "/fec.json"))
+        nominees = {c["name"] for c in fec["candidates"] if c["nominee"]}
+        others = {c["name"] for c in fec["candidates"] if not c["nominee"]}
+        assert any(e["target_candidate"] in others for e in fec["independent_expenditures"]), "fixture should carry some"
+        wb = openpyxl.load_workbook(out)
+        om = wb["Outside Money"]
+        shown = {om.cell(r, 2).value for r in range(A["IE_FIRST"], A["IE_LAST"] + 1)}
+        assert shown <= nominees and not (shown & others), shown
+        od = wb["Outside Detail"]
+        shown2 = {od.cell(r, 2).value for r in range(A["OI_FIRST"], A["OI_LAST"] + 1)}
+        assert shown2 <= nominees and not (shown2 & others), shown2
 
 
 def test_workbook_builds_without_detail_file():
