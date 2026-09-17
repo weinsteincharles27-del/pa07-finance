@@ -122,7 +122,11 @@ def run(WB, SRC, A, quiet=False):
             ck("%s never-filed cells blank" % c["name"], all(ct.cell(i, col).value is None for col in range(7, 18)))
             ck("%s marked 'no report'" % c["name"], ct.cell(i, 5).value == "no report")
     num("total receipts, filed candidates", V.get("CANDIDATE TOTALS!G%d" % A["CT_TOTAL"]), sum(c["receipts"] for c in filed), 0.02)
-    ies = D["independent_expenditures"]
+    nominee_ids = {c["candidate_id"] for c in D["candidates"] if c["nominee"]}
+    ies = [x for x in D["independent_expenditures"] if x["target_candidate_id"] in nominee_ids]
+    ck("outside rows on the sheet are nominees only",
+       set(om_.cell(i, 2).value for om_ in [wb["Outside Money"]] for i in range(A["IE_FIRST"], A["IE_LAST"] + 1))
+       <= set(c["name"] for c in D["candidates"] if c["nominee"]))
     num("IE total", V.get("OUTSIDE MONEY!D%d" % A["IE_TOTAL"]), sum(x["amount"] for x in ies), 1e-4)
     om = wb["Outside Money"]
     g = defaultdict(lambda: [0.0, 0])
@@ -220,7 +224,7 @@ def run(WB, SRC, A, quiet=False):
             num("donors %s in-district" % cid, V.get("DONOR DETAIL!%s%d" % (col, A["DD_DIST_FIRST"])), con["in_district_amount"], 0.02)
             num("donors %s zip total" % cid, V.get("DONOR DETAIL!%s%d" % (col, A["DD_DIST_FIRST"] + 2)), con["zip_total"], 0.02)
             ck("donors %s in-district share sane" % cid, 0 < con["in_district_amount"] < con["zip_total"])
-    oi = D.get("outside_itemized") or []
+    oi = [x for x in (D.get("outside_itemized") or []) if x["target_candidate_id"] in nominee_ids]
     if oi and "OI_TOTAL" in A:
         num("outside itemized total == aggregate", V.get("OUTSIDE DETAIL!H%d" % A["OI_TOTAL"]), sum(x["amount"] for x in oi), 1e-4)
         num("outside itemized check is zero", V.get("OUTSIDE DETAIL!H%d" % A["OI_CHECK"]), 0.0, 1e-4)

@@ -162,6 +162,11 @@ def build(fec, hist, race, out=OUT, det=None):
     rep_name = next(c["name"] for c in fec["candidates"] if c["nominee"] == "REP")
     NOMS = (dem_name, rep_name)
     cands = sorted(fec["candidates"], key=lambda c: (c["nominee"] is None, -(c["receipts"] or 0)))
+    # Outside spending is shown for the two nominees only. Spending about primary
+    # candidates who are not on the November ballot stays in sources/ but is not
+    # displayed; the same filter is applied in export_site.py and verify.py.
+    nominee_ids = {c["candidate_id"] for c in fec["candidates"] if c["nominee"]}
+    nominees_only = [c for c in cands if c["nominee"]]
 
     # ---------------------------------------------------- Candidate Totals
     ct = wb.active
@@ -230,15 +235,17 @@ def build(fec, hist, race, out=OUT, det=None):
     om = wb.create_sheet("Outside Money")
     om["A1"] = "Outside spending (independent expenditures), PA-07, %d" % fec["cycle"]
     om["A1"].font = TITLE
-    om["A2"] = ("Money spent by outside groups on their own to support or oppose a candidate, without "
-                "coordinating with the campaign. FEC's deduplicated by_candidate aggregate. Largest first.")
+    om["A2"] = ("Money spent by outside groups on their own to support or oppose one of the two nominees, "
+                "without coordinating with the campaign. FEC's deduplicated by_candidate aggregate. Largest first. "
+                "Spending about primary candidates not on the November ballot is not shown.")
     om["A2"].font = SUB
     r = section(om, 4, "BY COMMITTEE", 7)
     f_ie = headers(om, r, ["Committee", "Target candidate", "Stance", "Amount", "Filings",
                            "Committee ID", "Share of all outside spending"],
                    [46, 24, 10, 15, 8, 12, 14])
     A["IE_FIRST"] = f_ie
-    ies = sorted(fec["independent_expenditures"], key=lambda x: -(x["amount"] or 0))
+    ies = sorted((e for e in fec["independent_expenditures"] if e["target_candidate_id"] in nominee_ids),
+                 key=lambda x: -(x["amount"] or 0))
     for i, e in enumerate(ies):
         rr = f_ie + i
         om.cell(rr, 1, e["committee"]).font = BODY
@@ -266,7 +273,7 @@ def build(fec, hist, race, out=OUT, det=None):
     f_st = headers(om, r, ["Target candidate", "Stance", "Amount", "Committees", "Share", "", ""])
     A["ST_FIRST"] = f_st
     targets = []
-    for c in cands:
+    for c in nominees_only:
         for so in ("S", "O"):
             targets.append((c["name"], so))
     for i, (nm, so) in enumerate(targets):
@@ -511,10 +518,10 @@ def build(fec, hist, race, out=OUT, det=None):
     od = wb.create_sheet("Outside Detail")
     od["A1"] = "What each outside group bought"
     od["A1"].font = TITLE
-    od["A2"] = ("Every itemized independent expenditure, %d cycle. Notices and memo entries removed; the total equals "
-                "FEC's by_candidate aggregate. Largest first." % fec["cycle"])
+    od["A2"] = ("Every itemized independent expenditure about one of the two nominees, %d cycle. Notices and memo "
+                "entries removed; the total equals FEC's by_candidate aggregate for the nominees. Largest first." % fec["cycle"])
     od["A2"].font = SUB
-    oi = fec.get("outside_itemized") or []
+    oi = [x for x in (fec.get("outside_itemized") or []) if x["target_candidate_id"] in nominee_ids]
     for i2, w2 in enumerate([36, 18, 9, 22, 34, 18, 7, 13, 11, 10], start=1):
         od.column_dimensions[CL(i2)].width = w2
     if not oi:
@@ -890,12 +897,12 @@ def build(fec, hist, race, out=OUT, det=None):
     l_g = f_g + len(grows) - 1
     r = section(su, l_g + 2, "OUTSIDE SPENDING", 8)
     f_o = headers(su, r, ["", "Amount", "Share of all outside spending", "Committees", "", "", "", ""])
-    su.cell(f_o, 1, "All independent expenditures in the race").font = BOLD
+    su.cell(f_o, 1, "All independent expenditures about the two nominees").font = BOLD
     money_cell(su, f_o, 2, "='Outside Money'!D%d" % A["IE_TOTAL"], LINK)
     su.cell(f_o, 4, "='Outside Money'!D%d" % A["ST_TOTAL"]).font = LINK
     box(su, f_o, 1, 4, TOT_FILL)
     orow = f_o + 1
-    for c in cands:
+    for c in nominees_only:
         for so in ("S", "O"):
             idx = targets.index((c["name"], so))
             su.cell(orow, 1, "%s, %s" % (c["name"], stance(so).lower())).font = BODY

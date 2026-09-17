@@ -185,8 +185,7 @@
     var o = d.outside;
     var sec = block("outside", "Outside spending",
       "Money that groups spent on their own, without coordinating with any campaign, to support or " +
-      "oppose a candidate. The FEC records who each expenditure was about and which way it cut. " +
-      "Total across all committees and candidates: " + money(o.total) + ".");
+      "oppose one of the two nominees. Total: " + money(o.total) + ".");
     table(sec, ["Candidate the spending was about", { label: "Supporting", num: true },
                 { label: "Opposing", num: true }, { label: "Committees", num: true }],
       o.by_target.map(function (t) {

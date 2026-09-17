@@ -90,3 +90,15 @@ def test_outside_itemized_matches_aggregate_and_is_categorised():
     assert abs(sum(x["amount"] for x in o["itemized"]) - o["total"]) < 0.01
     assert abs(sum(x["amount"] for x in o["by_category"]) - o["total"]) < 0.01
     assert all(x["category"] for x in o["itemized"])
+
+
+def test_outside_payload_is_nominees_only():
+    d, _ = exported()
+    fec = support.fixture("fec.json")
+    nominees = {c["name"] for c in fec["candidates"] if c["nominee"]}
+    o = d["outside.json"]
+    assert {t["target"] for t in o["by_target"]} <= nominees
+    assert {r["target"] for r in o["rows"]} <= nominees
+    assert {r["target"] for r in o["itemized"]} <= nominees
+    assert abs(o["total"] - sum(e["amount"] for e in fec["independent_expenditures"]
+                                if e["target_candidate"] in nominees)) < 0.01

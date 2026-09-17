@@ -58,8 +58,13 @@ def candidates_block(fec):
 
 
 def outside_block(fec):
+    """Outside spending about the two nominees. Spending about primary candidates
+    not on the November ballot stays in sources/ and is not shown."""
+    nominee_ids = {c["candidate_id"] for c in fec["candidates"] if c["nominee"]}
     rows = []
     for e in fec["independent_expenditures"]:
+        if e["target_candidate_id"] not in nominee_ids:
+            continue
         rows.append({"committee": e["committee"], "committee_id": e["committee_id"],
                      "target": e["target_candidate"], "target_id": e["target_candidate_id"],
                      "stance": "supports" if e["support_oppose"] == "S" else "opposes",
@@ -74,6 +79,8 @@ def outside_block(fec):
     items = []
     by_cat = {}
     for x in fec.get("outside_itemized") or []:
+        if x["target_candidate_id"] not in nominee_ids:
+            continue
         items.append({"committee": x["committee"], "target": x["target_candidate"],
                       "stance": "supports" if x["support_oppose"] == "S" else "opposes",
                       "what": x["description"], "category": x["category"], "payee": x["payee"],
