@@ -169,10 +169,13 @@ def test_detail_refetched_when_coverage_changes_or_stale():
         p = os.path.join(d, "det.json")
         now = datetime.datetime(2026, 9, 17, tzinfo=datetime.timezone.utc)
         assert mod.detail_is_fresh(p, "2026-06-30", now) is False                       # missing
-        json.dump({"retrieved_utc": "2026-09-15T00:00:00Z", "coverage_through": "2026-06-30"}, open(p, "w"))
-        assert mod.detail_is_fresh(p, "2026-06-30", now) is True                        # recent, same quarter
+        fp = mod.classify.FINGERPRINT
+        json.dump({"retrieved_utc": "2026-09-15T00:00:00Z", "coverage_through": "2026-06-30", "classifier": fp}, open(p, "w"))
+        assert mod.detail_is_fresh(p, "2026-06-30", now) is True                        # recent, same quarter, same rules
         assert mod.detail_is_fresh(p, "2026-09-30", now) is False                       # new quarterly report landed
-        json.dump({"retrieved_utc": "2026-09-01T00:00:00Z", "coverage_through": "2026-06-30"}, open(p, "w"))
+        json.dump({"retrieved_utc": "2026-09-15T00:00:00Z", "coverage_through": "2026-06-30", "classifier": "stale"}, open(p, "w"))
+        assert mod.detail_is_fresh(p, "2026-06-30", now) is False                       # rules changed since
+        json.dump({"retrieved_utc": "2026-09-01T00:00:00Z", "coverage_through": "2026-06-30", "classifier": fp}, open(p, "w"))
         assert mod.detail_is_fresh(p, "2026-06-30", now) is False                       # 16 days old
     finally:
         shutil.rmtree(d)
