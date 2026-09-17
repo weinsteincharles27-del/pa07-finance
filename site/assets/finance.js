@@ -245,8 +245,15 @@
                 { label: "Outside, supporting", num: true }, { label: "Outside, opposing", num: true },
                 { label: "Votes", num: true }, { label: "Two-party share", num: true }, "Result"],
       rows, function (r) { return r.party === "DEM" ? "d" : "r"; });
-    note(sec, "Two-party share is the candidate's votes divided by Democratic plus Republican votes, so the four elections compare on the same footing. " +
-      "District lines changed between 2020 and 2022, so the electorate is not identical across all four. Sources for each year's result are listed under About the data.");
+    var n = note(sec, "Two-party share is the candidate's votes divided by Democratic plus Republican votes, so the four elections compare on the same footing. " +
+      "District lines changed between 2020 and 2022, so the electorate is not identical across all four. Certified results: ");
+    h.cycles.forEach(function (c, i) {
+      var a = elem("a", null, String(c.cycle));
+      a.href = c.source_url;
+      a.title = c.source;
+      n.appendChild(a);
+      n.appendChild(document.createTextNode(i < h.cycles.length - 1 ? ", " : "."));
+    });
     return sec;
   }
 
@@ -270,48 +277,10 @@
     return sec;
   }
 
-  function about(d) {
-    var cv = d.caveats;
-    var sec = block("about", "About the data",
-      "Everything on this page comes from the Federal Election Commission. What to keep in mind when reading it:");
-    cv.items.forEach(function (it) {
-      var c = elem("div", "caveat " + it.severity);
-      c.appendChild(elem("b", null, it.title));
-      c.appendChild(elem("p", null, it.text));
-      sec.appendChild(c);
-    });
-    sec.appendChild(elem("h3", null, "Terms used on this page"));
-    var dl = elem("dl", "defs");
-    cv.definitions.forEach(function (t) {
-      dl.appendChild(elem("dt", null, t.term));
-      dl.appendChild(elem("dd", null, t.text));
-    });
-    sec.appendChild(dl);
-    sec.appendChild(elem("h3", null, "Sources"));
-    var ul = elem("ul", "small");
-    var li = elem("li");
-    li.appendChild(document.createTextNode("Current cycle: "));
-    var a = elem("a", null, "FEC, PA-07 " + d.candidates.cycle);
-    a.href = d.manifest.source.url;
-    li.appendChild(a);
-    li.appendChild(document.createTextNode(", retrieved " + P.utc(d.candidates.retrieved_utc) + " via the OpenFEC API."));
-    ul.appendChild(li);
-    d.history.cycles.forEach(function (c) {
-      var l2 = elem("li");
-      l2.appendChild(document.createTextNode(c.cycle + " result: "));
-      var a2 = elem("a", null, c.source);
-      a2.href = c.source_url;
-      l2.appendChild(a2);
-      ul.appendChild(l2);
-    });
-    sec.appendChild(ul);
-    return sec;
-  }
-
   document.addEventListener("data:ready", function (ev) {
     var d = ev.detail;
     var main = document.getElementById("main");
-    [standing, sources, everyone, outside, history, download, about].forEach(function (f) {
+    [standing, sources, everyone, outside, history, download].forEach(function (f) {
       main.appendChild(f(d));
     });
   });
