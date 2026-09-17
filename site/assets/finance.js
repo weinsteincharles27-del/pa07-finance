@@ -215,10 +215,8 @@
 
   /* The same rows in the same order for both nominees, so a zero is a zero. */
   var SPEND_ROWS = ["Television advertising", "Digital advertising", "Print and radio advertising",
-                    "Mail and printing", "Fundraising consultants",
-                    "Fundraising mail", "Donation processing fees", "Fundraising events",
-                    "Staff and payroll", "Consulting", "Polling and research",
-                    "Field, phones and texting", "Office and administrative"];
+                    "Mail and printing", "Fundraising", "Staff and payroll", "Consulting",
+                    "Polling and research", "Field, phones and texting", "Office and administrative"];
 
   function bought(d) {
     var dt = d.detail;
