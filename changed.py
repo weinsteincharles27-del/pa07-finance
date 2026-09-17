@@ -20,13 +20,16 @@ OWNED_JSON = ["sources/fec.json", "sources/fec_history.json",
               "site/data/manifest.json", "site/data/candidates.json", "site/data/outside.json",
               "site/data/history.json", "site/data/caveats.json"]
 OWNED_ALL = OWNED_JSON + ["site/PA07_Campaign_Finance.xlsx"]
-TIMESTAMPS = {"retrieved_utc", "generated_utc", "days_to_election", "files"}
+# Keys that move on every run without meaning anything moved: stamps, the
+# countdown, and byte counts (openpyxl's zip output is not byte-stable, so the
+# workbook's size wobbles by a byte between identical builds).
+VOLATILE = {"retrieved_utc", "generated_utc", "days_to_election", "files", "bytes"}
 
 
 def strip(obj):
-    """Drop the keys that change on every run, recursively."""
+    """Drop the volatile keys, recursively."""
     if isinstance(obj, dict):
-        return {k: strip(v) for k, v in obj.items() if k not in TIMESTAMPS}
+        return {k: strip(v) for k, v in obj.items() if k not in VOLATILE}
     if isinstance(obj, list):
         return [strip(v) for v in obj]
     return obj

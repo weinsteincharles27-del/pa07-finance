@@ -78,3 +78,15 @@ def test_history_refetched_only_when_stale():
         assert mod.history_is_fresh(p, now) is False                       # unreadable stamp
     finally:
         shutil.rmtree(d)
+
+
+def test_workbook_byte_count_wobble_is_ignored():
+    """openpyxl output is not byte-stable; a one-byte size change is not news."""
+    m = {"generated_utc": "a", "workbook": {"href": "x.xlsx", "bytes": 49377, "available": True}}
+    d = repo_with({"site/data/manifest.json": m})
+    try:
+        m2 = {"generated_utc": "b", "workbook": {"href": "x.xlsx", "bytes": 49376, "available": True}}
+        json.dump(m2, open(os.path.join(d, "site/data/manifest.json"), "w"))
+        assert run_changed(d) == 1
+    finally:
+        shutil.rmtree(d)
