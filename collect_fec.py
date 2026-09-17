@@ -29,6 +29,7 @@ Conventions that matter for correctness:
 
     FEC_API_KEY=... python3 collect_fec.py        # CI (repository secret)
     python3 collect_fec.py                        # local: reads fec_key.txt
+    python3 collect_fec.py --history              # also refetch the 2018-2024 figures
 """
 import datetime
 import json
@@ -290,17 +291,40 @@ def write(path, obj):
         f.write(text + "\n")
 
 
-def main():
+HISTORY_MAX_AGE_DAYS = 7
+
+
+def history_is_fresh(path, now_utc=None):
+    """The 2018-2024 figures are final. Re-pulling them on every run would spend
+    16 of a run's 37 calls confirming numbers that cannot change, so they are
+    refreshed weekly; --history forces it."""
+    if not os.path.exists(path):
+        return False
+    try:
+        stamp = json.load(open(path)).get("retrieved_utc") or ""
+        then = datetime.datetime.strptime(stamp, "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=datetime.timezone.utc)
+    except (ValueError, TypeError, json.JSONDecodeError):
+        return False
+    now_utc = now_utc or datetime.datetime.now(datetime.timezone.utc)
+    return (now_utc - then).days < HISTORY_MAX_AGE_DAYS
+
+
+def main(argv=None):
+    argv = sys.argv[1:] if argv is None else argv
     race = json.load(open(os.path.join(SRC, "race.json")))
     results = json.load(open(os.path.join(SRC, "results.json")))
     cur = current(race)
     write(os.path.join(SRC, "fec.json"), cur)
-    hist = history(results)
-    write(os.path.join(SRC, "fec_history.json"), hist)
     n_filed = sum(1 for c in cur["candidates"] if c["filed"])
     print("fec.json: %d candidates (%d filed), %d outside-spending rows, coverage through %s"
           % (len(cur["candidates"]), n_filed, len(cur["independent_expenditures"]), cur["coverage_through"]))
-    print("fec_history.json: %d cycles" % len(hist["cycles"]))
+    hpath = os.path.join(SRC, "fec_history.json")
+    if "--history" in argv or not history_is_fresh(hpath):
+        hist = history(results)
+        write(hpath, hist)
+        print("fec_history.json: %d cycles refreshed" % len(hist["cycles"]))
+    else:
+        print("fec_history.json: fresh (under %d days old), not refetched" % HISTORY_MAX_AGE_DAYS)
     return 0
 
 

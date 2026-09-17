@@ -33,9 +33,14 @@ Two files in `sources/` are maintained by hand and never fetched:
 - `results.json`: certified vote totals for 2018 to 2024, with the source of each. These
   are historical facts and do not change.
 
-`.github/workflows/refresh.yml` runs the four steps daily at 12:23 UTC, commits the
-refreshed payload to `main`, and publishes `site/`. If `verify.py` fails, nothing is
-committed and the published page keeps the last version that passed.
+`.github/workflows/refresh.yml` runs the four steps every five minutes, GitHub's cron
+floor. A run makes 21 API calls (37 once a week, when the final 2018 to 2024 figures are
+re-pulled); the key allows 60 a minute and 1,000 an hour. `changed.py` then compares the
+result to what is committed with the timestamps removed: if nothing else moved, the run
+leaves no commit and no deploy. The FEC processes filings in batches, so most runs find
+nothing, and the "Data updated" date on the page means the figures last changed then, not
+that the check last ran then. If `verify.py` fails, nothing is committed and the published
+page keeps the last version that passed.
 
 ## Conventions that keep the numbers right
 
@@ -62,7 +67,8 @@ conventions below each exist because one of those happened.
 
 The refresh job needs one repository secret, `FEC_API_KEY`. FEC's public `DEMO_KEY` allows
 30 calls an hour and a run makes about 37, so there is no working fallback; without the
-secret the job stops in its first step and says so. Request a key at
+secret the job does nothing and exits green with a warning annotation, so a five-minute
+schedule does not become a five-minute stream of failure emails. Request a key at
 https://api.data.gov/signup/ (free, read-only against public data) and store it:
 
 ```bash
@@ -90,5 +96,5 @@ Dependencies: `openpyxl` and `formulas`. On this Mac use `/usr/bin/python3`, whi
 ## Files the refresh job owns
 
 `sources/fec.json`, `sources/fec_history.json`, `site/data/**` and `site/PA07_Campaign_Finance.xlsx`
-are rewritten on `main` daily. CI refuses a pull request that edits them, so a branch
+are rewritten on `main` whenever the FEC figures change. CI refuses a pull request that edits them, so a branch
 never conflicts with the bot. Page code lives in `site/assets`; data comes from the pipeline.
