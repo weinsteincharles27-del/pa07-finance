@@ -1,0 +1,25 @@
+# ------------------------------------------------------------- credentials
+# This repository is public. The FEC key is read-only against public data, but
+# it is still a credential: in CI it is an encrypted Actions secret, locally it
+# lives in fec_key.txt, and it is never in the tree.
+fec_key.txt
+*_key.txt
+*.pem
+*.key
+.env
+.env.*
+
+# --------------------------------------------------------- build artefacts
+# The workbook at the root is rebuilt every run. The copy under site/ IS
+# committed: it is what the download link serves.
+/PA07_Campaign_Finance.xlsx
+/_anchors.json
+
+# ------------------------------------------------------------------- junk
+__pycache__/
+*.py[cod]
+.DS_Store
+.venv/
+venv/
+.claude/
+~$*
