@@ -137,3 +137,42 @@ def test_missing_key_fails_fast_with_instructions():
         mod.ROOT = orig
         if saved is not None:
             os.environ["FEC_API_KEY"] = saved
+
+
+def test_outside_itemized_drops_notices_and_memos_and_categorises():
+    rows = {"results": [
+        {"committee_id": "C90", "committee": {"name": "BIG PAC"}, "candidate_id": "H1", "support_oppose_indicator": "S",
+         "expenditure_description": "AD BUY (ESTIMATE)", "expenditure_amount": 100.0, "is_notice": True, "memo_code": None,
+         "payee_name": "TV CO", "payee_city": "PHILADELPHIA", "payee_state": "PA", "expenditure_date": "2026-05-01T00:00:00"},
+        {"committee_id": "C90", "committee": {"name": "BIG PAC"}, "candidate_id": "H1", "support_oppose_indicator": "S",
+         "expenditure_description": "AD BUY", "expenditure_amount": 100.0, "is_notice": False, "memo_code": None,
+         "payee_name": "TV CO", "payee_city": "PHILADELPHIA", "payee_state": "PA", "expenditure_date": "2026-05-01T00:00:00"},
+        {"committee_id": "C90", "committee": {"name": "BIG PAC"}, "candidate_id": "H1", "support_oppose_indicator": "S",
+         "expenditure_description": "AD BUY", "expenditure_amount": 60.0, "is_notice": False, "memo_code": "X",
+         "payee_name": "TV CO", "payee_city": "PHILADELPHIA", "payee_state": "PA", "expenditure_date": "2026-05-01T00:00:00"},
+        {"committee_id": "C91", "committee": {"name": "MAIL PAC"}, "candidate_id": "H1", "support_oppose_indicator": "O",
+         "expenditure_description": "PRINTING / POSTAGE", "expenditure_amount": 40.0, "is_notice": False, "memo_code": None,
+         "payee_name": "PRINT CO", "payee_city": "ASHBURN", "payee_state": "VA", "expenditure_date": "2026-05-02T00:00:00"},
+    ], "pagination": {"last_indexes": None}}
+    with support.fake_fetch([(("/schedules/schedule_e/", {}), rows)]) as ff:
+        out = ff.mod.outside_itemized([{"candidate_id": "H1", "name": "Jane Doe"}], 2026)
+    assert [r["amount"] for r in out] == [100.0, 40.0]              # notice and memo gone, sorted
+    assert out[0]["category"] == "Television and media buys" and out[1]["category"] == "Mail and print"
+    assert out[0]["target_candidate"] == "Jane Doe" and out[0]["committee"] == "BIG PAC"
+
+
+def test_detail_refetched_when_coverage_changes_or_stale():
+    import datetime, json, tempfile, shutil
+    mod = support.load("collect_fec")
+    d = tempfile.mkdtemp()
+    try:
+        p = os.path.join(d, "det.json")
+        now = datetime.datetime(2026, 9, 17, tzinfo=datetime.timezone.utc)
+        assert mod.detail_is_fresh(p, "2026-06-30", now) is False                       # missing
+        json.dump({"retrieved_utc": "2026-09-15T00:00:00Z", "coverage_through": "2026-06-30"}, open(p, "w"))
+        assert mod.detail_is_fresh(p, "2026-06-30", now) is True                        # recent, same quarter
+        assert mod.detail_is_fresh(p, "2026-09-30", now) is False                       # new quarterly report landed
+        json.dump({"retrieved_utc": "2026-09-01T00:00:00Z", "coverage_through": "2026-06-30"}, open(p, "w"))
+        assert mod.detail_is_fresh(p, "2026-06-30", now) is False                       # 16 days old
+    finally:
+        shutil.rmtree(d)

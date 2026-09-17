@@ -17,7 +17,7 @@
   function last(name) { return name.split(" ").filter(function (t) { return !/^(Jr|Sr|II|III)\.?$/.test(t); }).pop(); }
   function nice(s) {
     /* FEC committee names arrive in capitals. Title-case them, keeping acronyms. */
-    var keep = { PA: 1, PAC: 1, DLP: 1, FF: 1, SURJ: 1, INC: 1, LLC: 1, USA: 1, "SEED-PAC": 1, US: 1 };
+    var keep = { PA: 1, PAC: 1, DLP: 1, FF: 1, SURJ: 1, LLC: 1, USA: 1, "SEED-PAC": 1, US: 1, LC: 1, DC: 1, NGP: 1, VAN: 1, SEIU: 1, USW: 1 };
     var small = { and: 1, for: 1, the: 1, of: 1, an: 1, a: 1, to: 1, in: 1, on: 1 };
     return s.split(" ").map(function (w, i) {
       var core = w.replace(/^[(]|[),.]+$/g, "");
@@ -214,6 +214,98 @@
         return { cells: [nice(r.committee), r.target, r.stance, money(r.amount), count(r.filings)] };
       }));
     sec.appendChild(det);
+    if (o.by_category && o.by_category.length) {
+      sec.appendChild(elem("h3", null, "What was bought"));
+      var plot2 = figure(sec, null, "Itemized outside expenditures by what they paid for.");
+      C.hbars(plot2, {
+        title: "Outside spending by what was bought",
+        rows: o.by_category.map(function (r) { return { label: r.category, value: r.amount, color: "#4B5563" }; })
+      });
+      var det2 = elem("details");
+      det2.appendChild(elem("summary", null, "Every expenditure, " + o.itemized.length + " rows"));
+      table(det2, ["Committee", "About", "Stance", "What", "Paid to", "Where", { label: "Amount", num: true }, "Date"],
+        o.itemized.map(function (r) {
+          return { cells: [nice(r.committee), r.target, r.stance, nice(r.what || ""), nice(r.payee || ""),
+                           [nice(r.city || ""), r.state].filter(Boolean).join(", "), money(r.amount), r.date || ""] };
+        }));
+      sec.appendChild(det2);
+    }
+    return sec;
+  }
+
+  /* ------------------------------------------------- what the money bought */
+
+  function bought(d) {
+    var dt = d.detail;
+    if (!dt || !dt.available || !dt.committees.length) return null;
+    var sec = block("bought", "What the money bought",
+      "Itemized campaign spending, each payment over $200, through " + P.longDate(dt.coverage_through) + ".");
+    var grid = elem("div", "grid two");
+    dt.committees.forEach(function (c) {
+      var col = elem("div");
+      var h = elem("h3");
+      h.appendChild(document.createTextNode(c.candidate + " "));
+      h.appendChild(elem("span", c.party === "DEM" ? "dem" : "rep", "(" + party(c.party) + ")"));
+      col.appendChild(h);
+      var plot = elem("div");
+      col.appendChild(plot);
+      C.hbars(plot, {
+        title: "Spending by category, " + c.candidate,
+        rows: c.spending.by_category.slice(0, 8).map(function (r) {
+          return { label: r.category, value: r.amount, color: P.partyColour(c.party) };
+        })
+      });
+      var ul = elem("ul", "stats");
+      ul.appendChild(tile("Itemized spending", money(c.spending.itemized_total), count(c.spending.items) + " payments"));
+      ul.appendChild(tile("Paid to Pennsylvania vendors", pct(c.spending.in_pa_share, 0), "share of itemized spending"));
+      col.appendChild(ul);
+      col.appendChild(elem("h3", null, "Largest payees"));
+      table(col, ["Payee", "Where", { label: "Amount", num: true }],
+        c.spending.top_vendors.map(function (v) {
+          return { cells: [nice(v.vendor), [nice(v.city || ""), v.state].filter(Boolean).join(", "), money(v.amount)] };
+        }));
+      grid.appendChild(col);
+    });
+    sec.appendChild(grid);
+    return sec;
+  }
+
+  /* --------------------------------------------- where the money came from */
+
+  function from(d) {
+    var dt = d.detail;
+    if (!dt || !dt.available || !dt.committees.length) return null;
+    var sec = block("from", "Where the donors are",
+      "Itemized individual contributions, each over $200, by where the donor lives.");
+    var grid = elem("div", "grid two");
+    dt.committees.forEach(function (c) {
+      var co = c.contributions;
+      var col = elem("div");
+      var h = elem("h3");
+      h.appendChild(document.createTextNode(c.candidate + " "));
+      h.appendChild(elem("span", c.party === "DEM" ? "dem" : "rep", "(" + party(c.party) + ")"));
+      col.appendChild(h);
+      var plot = elem("div");
+      col.appendChild(plot);
+      C.hbars(plot, {
+        title: "Contributions by state, " + c.candidate,
+        rows: co.by_state.map(function (r) { return { label: r.state, value: r.amount, color: P.partyColour(c.party) }; })
+      });
+      var big = co.by_size.filter(function (s) { return s.size >= 2000; })[0];
+      var all = co.by_size.reduce(function (a, s) { return a + (s.amount || 0); }, 0);
+      var ul = elem("ul", "stats");
+      ul.appendChild(tile("From the district", pct(co.in_district_share, 0), "zip codes " + dt.in_district_zip_prefixes.join(", ") + "; approximate"));
+      ul.appendChild(tile("Gifts of $2,000 and over", big ? pct(big.amount / all, 0) : "\u2013", "share of all individual money"));
+      ul.appendChild(tile("Gifts of $200 or less", pct(co.by_size[0].amount / all, 0), "share of all individual money"));
+      col.appendChild(ul);
+      col.appendChild(elem("h3", null, "Top occupations, as donors reported them"));
+      table(col, ["Occupation", { label: "Amount", num: true }, { label: "Gifts", num: true }],
+        co.by_occupation.map(function (o) {
+          return { cells: [nice(o.occupation || "(not stated)"), money(o.amount), count(o.count)] };
+        }));
+      grid.appendChild(col);
+    });
+    sec.appendChild(grid);
     return sec;
   }
 
@@ -280,8 +372,9 @@
   document.addEventListener("data:ready", function (ev) {
     var d = ev.detail;
     var main = document.getElementById("main");
-    [standing, sources, everyone, outside, history, download].forEach(function (f) {
-      main.appendChild(f(d));
+    [standing, sources, bought, from, everyone, outside, history, download].forEach(function (f) {
+      var sec = f(d);
+      if (sec) main.appendChild(sec);
     });
   });
 })();

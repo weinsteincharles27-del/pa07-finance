@@ -4,7 +4,10 @@
 Writes two files:
 
   sources/fec.json          current cycle: every declared candidate's committee
-                            totals, and independent expenditures by committee
+                            totals, independent expenditures by committee, and
+                            every itemized outside expenditure (what was bought)
+  sources/fec_detail.json   the two nominees: spending by category and vendor,
+                            contributions by state, size, zip and occupation
   sources/fec_history.json  the last four general elections: the two nominees'
                             full-cycle totals and outside spending, joined to
                             the certified vote totals in sources/results.json
@@ -30,6 +33,7 @@ Conventions that matter for correctness:
     FEC_API_KEY=... python3 collect_fec.py        # CI (repository secret)
     python3 collect_fec.py                        # local: reads fec_key.txt
     python3 collect_fec.py --history              # also refetch the 2018-2024 figures
+    python3 collect_fec.py --detail               # also refetch spending and donor detail
 """
 import datetime
 import json
@@ -40,6 +44,8 @@ import time
 import urllib.error
 import urllib.parse
 import urllib.request
+
+import classify
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 SRC = os.path.join(ROOT, "sources")
@@ -69,7 +75,7 @@ def api_key(required=True):
 def fetch(path, **params):
     """One GET against OpenFEC with retry. The single seam the tests replace."""
     params["api_key"] = api_key()
-    url = "%s%s?%s" % (BASE, path, urllib.parse.urlencode(params))
+    url = "%s%s?%s" % (BASE, path, urllib.parse.urlencode(params, doseq=True))
     last = None
     for attempt in range(5):
         try:
@@ -100,6 +106,27 @@ def pages(path, **params):
         if page >= (pg.get("pages") or 1):
             return out
         page += 1
+
+
+def keyset(path, date_key, **params):
+    """Every row of an itemized schedule. These endpoints page by cursor, not
+    by page number: pagination.last_indexes must be passed back each call.
+    Asking for page=2 silently returns page 1 again."""
+    out, cur, seen = [], {}, set()
+    while True:
+        d = fetch(path, per_page=100, **params, **cur)
+        rs = d.get("results") or []
+        if not rs:
+            return out
+        out.extend(rs)
+        li = (d.get("pagination") or {}).get("last_indexes") or {}
+        nxt = li.get("last_index")
+        if not nxt or nxt in seen:
+            return out
+        seen.add(nxt)
+        cur = {"last_index": nxt}
+        if li.get(date_key):
+            cur[date_key] = li[date_key]
 
 
 def money(v):
@@ -184,6 +211,8 @@ def current(race):
             "has_raised_funds": bool(r.get("has_raised_funds")),
             "committee_name": (pcc[0].get("name") if pcc else None),
             **t,
+            # totals() does not return the committee id; the search result does.
+            "committee_id": (pcc[0].get("committee_id") if pcc else None),
         })
         for row in outside(cid, cycle):
             row["target_candidate"] = name
@@ -197,6 +226,7 @@ def current(race):
         "coverage_through": max((c["coverage_end"] for c in cands if c["coverage_end"]), default=None),
         "candidates": cands,
         "independent_expenditures": ies,
+        "outside_itemized": outside_itemized(cands, cycle),
         "notes": [
             "Candidate totals are cycle-to-date from each committee's most recent periodic "
             "report (FEC Form 3). Independent expenditures report continuously and are usually "
@@ -259,6 +289,168 @@ def history(results):
     }
 
 
+# ------------------------------------------------------------ outside, itemized
+
+def outside_itemized(cands, cycle):
+    """What each outside group bought, one row per expenditure. Notices (the
+    48-hour "estimate" filings) and memo sub-itemizations are dropped; what is
+    left sums exactly to the by_candidate aggregate, and the gate checks that."""
+    ids = [c["candidate_id"] for c in cands]
+    names = {c["candidate_id"]: c["name"] for c in cands}
+    rows = []
+    for r in keyset("/schedules/schedule_e/", "last_expenditure_date",
+                    candidate_id=ids, cycle=cycle, most_recent="true"):
+        if r.get("is_notice") or r.get("memo_code"):
+            continue
+        so = r.get("support_oppose_indicator")
+        if so not in ("S", "O"):
+            continue
+        rows.append({
+            "committee_id": r.get("committee_id"),
+            "committee": (r.get("committee") or {}).get("name") or r.get("committee_name"),
+            "target_candidate_id": r.get("candidate_id"),
+            "target_candidate": names.get(r.get("candidate_id")) or r.get("candidate_name"),
+            "support_oppose": so,
+            "description": r.get("expenditure_description"),
+            "category": classify.outside(r.get("expenditure_description")),
+            "payee": r.get("payee_name"),
+            "payee_city": r.get("payee_city"),
+            "payee_state": r.get("payee_state"),
+            "amount": money(r.get("expenditure_amount")),
+            "date": day(r.get("expenditure_date") or r.get("dissemination_date")),
+        })
+    rows.sort(key=lambda x: -(x["amount"] or 0))
+    return rows
+
+
+# ------------------------------------------------- spending and donor detail
+
+IN_DISTRICT_ZIP_PREFIXES = ("180", "181", "182", "183")
+SIZE_LABELS = {0: "$200 or less", 200: "$200.01 to $499.99", 500: "$500 to $999.99",
+               1000: "$1,000 to $1,999.99", 2000: "$2,000 and over"}
+DETAIL_MAX_AGE_DAYS = 7
+
+
+def spending_detail(committee_id, cycle):
+    """Itemized disbursements, classified. Memo sub-itemizations are dropped so
+    the total equals FEC's own by_purpose figure to the cent."""
+    rows = [r for r in keyset("/schedules/schedule_b/", "last_disbursement_date",
+                              committee_id=committee_id, two_year_transaction_period=cycle)
+            if not r.get("memo_code")]
+    cats, vendors, states = {}, {}, {}
+    for r in rows:
+        amt = float(r.get("disbursement_amount") or 0)
+        cat = classify.spending(r.get("disbursement_description"))
+        c = cats.setdefault(cat, {"category": cat, "amount": 0.0, "items": 0})
+        c["amount"] += amt
+        c["items"] += 1
+        name = (r.get("recipient_name") or "").strip().upper() or "(unnamed)"
+        v = vendors.setdefault(name, {"vendor": name, "city": r.get("recipient_city"),
+                                      "state": r.get("recipient_state"), "amount": 0.0, "items": 0, "_cats": {}})
+        v["amount"] += amt
+        v["items"] += 1
+        v["_cats"][cat] = v["_cats"].get(cat, 0.0) + amt
+        st = r.get("recipient_state") or "?"
+        s_ = states.setdefault(st, {"state": st, "amount": 0.0, "items": 0})
+        s_["amount"] += amt
+        s_["items"] += 1
+    for v in vendors.values():
+        v["category"] = max(v["_cats"].items(), key=lambda kv: kv[1])[0]
+        del v["_cats"]
+        v["amount"] = round(v["amount"], 2)
+    for c in cats.values():
+        c["amount"] = round(c["amount"], 2)
+    for s_ in states.values():
+        s_["amount"] = round(s_["amount"], 2)
+    return {
+        "itemized_total": round(sum(float(r.get("disbursement_amount") or 0) for r in rows), 2),
+        "items": len(rows),
+        "by_category": sorted(cats.values(), key=lambda c: -c["amount"]),
+        "top_vendors": sorted(vendors.values(), key=lambda v: -v["amount"])[:15],
+        "by_vendor_state": sorted(states.values(), key=lambda s_: -s_["amount"]),
+    }
+
+
+def donor_detail(committee_id, cycle):
+    """Where the itemized contributions came from: FEC's own aggregates by
+    state, size, zip and occupation. The in-district figure is an
+    approximation from zip prefixes; the FEC records no district for a donor."""
+    by_state = [{"state": r["state"], "amount": money(r["total"]), "count": r.get("count")}
+                for r in pages("/schedules/schedule_a/by_state/", committee_id=committee_id, cycle=cycle)]
+    by_state.sort(key=lambda r: -(r["amount"] or 0))
+    by_size = [{"size": r["size"], "label": SIZE_LABELS.get(r["size"], str(r["size"])),
+                "amount": money(r["total"]), "count": r.get("count")}
+               for r in pages("/schedules/schedule_a/by_size/", committee_id=committee_id, cycle=cycle)]
+    by_size.sort(key=lambda r: r["size"])
+    zips = pages("/schedules/schedule_a/by_zip/", committee_id=committee_id, cycle=cycle)
+    zip_total = sum(float(r["total"]) for r in zips)
+    in_district = sum(float(r["total"]) for r in zips if str(r.get("zip") or "")[:3] in IN_DISTRICT_ZIP_PREFIXES)
+    zips.sort(key=lambda r: -float(r["total"]))
+    occ = [{"occupation": r["occupation"], "amount": money(r["total"]), "count": r.get("count")}
+           for r in fetch("/schedules/schedule_a/by_occupation/", committee_id=committee_id, cycle=cycle,
+                          per_page=12, sort="-total").get("results") or []]
+    return {
+        "itemized_total": round(sum(r["amount"] or 0 for r in by_state), 2),
+        "by_state": by_state,
+        "by_size": by_size,
+        "zip_total": round(zip_total, 2),
+        "in_district_amount": round(in_district, 2),
+        "zips": len(zips),
+        "top_zips": [{"zip": r["zip"], "amount": money(r["total"]), "count": r.get("count")} for r in zips[:10]],
+        "by_occupation": occ,
+    }
+
+
+def detail(cur):
+    coms = {}
+    for c in cur["candidates"]:
+        if not c["nominee"] or not c["committee_id"]:
+            continue
+        coms[c["committee_id"]] = {
+            "candidate_id": c["candidate_id"], "candidate": c["name"], "party": c["party"],
+            "spending": spending_detail(c["committee_id"], cur["cycle"]),
+            "contributions": donor_detail(c["committee_id"], cur["cycle"]),
+        }
+    return {
+        "source": "OpenFEC API: schedules/schedule_b (itemized disbursements), schedules/schedule_a "
+                  "aggregates by_state, by_size, by_zip, by_occupation",
+        "retrieved_utc": now(),
+        "cycle": cur["cycle"],
+        "coverage_through": cur["coverage_through"],
+        "in_district_zip_prefixes": list(IN_DISTRICT_ZIP_PREFIXES),
+        "committees": coms,
+        "notes": [
+            "Spending categories are assigned from the description each campaign wrote on its "
+            "report, using ordered keyword rules (classify.py). The FEC's own purpose field files "
+            "more than half of this spending as OTHER.",
+            "Memo sub-itemizations are excluded from spending, so the total equals FEC's by_purpose "
+            "figure exactly.",
+            "Contribution figures are FEC aggregates of itemized contributions, those over $200. "
+            "They include contributions routed through a joint fundraising committee, so a "
+            "candidate whose receipts include a large transfer will show a by-state total above "
+            "the committee's own individual-contribution line.",
+            "In-district is approximate: contributions from zip codes beginning 180 to 183 "
+            "(Lehigh Valley and the Poconos). The FEC records no district for a donor.",
+        ],
+    }
+
+
+def detail_is_fresh(path, coverage_through, now_utc=None):
+    """Spending and donor detail only moves when a new periodic report is filed,
+    so it is re-pulled when the coverage date changes, or weekly."""
+    if not os.path.exists(path):
+        return False
+    try:
+        d = json.load(open(path))
+        if d.get("coverage_through") != coverage_through:
+            return False
+        then = datetime.datetime.strptime(d.get("retrieved_utc") or "", "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=datetime.timezone.utc)
+    except (ValueError, TypeError, json.JSONDecodeError):
+        return False
+    now_utc = now_utc or datetime.datetime.now(datetime.timezone.utc)
+    return (now_utc - then).days < DETAIL_MAX_AGE_DAYS
+
+
 # ----------------------------------------------------------------------- helpers
 
 def display_name(fec_name):
@@ -318,6 +510,13 @@ def main(argv=None):
     n_filed = sum(1 for c in cur["candidates"] if c["filed"])
     print("fec.json: %d candidates (%d filed), %d outside-spending rows, coverage through %s"
           % (len(cur["candidates"]), n_filed, len(cur["independent_expenditures"]), cur["coverage_through"]))
+    dpath = os.path.join(SRC, "fec_detail.json")
+    if "--detail" in argv or not detail_is_fresh(dpath, cur["coverage_through"]):
+        det = detail(cur)
+        write(dpath, det)
+        print("fec_detail.json: spending and donor detail for %d committees refreshed" % len(det["committees"]))
+    else:
+        print("fec_detail.json: fresh, not refetched")
     hpath = os.path.join(SRC, "fec_history.json")
     if "--history" in argv or not history_is_fresh(hpath):
         hist = history(results)

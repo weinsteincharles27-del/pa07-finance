@@ -4,7 +4,7 @@ import os
 
 import support
 
-DATA_FILES = ["manifest.json", "candidates.json", "outside.json", "history.json", "caveats.json"]
+DATA_FILES = ["manifest.json", "candidates.json", "outside.json", "history.json", "caveats.json", "detail.json"]
 
 
 def exported():
@@ -70,3 +70,23 @@ def test_history_two_party_share_sums_to_one_per_cycle():
 def test_no_em_dashes_in_payload():
     d, _ = exported()
     assert chr(0x2014) not in json.dumps(d)
+
+
+def test_detail_payload_shape_and_shares():
+    d, _ = exported()
+    dt = d["detail.json"]
+    assert dt["available"] and len(dt["committees"]) == 2
+    for c in dt["committees"]:
+        sp, co = c["spending"], c["contributions"]
+        assert abs(sum(x["amount"] for x in sp["by_category"]) - sp["itemized_total"]) < 0.02
+        assert 0 < sp["in_pa_share"] < 1 and 0 < co["in_district_share"] < 1
+        assert len(sp["top_vendors"]) <= 8 and len(co["by_occupation"]) <= 6
+        assert co["by_state"][-1]["state"] == "All other"
+
+
+def test_outside_itemized_matches_aggregate_and_is_categorised():
+    d, _ = exported()
+    o = d["outside.json"]
+    assert abs(sum(x["amount"] for x in o["itemized"]) - o["total"]) < 0.01
+    assert abs(sum(x["amount"] for x in o["by_category"]) - o["total"]) < 0.01
+    assert all(x["category"] for x in o["itemized"])

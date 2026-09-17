@@ -9,7 +9,7 @@ on:
   pull_request:
   push:
     branches: [main]
-    paths-ignore: ["site/data/**", "site/*.xlsx", "sources/fec.json", "sources/fec_history.json"]
+    paths-ignore: ["site/data/**", "site/*.xlsx", "sources/fec.json", "sources/fec_history.json", "sources/fec_detail.json"]
 
 jobs:
   test:
@@ -27,7 +27,7 @@ jobs:
         if: github.event_name == 'pull_request'
         run: |
           owned=$(git diff --name-only --diff-filter=MD "origin/${{ github.base_ref }}...HEAD" -- \
-                    'site/data/**' 'site/*.xlsx' 'sources/fec.json' 'sources/fec_history.json')
+                    'site/data/**' 'site/*.xlsx' 'sources/fec.json' 'sources/fec_history.json' 'sources/fec_detail.json')
           if [ -n "$owned" ]; then
             echo "These files are written by the refresh job and must not be edited on a branch:"
             echo "$owned"
