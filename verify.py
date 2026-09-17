@@ -111,8 +111,11 @@ def run(WB, SRC, A, quiet=False):
 
     # ---- current cycle
     C = {c["name"]: c for c in D["candidates"]}
-    filed = [c for c in D["candidates"] if c["filed"]]
+    nominee_names = {c["name"] for c in D["candidates"] if c["nominee"]}
+    filed = [c for c in D["candidates"] if c["filed"] and c["nominee"]]
     ct = wb["Candidate Totals"]
+    ck("Candidate Totals lists the nominees only",
+       {ct.cell(i, 1).value for i in range(A["CT_FIRST"], A["CT_LAST"] + 1)} == nominee_names)
     for i in range(A["CT_FIRST"], A["CT_LAST"] + 1):
         c = C[ct.cell(i, 1).value]
         if c["filed"]:
@@ -121,7 +124,7 @@ def run(WB, SRC, A, quiet=False):
         else:
             ck("%s never-filed cells blank" % c["name"], all(ct.cell(i, col).value is None for col in range(7, 18)))
             ck("%s marked 'no report'" % c["name"], ct.cell(i, 5).value == "no report")
-    num("total receipts, filed candidates", V.get("CANDIDATE TOTALS!G%d" % A["CT_TOTAL"]), sum(c["receipts"] for c in filed), 0.02)
+    num("total receipts, both nominees", V.get("CANDIDATE TOTALS!G%d" % A["CT_TOTAL"]), sum(c["receipts"] for c in filed), 0.02)
     nominee_ids = {c["candidate_id"] for c in D["candidates"] if c["nominee"]}
     ies = [x for x in D["independent_expenditures"] if x["target_candidate_id"] in nominee_ids]
     ck("outside rows on the sheet are nominees only",

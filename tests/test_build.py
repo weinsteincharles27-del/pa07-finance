@@ -3,17 +3,14 @@ import openpyxl
 import support
 
 
-def test_never_filed_candidates_are_blank_not_zero():
+def test_candidate_totals_lists_the_two_nominees_only():
     with support.sandbox() as (src, work):
         out, A = support.built(src, work)
         fec = support.fixture("fec.json")
         ws = openpyxl.load_workbook(out)["Candidate Totals"]
-        names = {ws.cell(r, 1).value: r for r in range(A["CT_FIRST"], A["CT_LAST"] + 1)}
-        for c in fec["candidates"]:
-            r = names[c["name"]]
-            if not c["filed"]:
-                assert all(ws.cell(r, col).value is None for col in range(7, 18)), c["name"]
-                assert ws.cell(r, 5).value == "no report"
+        shown = {ws.cell(r, 1).value for r in range(A["CT_FIRST"], A["CT_LAST"] + 1)}
+        assert shown == {c["name"] for c in fec["candidates"] if c["nominee"]}
+        assert len(fec["candidates"]) > 2, "fixture should carry the other declared candidates"
 
 
 def test_sheet_order_and_chart_count():

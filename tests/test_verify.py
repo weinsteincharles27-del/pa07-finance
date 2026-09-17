@@ -15,17 +15,17 @@ def test_clean_build_is_green():
         assert n > 150 and cells > 1000
 
 
-def test_gate_catches_a_zero_where_a_blank_belongs():
+def test_gate_catches_an_edited_source_figure():
+    """Nudge one nominee's transfers-in cell; the source-of-funds reconciliation must notice."""
     with support.sandbox() as (src, work):
         out, A = support.built(src, work)
         wb = openpyxl.load_workbook(out)
         ws = wb["Candidate Totals"]
-        row = next(r for r in range(A["CT_FIRST"], A["CT_LAST"] + 1) if ws.cell(r, 5).value == "no report")
-        ws.cell(row, 7).value = 0
+        ws.cell(A["CT_FIRST"], 15).value = (ws.cell(A["CT_FIRST"], 15).value or 0) + 1000
         wb.save(out)
         v = support.load("verify")
         fails, _, _ = v.run(out, src, A, quiet=True)
-        assert any("never-filed" in f[0] for f in fails), fails
+        assert any("source[" in f[0] or "ex-transfer" in f[0] for f in fails), fails
 
 
 def test_gate_catches_a_shortened_regression_range():
