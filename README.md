@@ -60,15 +60,17 @@ conventions below each exist because one of those happened.
 
 ## Setup
 
-The repository works with no secrets: the collector falls back to FEC's public `DEMO_KEY`.
-An API key raises the rate limit and is worth adding. Request one at
-https://api.data.gov/signup/ and store it:
+The refresh job needs one repository secret, `FEC_API_KEY`. FEC's public `DEMO_KEY` allows
+30 calls an hour and a run makes about 37, so there is no working fallback; without the
+secret the job stops in its first step and says so. Request a key at
+https://api.data.gov/signup/ (free, read-only against public data) and store it:
 
 ```bash
 gh secret set FEC_API_KEY --repo weinsteincharles27-del/pa07-finance
 ```
 
-Locally, put it in `fec_key.txt` (gitignored) or export `FEC_API_KEY`.
+Locally, put it in `fec_key.txt` (gitignored) or export `FEC_API_KEY`. `build_workbook.py`,
+`verify.py`, `export_site.py` and the tests need no key; only the collector does.
 
 GitHub Pages must be set to deploy from GitHub Actions (Settings, Pages, Source).
 

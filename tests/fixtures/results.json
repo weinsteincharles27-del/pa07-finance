@@ -1,0 +1,126 @@
+{
+  "what": "Certified general-election results for PA-07, one row per major-party nominee. These are historical facts and do not change; the file is committed rather than re-fetched. Finance figures for these candidates are pulled live by collect_fec.py.",
+  "district": "PA-07",
+  "cycles": [
+    {
+      "cycle": 2018,
+      "election_date": "2018-11-06",
+      "map_era": "2018 PA Supreme Court remap (Lehigh Valley: Lehigh, Northampton, s. Monroe)",
+      "all_candidate_votes_reported": true,
+      "district_total_votes": 263360,
+      "other_votes": 8110,
+      "source": "FEC, Federal Elections 2018, '2018 US House Results by State', district '07 - FULL TERM'",
+      "source_url": "https://www.fec.gov/documents/2706/federalelections2018.xlsx",
+      "nominees": [
+        {
+          "candidate_id": "H8PA15229",
+          "name": "Susan Wild",
+          "party": "DEM",
+          "incumbent": false,
+          "general_votes": 140813,
+          "winner": true
+        },
+        {
+          "candidate_id": "H8PA15245",
+          "name": "Marty Nothstein",
+          "party": "REP",
+          "incumbent": false,
+          "general_votes": 114437,
+          "winner": false
+        }
+      ]
+    },
+    {
+      "cycle": 2020,
+      "election_date": "2020-11-03",
+      "map_era": "2018 PA Supreme Court remap (Lehigh Valley: Lehigh, Northampton, s. Monroe)",
+      "all_candidate_votes_reported": true,
+      "district_total_votes": 377404,
+      "other_votes": 522,
+      "source": "FEC, Federal Elections 2020, '13. US House Results by State', district '07'",
+      "source_url": "https://www.fec.gov/documents/4228/federalelections2020.xlsx",
+      "nominees": [
+        {
+          "candidate_id": "H8PA15229",
+          "name": "Susan Wild",
+          "party": "DEM",
+          "incumbent": true,
+          "general_votes": 195475,
+          "winner": true
+        },
+        {
+          "candidate_id": "H0PA07132",
+          "name": "Lisa Scheller",
+          "party": "REP",
+          "incumbent": false,
+          "general_votes": 181407,
+          "winner": false
+        }
+      ]
+    },
+    {
+      "cycle": 2022,
+      "election_date": "2022-11-08",
+      "map_era": "2022 post-census remap (Lehigh, Northampton, Carbon, part of Monroe)",
+      "all_candidate_votes_reported": true,
+      "district_total_votes": 297395,
+      "other_votes": 504,
+      "source": "FEC, Federal Elections 2022, '8. US House Results by State', district '07'",
+      "source_url": "https://www.fec.gov/documents/5676/federalelections2022.xlsx",
+      "nominees": [
+        {
+          "candidate_id": "H8PA15229",
+          "name": "Susan Wild",
+          "party": "DEM",
+          "incumbent": true,
+          "general_votes": 151364,
+          "winner": true
+        },
+        {
+          "candidate_id": "H0PA07132",
+          "name": "Lisa Scheller",
+          "party": "REP",
+          "incumbent": false,
+          "general_votes": 145527,
+          "winner": false
+        }
+      ]
+    },
+    {
+      "cycle": 2024,
+      "election_date": "2024-11-05",
+      "map_era": "2022 post-census remap (Lehigh, Northampton, Carbon, part of Monroe)",
+      "all_candidate_votes_reported": false,
+      "district_total_votes": null,
+      "other_votes": null,
+      "source": "Clerk of the U.S. House, Statistics of the Congressional Election of November 5, 2024, p.61 (Pennsylvania, district 7)",
+      "source_url": "https://clerk.house.gov/member_info/electionInfo/2024/statistics2024.pdf",
+      "nominees": [
+        {
+          "candidate_id": "H8PA15229",
+          "name": "Susan Wild",
+          "party": "DEM",
+          "incumbent": true,
+          "general_votes": 199626,
+          "winner": false
+        },
+        {
+          "candidate_id": "H8PA15195",
+          "name": "Ryan Mackenzie",
+          "party": "REP",
+          "incumbent": false,
+          "general_votes": 203688,
+          "winner": true
+        }
+      ]
+    }
+  ],
+  "notes": [
+    "DISTRICT BOUNDARIES CHANGED INSIDE THIS WINDOW. 2018 and 2020 were run on the 2018 PA Supreme Court remap; 2022 and 2024 on the post-2020-census remap, which added Carbon County and changed the Monroe County portion. The seat is Lehigh Valley-based throughout, so the four elections are broadly comparable, but they are not the identical electorate.",
+    "Susan Wild's FEC candidate record is filed under district 15 for cycle 2018 (candidate_id H8PA15195-era numbering, H8PA15229), because she first filed in the pre-remap PA-15. A query of /elections/?district=07&cycle=2018 therefore OMITS her entirely. Her totals here were pulled directly by candidate_id.",
+    "In 2018 Wild simultaneously contested the FULL TERM in the new PA-07 and the UNEXPIRED TERM special election in the old PA-15 (both on 2018-11-06). Her single committee funded both, so her 2018 receipts are not a clean 'PA-07 general election' figure. The vote total used here is the FULL TERM (new PA-07) race.",
+    "'Other votes' are third-party and scattered write-in votes reported in the official results. 2018 included a Libertarian (Tim Silfies) who took 3.0% of the vote; the other three cycles were effectively two-candidate races.",
+    "Two-party vote share (used for the correlation and regression) is a candidate's votes divided by the sum of the Democratic and Republican votes only. This is the standard comparable measure when third-party presence varies across years, as it does here.",
+    "The Clerk of the House summary for 2024 lists only the two major-party nominees and reports no all-candidate district total. Third-party and write-in votes for 2024 are therefore unknown and recorded as null, not zero."
+  ]
+}
