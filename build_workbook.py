@@ -176,7 +176,7 @@ def build(fec, hist, race, out=OUT, det=None):
     ct["A2"] = ("Cycle-to-date from each committee's latest periodic FEC report. Coverage through %s. "
                 "Retrieved %s." % (fec["coverage_through"], fec["retrieved_utc"]))
     ct["A2"].font = SUB
-    r = section(ct, 4, "EVERY DECLARED CANDIDATE", 17)
+    r = section(ct, 4, "THE TWO NOMINEES", 17)
     cols = ["Candidate", "Party", "Status", "Incumbent", "Filed?", "Coverage through", "Receipts",
             "Disbursements", "Cash on hand", "Debts", "Individual, total",
             "  of which unitemized ($200 or less)", "PAC contributions", "Party committee",
@@ -184,7 +184,7 @@ def build(fec, hist, race, out=OUT, det=None):
             "Other / unclassified (derived)"]
     first = headers(ct, r, cols, [26, 7, 17, 10, 12, 13, 14, 14, 14, 11, 15, 16, 15, 13, 17, 15, 16])
     A["CT_FIRST"] = first
-    for i, c in enumerate(cands):
+    for i, c in enumerate(nominees_only):
         rr = first + i
         ct.cell(rr, 1, c["name"]).font = BODY
         ct.cell(rr, 2, c["party"]).font = BODY
@@ -207,11 +207,11 @@ def build(fec, hist, race, out=OUT, det=None):
         if c["nominee"]:
             for cc in range(1, 7):
                 ct.cell(rr, cc).font = F(bold=True)
-    last = first + len(cands) - 1
+    last = first + len(nominees_only) - 1
     A["CT_LAST"] = last
     tr = last + 1
     A["CT_TOTAL"] = tr
-    ct.cell(tr, 1, "TOTAL, all candidates who filed").font = BOLD
+    ct.cell(tr, 1, "TOTAL, both nominees").font = BOLD
     for cc in range(7, 18):
         money_cell(ct, tr, cc, "=SUM({0}{1}:{0}{2})".format(CL(cc), first, last), BOLD)
     box(ct, tr, 1, 17, TOT_FILL)
@@ -223,8 +223,8 @@ def build(fec, hist, race, out=OUT, det=None):
     n = tr + 2
     n = note(ct, n, "HOW TO READ THIS TABLE", 17, font=F(bold=True, color=NAVY))
     for t in [
-        "Candidates with no periodic report on file have BLANK financial cells, not $0. The FEC reports nothing for them, which is a different claim from 'raised nothing'. SUM() ignores blanks.",
-        "'Status' comes from sources/race.json: the two nominees are named there; any other Democrat or Republican who filed is a primary candidate; the rest are declared candidates of other parties.",
+        "This workbook covers the two general-election nominees named in sources/race.json. The FEC lists other declared and primary candidates for the seat; they stay in sources/fec.json and are not shown.",
+        "A candidate with no periodic report on file would show BLANK financial cells, not $0. The FEC reports nothing in that case, which is a different claim from 'raised nothing'.",
         "'of which unitemized' is a subset of 'Individual, total'. Adding it to the other source columns double-counts.",
         "Blue figures are values from the FEC API. Black figures are formulas.",
     ]:

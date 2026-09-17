@@ -23,13 +23,11 @@ def test_every_file_the_page_fetches_is_written():
     assert d["manifest.json"]["workbook"]["available"] is True
 
 
-def test_nominees_first_then_by_receipts():
+def test_candidates_payload_is_the_two_nominees():
     d, _ = exported()
     cs = d["candidates.json"]["candidates"]
-    st = [c["status"] for c in cs]
-    assert st[:2] == ["nominee", "nominee"] and "nominee" not in st[2:]
-    filed = [c["receipts"] for c in cs[2:] if c["filed"]]
-    assert filed == sorted(filed, reverse=True)
+    assert [c["status"] for c in cs] == ["nominee", "nominee"]
+    assert {c["party"] for c in cs} == {"DEM", "REP"}
 
 
 def test_outside_by_target_sums_to_total_and_rows_are_ranked():

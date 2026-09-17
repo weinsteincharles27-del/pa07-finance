@@ -160,27 +160,6 @@
     return sec;
   }
 
-  function everyone(d) {
-    var cs = d.candidates.candidates;
-    var sec = block("candidates", "Every declared candidate",
-      "All " + cs.length + " candidates the FEC lists for this seat in " + d.candidates.cycle +
-      ". Nominees are the two on the November ballot; primary candidates ran in May; a blank row " +
-      "means the committee has never filed a periodic report.");
-    var head = ["Candidate", "Party", "Status", { label: "Raised", num: true }, { label: "Spent", num: true },
-                { label: "Cash on hand", num: true }, { label: "Small donations", num: true },
-                { label: "From PACs", num: true }, "Reported through"];
-    var rows = cs.map(function (c) {
-      var st = c.status === "nominee" ? "Nominee" : c.status === "primary" ? "Primary candidate" : "Declared";
-      if (c.incumbent) st += ", incumbent";
-      return { party: c.party, cells: [c.name, party(c.party), st,
-        c.filed ? money(c.receipts) : "–", c.filed ? money(c.disbursements) : "–",
-        c.filed ? money(c.cash_on_hand) : "–", c.filed ? money(c.individual_unitemized) : "–",
-        c.filed ? money(c.pac_contributions) : "–", c.filed ? P.longDate(c.coverage_end) : "no report filed"] };
-    });
-    table(sec, head, rows, function (r) { return r.party === "DEM" ? "d" : r.party === "REP" ? "r" : null; });
-    return sec;
-  }
-
   function outside(d) {
     var o = d.outside;
     var sec = block("outside", "Outside spending",
@@ -371,7 +350,7 @@
   document.addEventListener("data:ready", function (ev) {
     var d = ev.detail;
     var main = document.getElementById("main");
-    [standing, sources, bought, from, everyone, outside, history, download].forEach(function (f) {
+    [standing, sources, bought, from, outside, history, download].forEach(function (f) {
       var sec = f(d);
       if (sec) main.appendChild(sec);
     });

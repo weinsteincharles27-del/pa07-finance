@@ -43,6 +43,8 @@ def candidates_block(fec):
             "transfers_in", "self_funding", "coverage_end", "last_report"]
     out = []
     for c in fec["candidates"]:
+        if not c["nominee"]:            # the page is the two nominees; the rest stay in sources/
+            continue
         row = {k: c.get(k) for k in keep}
         row["status"] = status(c)
         # Residual, so the page can draw a composition that sums to receipts.
