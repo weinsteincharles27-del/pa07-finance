@@ -103,6 +103,7 @@ def run(WB, SRC, A, quiet=False):
 
     wb = openpyxl.load_workbook(WB)
     ck("sheet order", wb.sheetnames == ["Summary", "Charts", "Money Sources", "Candidate Totals", "Outside Money",
+                                        "Spending Detail", "Donor Detail", "Outside Detail",
                                         "History", "History Charts", "Money vs Results", "Notes & Sources"], str(wb.sheetnames))
     V = evaluate(WB)
     errs = [(a, str(x)) for a, x in V.items() if any(t in str(x) for t in ERRT)]
@@ -192,6 +193,49 @@ def run(WB, SRC, A, quiet=False):
         num("fitted[%d]" % j, V.get(M + "C%d" % (A["FIT_FIRST"] + j)), pred, 1e-9)
         num("residual[%d]" % j, V.get(M + "D%d" % (A["FIT_FIRST"] + j)), cyc[j][2] - pred, 1e-9)
 
+    # ---- detail sheets: every displayed figure against the source
+    dpath = os.path.join(SRC, "fec_detail.json")
+    det = json.load(open(dpath)) if os.path.exists(dpath) else None
+    nom_ids = [c["committee_id"] for c in D["candidates"] if c["nominee"] and c["committee_id"]]
+    if det and "SD_CAT_FIRST" in A:
+        sd = wb["Spending Detail"]
+        for j, cid in enumerate(nom_ids):
+            col = chr(ord("B") + 3 * j)
+            src = {x["category"]: x for x in det["committees"][cid]["spending"]["by_category"]}
+            for i in range(A["SD_CAT_FIRST"], A["SD_CAT_LAST"] + 1):
+                cat = sd.cell(i, 1).value
+                num("spending %s %s" % (cid, cat), V.get("SPENDING DETAIL!%s%d" % (col, i)), src.get(cat, {}).get("amount", 0), 0.02)
+            num("spending %s total == FEC itemized" % cid, V.get("SPENDING DETAIL!%s%d" % (col, A["SD_CAT_TOTAL"])),
+                det["committees"][cid]["spending"]["itemized_total"], 0.02)
+            num("spending %s check row is zero" % cid, V.get("SPENDING DETAIL!%s%d" % (col, A["SD_CHECK"])), 0.0, 0.02)
+            ck("spending %s Other under 2%%" % cid,
+               src.get("Other", {}).get("amount", 0) / det["committees"][cid]["spending"]["itemized_total"] < 0.02)
+        dd = wb["Donor Detail"]
+        for j, cid in enumerate(nom_ids):
+            col = chr(ord("B") + 3 * j)
+            con = det["committees"][cid]["contributions"]
+            num("donors %s state total == FEC itemized" % cid, V.get("DONOR DETAIL!%s%d" % (col, A["DD_STATE_TOTAL"])), con["itemized_total"], 0.05)
+            num("donors %s size total == sum of buckets" % cid, V.get("DONOR DETAIL!%s%d" % (col, A["DD_SIZE_TOTAL"])),
+                sum(x["amount"] or 0 for x in con["by_size"]), 0.02)
+            num("donors %s in-district" % cid, V.get("DONOR DETAIL!%s%d" % (col, A["DD_DIST_FIRST"])), con["in_district_amount"], 0.02)
+            num("donors %s zip total" % cid, V.get("DONOR DETAIL!%s%d" % (col, A["DD_DIST_FIRST"] + 2)), con["zip_total"], 0.02)
+            ck("donors %s in-district share sane" % cid, 0 < con["in_district_amount"] < con["zip_total"])
+    oi = D.get("outside_itemized") or []
+    if oi and "OI_TOTAL" in A:
+        num("outside itemized total == aggregate", V.get("OUTSIDE DETAIL!H%d" % A["OI_TOTAL"]), sum(x["amount"] for x in oi), 1e-4)
+        num("outside itemized check is zero", V.get("OUTSIDE DETAIL!H%d" % A["OI_CHECK"]), 0.0, 1e-4)
+        ck("outside itemized equals by_candidate aggregate at source",
+           abs(sum(x["amount"] for x in oi) - sum(x["amount"] for x in ies)) < 0.01,
+           "%s vs %s" % (sum(x["amount"] for x in oi), sum(x["amount"] for x in ies)))
+        od = wb["Outside Detail"]
+        by = defaultdict(float)
+        for x in oi:
+            by[x["category"]] += x["amount"]
+        for i in range(A["OD_CAT_FIRST"], A["OD_CAT_LAST"] + 1):
+            cat = od.cell(i, 1).value
+            num("outside category %s" % cat, V.get("OUTSIDE DETAIL!B%d" % i), by[cat], 1e-4)
+        num("outside categories sum to total", V.get("OUTSIDE DETAIL!B%d" % A["OD_CAT_TOTAL"]), sum(by.values()), 1e-4)
+
     # ---- charts: series title must sit one row above the first data row
     nch = 0
     for sh in wb.sheetnames:
@@ -207,7 +251,7 @@ def run(WB, SRC, A, quiet=False):
                 trow = int(tref.split("!")[1].replace("$", "")[1:])
                 vrow = int(vref.split("!")[1].split(":")[0].replace("$", "")[1:])
                 ck("chart title row is data row minus one (%s)" % sh, trow == vrow - 1, "title=%s values=%s" % (tref, vref))
-    ck("13 charts", nch == 13, "found %d" % nch)
+    ck("chart count", nch == A.get("N_CHARTS", 13), "found %d, anchors say %s" % (nch, A.get("N_CHARTS")))
     hc = "HISTORY CHARTS!"
     for j, c in enumerate(H["cycles"]):
         d = next(x for x in c["candidates"] if x["party"] == "DEM")

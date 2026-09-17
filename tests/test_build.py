@@ -21,8 +21,9 @@ def test_sheet_order_and_chart_count():
         out, _ = support.built(src, work)
         wb = openpyxl.load_workbook(out)
         assert wb.sheetnames == ["Summary", "Charts", "Money Sources", "Candidate Totals", "Outside Money",
+                                 "Spending Detail", "Donor Detail", "Outside Detail",
                                  "History", "History Charts", "Money vs Results", "Notes & Sources"]
-        assert sum(len(wb[s]._charts) for s in wb.sheetnames) == 13
+        assert sum(len(wb[s]._charts) for s in wb.sheetnames) == 16
 
 
 def test_chart_series_titles_sit_one_row_above_their_data():
@@ -54,3 +55,32 @@ def test_no_em_dashes_anywhere():
     with support.sandbox() as (src, work):
         out, _ = support.built(src, work)
         assert chr(0x2014).encode("utf-8") not in open(out, "rb").read()
+
+
+def test_detail_sheets_reconcile_to_source():
+    """Category rows sum to FEC's itemized total; itemized outside rows sum to the aggregate."""
+    import json
+    with support.sandbox() as (src, work):
+        out, A = support.built(src, work)
+        det = json.load(open(src + "/fec_detail.json"))
+        fec = json.load(open(src + "/fec.json"))
+        wb = openpyxl.load_workbook(out)
+        sd = wb["Spending Detail"]
+        for j, cid in enumerate(c["committee_id"] for c in fec["candidates"] if c["nominee"]):
+            col = 2 + 3 * j
+            total = sum(sd.cell(r, col).value or 0 for r in range(A["SD_CAT_FIRST"], A["SD_CAT_LAST"] + 1))
+            assert abs(total - det["committees"][cid]["spending"]["itemized_total"]) < 0.02
+        od = wb["Outside Detail"]
+        total = sum(od.cell(r, 8).value or 0 for r in range(A["OI_FIRST"], A["OI_LAST"] + 1))
+        assert abs(total - sum(x["amount"] for x in fec["independent_expenditures"])) < 0.01
+
+
+def test_workbook_builds_without_detail_file():
+    """The detail is optional: a missing fec_detail.json yields a placeholder, not a crash."""
+    import json, os
+    with support.sandbox() as (src, work):
+        os.remove(os.path.join(src, "fec_detail.json"))
+        out, A = support.built(src, work)
+        wb = openpyxl.load_workbook(out)
+        assert "Spending Detail" in wb.sheetnames
+        assert A["N_CHARTS"] == 13 and sum(len(wb[s]._charts) for s in wb.sheetnames) == 13

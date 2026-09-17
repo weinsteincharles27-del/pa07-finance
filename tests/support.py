@@ -11,6 +11,8 @@ import tempfile
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 FIX = os.path.join(ROOT, "tests", "fixtures")
 _loaded = {}
+if ROOT not in sys.path:            # the modules import each other by plain name
+    sys.path.insert(0, ROOT)
 
 
 def load(name):
@@ -29,6 +31,10 @@ def fixture(name):
     return json.load(open(os.path.join(FIX, name)))
 
 
+def has_fixture(name):
+    return os.path.exists(os.path.join(FIX, name))
+
+
 @contextlib.contextmanager
 def sandbox():
     """A temp dir seeded with the frozen sources. Yields (src_dir, work_dir)."""
@@ -36,7 +42,7 @@ def sandbox():
     try:
         src = os.path.join(d, "sources")
         os.makedirs(src)
-        for f in ("fec.json", "fec_history.json", "race.json", "results.json"):
+        for f in ("fec.json", "fec_history.json", "fec_detail.json", "race.json", "results.json"):
             shutil.copy(os.path.join(FIX, f), src)
         yield src, d
     finally:
@@ -49,8 +55,10 @@ def built(src, work):
     fec = json.load(open(os.path.join(src, "fec.json")))
     hist = json.load(open(os.path.join(src, "fec_history.json")))
     race = json.load(open(os.path.join(src, "race.json")))
+    dpath = os.path.join(src, "fec_detail.json")
+    det = json.load(open(dpath)) if os.path.exists(dpath) else None
     out = os.path.join(work, "PA07_Campaign_Finance.xlsx")
-    anchors = b.build(fec, hist, race, out)
+    anchors = b.build(fec, hist, race, out, det=det)
     return out, anchors
 
 

@@ -16,8 +16,8 @@ import subprocess
 import sys
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
-OWNED_JSON = ["sources/fec.json", "sources/fec_history.json",
-              "site/data/manifest.json", "site/data/candidates.json", "site/data/outside.json",
+OWNED_JSON = ["sources/fec.json", "sources/fec_history.json", "sources/fec_detail.json",
+              "site/data/manifest.json", "site/data/detail.json", "site/data/candidates.json", "site/data/outside.json",
               "site/data/history.json", "site/data/caveats.json"]
 OWNED_ALL = OWNED_JSON + ["site/PA07_Campaign_Finance.xlsx"]
 # Keys that move on every run without meaning anything moved: stamps, the

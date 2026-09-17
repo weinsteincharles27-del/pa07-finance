@@ -20,11 +20,19 @@ money-against-results analysis with its caveats.
 ## How it works
 
 ```
-collect_fec.py     OpenFEC API  ->  sources/fec.json, sources/fec_history.json
+collect_fec.py     OpenFEC API  ->  sources/fec.json, sources/fec_history.json, sources/fec_detail.json
+classify.py        free-text FEC descriptions -> standard spending categories
 build_workbook.py  sources/     ->  PA07_Campaign_Finance.xlsx
 verify.py          the gate: every formula evaluated, every figure recomputed from sources/
 export_site.py     sources/     ->  site/data/*.json, and the workbook copied into site/
 ```
+
+Three kinds of FEC data are read. Committee totals and outside-spending aggregates, every
+run. Every itemized outside expenditure (what each group bought and from whom), every run.
+And the two nominees' itemized spending by category and payee, plus contributions by state,
+size, zip and occupation, re-pulled weekly or whenever a new quarterly report lands. Memo
+sub-itemizations and 48-hour notices are dropped, which is what makes the itemized sums
+equal the FEC's own aggregates to the cent; `verify.py` checks that every run.
 
 Two files in `sources/` are maintained by hand and never fetched:
 
@@ -56,6 +64,11 @@ conventions below each exist because one of those happened.
 - **Outside spending is FEC's own deduplicated aggregate.** Summing raw Schedule E lines
   double-counts amendments and runs roughly twice as high. The aggregate can lag a 24-hour
   notice by weeks; that is a caveat on the page, not a hand patch.
+- **The itemized schedules page by cursor, not page number.** Asking `schedule_b` for
+  `page=2` returns page 1 again, silently. `keyset()` passes back `pagination.last_indexes`.
+- **Categories come from the description, not the FEC's purpose field.** The FEC files more
+  than half of this spending as OTHER. `classify.py` uses ordered keyword rules pinned by
+  tests against the real descriptions; the gate fails if OTHER exceeds 2%.
 - **Susan Wild's 2018 record is filed under district 15.** A query by district silently
   omits the 2018 winner. Candidates are fetched by ID.
 - **The gate recomputes, it does not just evaluate.** `verify.py` runs every formula with
@@ -87,7 +100,7 @@ python3 collect_fec.py          # fetch (needs network)
 python3 build_workbook.py
 python3 verify.py               # must print GREEN
 python3 export_site.py
-python3 tests/run_tests.py      # 28 passed, 0 failed
+python3 tests/run_tests.py      # 44 passed, 0 failed
 cd site && python3 -m http.server 8000
 ```
 
@@ -95,6 +108,6 @@ Dependencies: `openpyxl` and `formulas`. On this Mac use `/usr/bin/python3`, whi
 
 ## Files the refresh job owns
 
-`sources/fec.json`, `sources/fec_history.json`, `site/data/**` and `site/PA07_Campaign_Finance.xlsx`
+`sources/fec.json`, `sources/fec_history.json`, `sources/fec_detail.json`, `site/data/**` and `site/PA07_Campaign_Finance.xlsx`
 are rewritten on `main` whenever the FEC figures change. CI refuses a pull request that edits them, so a branch
 never conflicts with the bot. Page code lives in `site/assets`; data comes from the pipeline.

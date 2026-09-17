@@ -19,6 +19,8 @@ import json
 import os
 import sys
 
+import classify
+
 from openpyxl import Workbook
 from openpyxl.chart import BarChart, LineChart, PieChart, Reference, ScatterChart, Series
 from openpyxl.chart.label import DataLabelList
@@ -130,7 +132,7 @@ def stance(so):
 def nice(name):
     """Title-case an all-caps FEC committee name without wrecking acronyms."""
     small = {"and", "for", "the", "of", "an", "a", "to", "in", "on"}
-    upper = {"PA", "PAC", "DLP", "FF", "SURJ", "INC", "SEED-PAC", "US", "SEED", "LLC", "USA"}
+    upper = {"PA", "PAC", "DLP", "FF", "SURJ", "SEED-PAC", "US", "SEED", "LLC", "USA", "LC", "DC", "NGP", "VAN", "SEIU", "USW"}
     out = []
     for i, w in enumerate(name.split()):
         core = w.strip("(),.")
@@ -153,7 +155,7 @@ def status_of(c):
 
 # ==================================================================== build
 
-def build(fec, hist, race, out=OUT):
+def build(fec, hist, race, out=OUT, det=None):
     wb = Workbook()
     A = {}                                   # row anchors, the ref-dict convention
     dem_name = next(c["name"] for c in fec["candidates"] if c["nominee"] == "DEM")
@@ -290,6 +292,285 @@ def build(fec, hist, race, out=OUT):
     for t in fec["notes"]:
         n = note(om, n, "- " + t, 7)
     om.freeze_panes = om.cell(f_ie, 1)
+
+    # ------------------------------------------------- Spending Detail
+    NOM_IDS = [c["committee_id"] for c in fec["candidates"] if c["nominee"] and c["committee_id"]]
+    NOM_LABEL = {c["committee_id"]: "%s (%s)" % (c["name"], "D" if c["party"] == "DEM" else "R")
+                 for c in fec["candidates"] if c["nominee"]}
+    det_ok = bool(det) and bool(NOM_IDS) and all(cid in det["committees"] for cid in NOM_IDS)
+    sd = wb.create_sheet("Spending Detail")
+    sd["A1"] = "What each nominee's campaign spent its money on"
+    sd["A1"].font = TITLE
+    if det_ok:
+        sd["A2"] = ("Itemized disbursements (each over $200), %d cycle, through %s. Categories assigned from the "
+                    "description on each report. Retrieved %s." % (det["cycle"], det["coverage_through"], det["retrieved_utc"]))
+        sd["A2"].font = SUB
+        for i2, w2 in enumerate([30, 15, 9, 8, 15, 9, 8], start=1):
+            sd.column_dimensions[CL(i2)].width = w2
+        r = section(sd, 4, "SPENDING BY CATEGORY", 7)
+        hdrs = ["Category"]
+        for cid in NOM_IDS:
+            hdrs += [NOM_LABEL[cid], "Share", "Items"]
+        f_cat = headers(sd, r, hdrs)
+        A["SD_CAT_FIRST"] = f_cat
+        cat_amt = {cid: {x["category"]: x for x in det["committees"][cid]["spending"]["by_category"]} for cid in NOM_IDS}
+        cats = [c for c in classify.SPENDING_ORDER if any(c in cat_amt[cid] for cid in NOM_IDS)]
+        for i, cat in enumerate(cats):
+            rr = f_cat + i
+            sd.cell(rr, 1, cat).font = BODY
+            for j, cid in enumerate(NOM_IDS):
+                x = cat_amt[cid].get(cat)
+                money_cell(sd, rr, 2 + 3 * j, x["amount"] if x else 0)
+                sd.cell(rr, 4 + 3 * j, x["items"] if x else 0).font = INPUT
+                sd.cell(rr, 4 + 3 * j).number_format = NUM
+            box(sd, rr, 1, 1 + 3 * len(NOM_IDS))
+        l_cat = f_cat + len(cats) - 1
+        t_cat = l_cat + 1
+        A["SD_CAT_LAST"], A["SD_CAT_TOTAL"] = l_cat, t_cat
+        sd.cell(t_cat, 1, "TOTAL itemized").font = BOLD
+        for j, cid in enumerate(NOM_IDS):
+            col = CL(2 + 3 * j)
+            money_cell(sd, t_cat, 2 + 3 * j, "=SUM({0}{1}:{0}{2})".format(col, f_cat, l_cat), BOLD)
+            c2 = sd.cell(t_cat, 4 + 3 * j, "=SUM({0}{1}:{0}{2})".format(CL(4 + 3 * j), f_cat, l_cat))
+            c2.font, c2.number_format = BOLD, NUM
+            for i in range(len(cats) + 1):
+                c3 = sd.cell(f_cat + i, 3 + 3 * j, '=IF(AND(ISNUMBER({0}{1}),ISNUMBER({0}{2}),{0}{2}<>0),{0}{1}/{0}{2},"")'
+                             .format(col, f_cat + i, t_cat))
+                c3.font, c3.number_format = (BOLD if i == len(cats) else BODY), PCT
+        box(sd, t_cat, 1, 1 + 3 * len(NOM_IDS), TOT_FILL)
+        chk = t_cat + 1
+        A["SD_CHECK"] = chk
+        sd.cell(chk, 1, "Check: categories minus FEC itemized total (must be $0)").font = F(italic=True)
+        for j, cid in enumerate(NOM_IDS):
+            c2 = sd.cell(chk, 2 + 3 * j, "={0}{1}-{2}".format(CL(2 + 3 * j), t_cat, det["committees"][cid]["spending"]["itemized_total"]))
+            c2.font, c2.number_format = F(italic=True), MONEY2
+        r = chk + 2
+        for j, cid in enumerate(NOM_IDS):
+            r = section(sd, r, "LARGEST PAYEES, %s" % NOM_LABEL[cid].upper(), 7)
+            f_v = headers(sd, r, ["Payee", "Amount", "Items", "City", "State", "Main category", ""])
+            A["SD_VEND_%d" % j] = f_v
+            vs = det["committees"][cid]["spending"]["top_vendors"]
+            for i, v in enumerate(vs):
+                rr = f_v + i
+                sd.cell(rr, 1, nice(v["vendor"])).font = BODY
+                money_cell(sd, rr, 2, v["amount"])
+                sd.cell(rr, 3, v["items"]).font = INPUT
+                sd.cell(rr, 4, nice(v["city"] or "")).font = BODY
+                sd.cell(rr, 5, v["state"] or "").font = BODY
+                sd.cell(rr, 6, v["category"]).font = BODY
+                box(sd, rr, 1, 6)
+            r = f_v + len(vs) + 1
+        r = section(sd, r, "WHERE THE PAYEES ARE", 7)
+        hdrs = ["Payee state"]
+        for cid in NOM_IDS:
+            hdrs += [NOM_LABEL[cid], "Share", ""]
+        f_st = headers(sd, r, hdrs)
+        A["SD_STATE_FIRST"] = f_st
+        st_amt = {cid: {x["state"]: x["amount"] for x in det["committees"][cid]["spending"]["by_vendor_state"]} for cid in NOM_IDS}
+        all_states = sorted(set().union(*[set(m) for m in st_amt.values()]),
+                            key=lambda st: -sum(st_amt[cid].get(st, 0) for cid in NOM_IDS))
+        top_states = all_states[:8]
+        for i, st in enumerate(top_states + ["All other"]):
+            rr = f_st + i
+            sd.cell(rr, 1, st).font = BODY
+            for j, cid in enumerate(NOM_IDS):
+                if st == "All other":
+                    v = sum(st_amt[cid].get(o, 0) for o in all_states[8:])
+                else:
+                    v = st_amt[cid].get(st, 0)
+                money_cell(sd, rr, 2 + 3 * j, round(v, 2))
+                c3 = sd.cell(rr, 3 + 3 * j, '=IF(AND(ISNUMBER({0}{1}),ISNUMBER({0}{2}),{0}{2}<>0),{0}{1}/{0}{2},"")'
+                             .format(CL(2 + 3 * j), rr, t_cat))
+                c3.font, c3.number_format = BODY, PCT
+            box(sd, rr, 1, 1 + 3 * len(NOM_IDS))
+        A["SD_STATE_LAST"] = f_st + len(top_states)
+        n = A["SD_STATE_LAST"] + 2
+        for t in det["notes"][:2]:
+            n = note(sd, n, "- " + t, 7)
+    else:
+        note(sd, 3, "sources/fec_detail.json is missing or does not cover both nominees; run collect_fec.py --detail.", 7)
+
+    # ---------------------------------------------------- Donor Detail
+    dd = wb.create_sheet("Donor Detail")
+    dd["A1"] = "Where each nominee's contributions came from"
+    dd["A1"].font = TITLE
+    if det_ok:
+        dd["A2"] = ("Itemized individual contributions (each over $200), %d cycle, through %s. FEC aggregates. Retrieved %s."
+                    % (det["cycle"], det["coverage_through"], det["retrieved_utc"]))
+        dd["A2"].font = SUB
+        for i2, w2 in enumerate([30, 15, 9, 9, 15, 9, 9], start=1):
+            dd.column_dimensions[CL(i2)].width = w2
+        r = section(dd, 4, "BY STATE", 7)
+        hdrs = ["State"]
+        for cid in NOM_IDS:
+            hdrs += [NOM_LABEL[cid], "Share", "Gifts"]
+        f_s = headers(dd, r, hdrs)
+        A["DD_STATE_FIRST"] = f_s
+        con = {cid: det["committees"][cid]["contributions"] for cid in NOM_IDS}
+        st_map = {cid: {x["state"]: x for x in con[cid]["by_state"]} for cid in NOM_IDS}
+        states = sorted(set().union(*[set(m) for m in st_map.values()]),
+                        key=lambda st: -sum((st_map[cid].get(st) or {}).get("amount", 0) for cid in NOM_IDS))
+        top = states[:10]
+        for i, st in enumerate(top + ["All other"]):
+            rr = f_s + i
+            dd.cell(rr, 1, st).font = BODY
+            for j, cid in enumerate(NOM_IDS):
+                if st == "All other":
+                    amt = sum((st_map[cid].get(o) or {}).get("amount", 0) for o in states[10:])
+                    cnt = sum((st_map[cid].get(o) or {}).get("count", 0) or 0 for o in states[10:])
+                else:
+                    x = st_map[cid].get(st) or {}
+                    amt, cnt = x.get("amount", 0), x.get("count", 0)
+                money_cell(dd, rr, 2 + 3 * j, round(amt, 2))
+                c2 = dd.cell(rr, 4 + 3 * j, cnt)
+                c2.font, c2.number_format = INPUT, NUM
+            box(dd, rr, 1, 1 + 3 * len(NOM_IDS))
+        l_s = f_s + len(top)
+        t_s = l_s + 1
+        A["DD_STATE_LAST"], A["DD_STATE_TOTAL"] = l_s, t_s
+        dd.cell(t_s, 1, "TOTAL itemized").font = BOLD
+        for j, cid in enumerate(NOM_IDS):
+            col = CL(2 + 3 * j)
+            money_cell(dd, t_s, 2 + 3 * j, "=SUM({0}{1}:{0}{2})".format(col, f_s, l_s), BOLD)
+            c2 = dd.cell(t_s, 4 + 3 * j, "=SUM({0}{1}:{0}{2})".format(CL(4 + 3 * j), f_s, l_s))
+            c2.font, c2.number_format = BOLD, NUM
+            for i in range(len(top) + 2):
+                c3 = dd.cell(f_s + i, 3 + 3 * j, '=IF(AND(ISNUMBER({0}{1}),ISNUMBER({0}{2}),{0}{2}<>0),{0}{1}/{0}{2},"")'
+                             .format(col, f_s + i, t_s))
+                c3.font, c3.number_format = (BOLD if i == len(top) + 1 else BODY), PCT
+        box(dd, t_s, 1, 1 + 3 * len(NOM_IDS), TOT_FILL)
+        r = section(dd, t_s + 2, "BY SIZE OF GIFT", 7)
+        hdrs = ["Size of gift"]
+        for cid in NOM_IDS:
+            hdrs += [NOM_LABEL[cid], "Share", "Gifts"]
+        f_z = headers(dd, r, hdrs)
+        A["DD_SIZE_FIRST"] = f_z
+        sizes = con[NOM_IDS[0]]["by_size"]
+        for i, sz in enumerate(sizes):
+            rr = f_z + i
+            dd.cell(rr, 1, sz["label"]).font = BODY
+            for j, cid in enumerate(NOM_IDS):
+                x = next((y for y in con[cid]["by_size"] if y["size"] == sz["size"]), None)
+                money_cell(dd, rr, 2 + 3 * j, (x or {}).get("amount", 0))
+                c2 = dd.cell(rr, 4 + 3 * j, (x or {}).get("count") if x and x.get("count") is not None else None)
+                c2.font, c2.number_format = INPUT, NUM
+            box(dd, rr, 1, 1 + 3 * len(NOM_IDS))
+        l_z = f_z + len(sizes) - 1
+        t_z = l_z + 1
+        A["DD_SIZE_LAST"], A["DD_SIZE_TOTAL"] = l_z, t_z
+        dd.cell(t_z, 1, "TOTAL, all gifts").font = BOLD
+        for j, cid in enumerate(NOM_IDS):
+            col = CL(2 + 3 * j)
+            money_cell(dd, t_z, 2 + 3 * j, "=SUM({0}{1}:{0}{2})".format(col, f_z, l_z), BOLD)
+            for i in range(len(sizes) + 1):
+                c3 = dd.cell(f_z + i, 3 + 3 * j, '=IF(AND(ISNUMBER({0}{1}),ISNUMBER({0}{2}),{0}{2}<>0),{0}{1}/{0}{2},"")'
+                             .format(col, f_z + i, t_z))
+                c3.font, c3.number_format = (BOLD if i == len(sizes) else BODY), PCT
+        box(dd, t_z, 1, 1 + 3 * len(NOM_IDS), TOT_FILL)
+        n = note(dd, t_z + 1, "Gifts of $200 or less are not itemized by donor, so their count is not reported. This table covers all receipts from individuals; the tables above and below cover itemized gifts only.", 7)
+        r = section(dd, n + 1, "IN THE DISTRICT", 7)
+        hdrs = [""]
+        for cid in NOM_IDS:
+            hdrs += [NOM_LABEL[cid], "Share", ""]
+        f_d = headers(dd, r, hdrs)
+        A["DD_DIST_FIRST"] = f_d
+        dd.cell(f_d, 1, "From zip codes %s (Lehigh Valley and Poconos)" % ", ".join(p + "xx" for p in det["in_district_zip_prefixes"])).font = BODY
+        dd.cell(f_d + 1, 1, "From everywhere else").font = BODY
+        dd.cell(f_d + 2, 1, "TOTAL itemized, by zip").font = BOLD
+        for j, cid in enumerate(NOM_IDS):
+            col = CL(2 + 3 * j)
+            money_cell(dd, f_d, 2 + 3 * j, con[cid]["in_district_amount"])
+            money_cell(dd, f_d + 2, 2 + 3 * j, con[cid]["zip_total"])
+            money_cell(dd, f_d + 1, 2 + 3 * j, '=IF(AND(ISNUMBER({0}{1}),ISNUMBER({0}{2})),{0}{2}-{0}{1},"")'.format(col, f_d, f_d + 2), BODY)
+            for i in range(3):
+                c3 = dd.cell(f_d + i, 3 + 3 * j, '=IF(AND(ISNUMBER({0}{1}),ISNUMBER({0}{2}),{0}{2}<>0),{0}{1}/{0}{2},"")'
+                             .format(col, f_d + i, f_d + 2))
+                c3.font, c3.number_format = (BOLD if i == 2 else BODY), PCT
+        for i in range(3):
+            box(dd, f_d + i, 1, 1 + 3 * len(NOM_IDS), TOT_FILL if i == 2 else None)
+        n = note(dd, f_d + 3, "Approximate. The FEC records no district for a donor; zip prefix is the closest available proxy and these prefixes reach slightly beyond the district line.", 7)
+        r = n + 1
+        for j, cid in enumerate(NOM_IDS):
+            r = section(dd, r, "TOP OCCUPATIONS, %s" % NOM_LABEL[cid].upper(), 7)
+            f_o = headers(dd, r, ["Occupation, as reported by the donor", "Amount", "Gifts", "", "", "", ""])
+            A["DD_OCC_%d" % j] = f_o
+            occ = con[cid]["by_occupation"][:10]
+            for i, o in enumerate(occ):
+                rr = f_o + i
+                dd.cell(rr, 1, nice(o["occupation"] or "(not stated)")).font = BODY
+                money_cell(dd, rr, 2, o["amount"])
+                c2 = dd.cell(rr, 3, o["count"])
+                c2.font, c2.number_format = INPUT, NUM
+                box(dd, rr, 1, 3)
+            r = f_o + len(occ) + 1
+        note(dd, r, det["notes"][2], 7)
+    else:
+        note(dd, 3, "sources/fec_detail.json is missing or does not cover both nominees; run collect_fec.py --detail.", 7)
+
+    # -------------------------------------------------- Outside Detail
+    od = wb.create_sheet("Outside Detail")
+    od["A1"] = "What each outside group bought"
+    od["A1"].font = TITLE
+    od["A2"] = ("Every itemized independent expenditure, %d cycle. Notices and memo entries removed; the total equals "
+                "FEC's by_candidate aggregate. Largest first." % fec["cycle"])
+    od["A2"].font = SUB
+    oi = fec.get("outside_itemized") or []
+    for i2, w2 in enumerate([36, 18, 9, 22, 34, 18, 7, 13, 11, 10], start=1):
+        od.column_dimensions[CL(i2)].width = w2
+    if not oi:
+        note(od, 4, "No itemized outside expenditures in sources/fec.json; run collect_fec.py.", 10)
+    r = section(od, 4, "BY WHAT WAS BOUGHT", 10) if oi else None
+    if oi:
+        f_oc = headers(od, r, ["Category", "Amount", "Share", "Items", "", "", "", "", "", ""])
+        A["OD_CAT_FIRST"] = f_oc
+        ocats = [c for c in classify.OUTSIDE_ORDER if any(x["category"] == c for x in oi)]
+        r = section(od, f_oc + len(ocats) + 3, "EVERY ITEMIZED EXPENDITURE", 10)
+        f_oi = headers(od, r, ["Committee", "About", "Stance", "What was bought", "Paid to", "City", "State",
+                               "Amount", "Category", "Date"])
+        A["OI_FIRST"] = f_oi
+        for i, x in enumerate(oi):
+            rr = f_oi + i
+            od.cell(rr, 1, nice(x["committee"] or "")).font = BODY
+            od.cell(rr, 2, x["target_candidate"]).font = BODY
+            c2 = od.cell(rr, 3, stance(x["support_oppose"]))
+            c2.font, c2.alignment = BODY, Alignment(horizontal="center")
+            od.cell(rr, 4, nice(x["description"] or "")).font = BODY
+            od.cell(rr, 5, nice(x["payee"] or "")).font = BODY
+            od.cell(rr, 6, nice(x["payee_city"] or "")).font = BODY
+            od.cell(rr, 7, x["payee_state"] or "").font = BODY
+            money_cell(od, rr, 8, x["amount"], fmt=MONEY2)
+            od.cell(rr, 9, x["category"]).font = BODY
+            od.cell(rr, 10, x["date"] or "").font = BODY
+            box(od, rr, 1, 10)
+        l_oi = f_oi + len(oi) - 1
+        t_oi = l_oi + 1
+        A["OI_LAST"], A["OI_TOTAL"] = l_oi, t_oi
+        od.cell(t_oi, 1, "TOTAL").font = BOLD
+        money_cell(od, t_oi, 8, "=SUM(H{0}:H{1})".format(f_oi, l_oi), BOLD, MONEY2)
+        box(od, t_oi, 1, 10, TOT_FILL)
+        chk = t_oi + 1
+        A["OI_CHECK"] = chk
+        od.cell(chk, 1, "Check: itemized total minus the by-candidate aggregate on Outside Money (must be $0)").font = F(italic=True)
+        c2 = od.cell(chk, 8, "=H{0}-'Outside Money'!D{1}".format(t_oi, A["IE_TOTAL"]))
+        c2.font, c2.number_format = F(italic=True), MONEY2
+        for i, cat in enumerate(ocats):
+            rr = f_oc + i
+            od.cell(rr, 1, cat).font = BODY
+            money_cell(od, rr, 2, '=SUMIFS($H${0}:$H${1},$I${0}:$I${1},A{2})'.format(f_oi, l_oi, rr), BODY)
+            c3 = od.cell(rr, 3, '=IFERROR(B{0}/$H${1},"")'.format(rr, t_oi))
+            c3.font, c3.number_format = BODY, PCT
+            c4 = od.cell(rr, 4, '=COUNTIFS($I${0}:$I${1},A{2})'.format(f_oi, l_oi, rr))
+            c4.font, c4.number_format = BODY, NUM
+            box(od, rr, 1, 4)
+        l_oc = f_oc + len(ocats) - 1
+        t_oc = l_oc + 1
+        A["OD_CAT_LAST"], A["OD_CAT_TOTAL"] = l_oc, t_oc
+        od.cell(t_oc, 1, "TOTAL").font = BOLD
+        money_cell(od, t_oc, 2, "=SUM(B{0}:B{1})".format(f_oc, l_oc), BOLD)
+        c4 = od.cell(t_oc, 4, "=SUM(D{0}:D{1})".format(f_oc, l_oc))
+        c4.font, c4.number_format = BOLD, NUM
+        box(od, t_oc, 1, 4, TOT_FILL)
+        od.freeze_panes = od.cell(f_oi, 1)
 
     # ------------------------------------------------------- Money Sources
     ms = wb.create_sheet("Money Sources")
@@ -773,6 +1054,58 @@ def build(fec, hist, race, out=OUT):
     points(c6.series[0], ["1F4E79", "C0392B", "2E75B6", "7EA6D9", "5B9BD5", "A9C6E8", "D9D9D9"])
     ch.add_chart(c6, "A124")
 
+    # ---- detail charts (7 to 9), on the same sheet, source blocks below the others
+    if det_ok:
+        b7 = c6_other + 3
+        blk(ch, b7 - 1, "CHART 7: spending by category")
+        hdr(ch, b7, ["Category"] + [NOM_LABEL[cid] for cid in NOM_IDS])
+        n7 = min(8, A["SD_CAT_LAST"] - A["SD_CAT_FIRST"] + 1)
+        for i in range(n7):
+            src = A["SD_CAT_FIRST"] + i
+            ch.cell(b7 + 1 + i, 18, "='Spending Detail'!A%d" % src).font = LINK
+            for j in range(len(NOM_IDS)):
+                money_cell(ch, b7 + 1 + i, 19 + j, "='Spending Detail'!%s%d" % (CL(2 + 3 * j), src), LINK)
+        c7 = BarChart(); c7.type, c7.grouping = "bar", "clustered"
+        c7.add_data(Reference(ch, min_col=19, max_col=18 + len(NOM_IDS), min_row=b7, max_row=b7 + n7), titles_from_data=True)
+        c7.set_categories(Reference(ch, min_col=18, min_row=b7 + 1, max_row=b7 + n7))
+        style(c7, "7. What the campaigns spent on, largest categories", "", "US dollars", w=24, h=13)
+        paint(c7.series[0], DEM); paint(c7.series[1], REP); c7.x_axis.numFmt = '$#,##0,"K"'
+        ch.add_chart(c7, "A149")
+
+        b8 = b7 + n7 + 3
+        blk(ch, b8 - 1, "CHART 8: contributions by state")
+        hdr(ch, b8, ["State"] + [NOM_LABEL[cid] for cid in NOM_IDS])
+        n8 = min(8, A["DD_STATE_LAST"] - A["DD_STATE_FIRST"] + 1)
+        for i in range(n8):
+            src = A["DD_STATE_FIRST"] + i
+            ch.cell(b8 + 1 + i, 18, "='Donor Detail'!A%d" % src).font = LINK
+            for j in range(len(NOM_IDS)):
+                money_cell(ch, b8 + 1 + i, 19 + j, "='Donor Detail'!%s%d" % (CL(2 + 3 * j), src), LINK)
+        c8 = BarChart(); c8.type, c8.grouping = "col", "clustered"
+        c8.add_data(Reference(ch, min_col=19, max_col=18 + len(NOM_IDS), min_row=b8, max_row=b8 + n8), titles_from_data=True)
+        c8.set_categories(Reference(ch, min_col=18, min_row=b8 + 1, max_row=b8 + n8))
+        style(c8, "8. Where the itemized contributions came from", "US dollars", "Donor state")
+        paint(c8.series[0], DEM); paint(c8.series[1], REP); c8.y_axis.numFmt = '$#,##0,"K"'
+        ch.add_chart(c8, "A174")
+
+        b9 = b8 + n8 + 3
+        blk(ch, b9 - 1, "CHART 9: what outside groups bought")
+        hdr(ch, b9, ["Category", "Outside spending"])
+        n9 = A["OD_CAT_LAST"] - A["OD_CAT_FIRST"] + 1
+        for i in range(n9):
+            src = A["OD_CAT_FIRST"] + i
+            ch.cell(b9 + 1 + i, 18, "='Outside Detail'!A%d" % src).font = LINK
+            money_cell(ch, b9 + 1 + i, 19, "='Outside Detail'!B%d" % src, LINK)
+        c9 = BarChart(); c9.type = "bar"
+        c9.add_data(Reference(ch, min_col=19, min_row=b9, max_row=b9 + n9), titles_from_data=True)
+        c9.set_categories(Reference(ch, min_col=18, min_row=b9 + 1, max_row=b9 + n9))
+        style(c9, "9. What the outside groups bought", "", "US dollars", w=22, h=11)
+        paint(c9.series[0], "1F4E79"); c9.legend = None; c9.x_axis.numFmt = '$#,##0.0,,"M"'
+        ch.add_chart(c9, "A199")
+        A["N_CHARTS"] = 16
+    else:
+        A["N_CHARTS"] = 13
+
     # ----------------------------------------------------- History Charts
     hc = wb.create_sheet("History Charts")
     hc["A1"] = "Money and results, %d to %d" % (hist["cycles_covered"][0], hist["cycles_covered"][-1])
@@ -863,7 +1196,7 @@ def build(fec, hist, race, out=OUT):
     for c in hist["cycles"]:
         r = note(ns, r, "History, %d results: %s (%s)" % (c["cycle"], c["source"], c["source_url"]), 1, font=BODY)
     r = section(ns, r + 1, "NOTES", 1)
-    for t in fec["notes"] + hist["notes"]:
+    for t in fec["notes"] + hist["notes"] + ((det or {}).get("notes") or []):
         r = note(ns, r, "- " + t, 1)
     r = section(ns, r + 1, "METHOD", 1)
     for t in [
@@ -878,6 +1211,7 @@ def build(fec, hist, race, out=OUT):
 
     A["_c6_top"], A["_c6_other"] = c6_top, c6_other
     order = ["Summary", "Charts", "Money Sources", "Candidate Totals", "Outside Money",
+             "Spending Detail", "Donor Detail", "Outside Detail",
              "History", "History Charts", "Money vs Results", "Notes & Sources"]
     wb._sheets = [wb[s] for s in order]
     for s in wb.sheetnames:
@@ -890,7 +1224,9 @@ def main():
     fec = json.load(open(os.path.join(SRC, "fec.json")))
     hist = json.load(open(os.path.join(SRC, "fec_history.json")))
     race = json.load(open(os.path.join(SRC, "race.json")))
-    A = build(fec, hist, race)
+    dpath = os.path.join(SRC, "fec_detail.json")
+    det = json.load(open(dpath)) if os.path.exists(dpath) else None
+    A = build(fec, hist, race, det=det)
     json.dump(A, open(os.path.join(ROOT, "_anchors.json"), "w"), indent=1)
     print("wrote %s (%d bytes)" % (OUT, os.path.getsize(OUT)))
     return 0

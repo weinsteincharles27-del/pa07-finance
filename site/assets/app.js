@@ -70,9 +70,10 @@
       get("data/manifest.json"),
       get("data/candidates.json"),
       get("data/outside.json"),
-      get("data/history.json")
+      get("data/history.json"),
+      get("data/detail.json").catch(function () { return { available: false, committees: [] }; })
     ]).then(function (r) {
-      State.data = { manifest: r[0], candidates: r[1], outside: r[2], history: r[3] };
+      State.data = { manifest: r[0], candidates: r[1], outside: r[2], history: r[3], detail: r[4] };
       renderHeader(State.data.manifest);
       var b = $("boot");
       if (b) b.remove();

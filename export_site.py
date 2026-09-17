@@ -71,9 +71,57 @@ def outside_block(fec):
                                                 "committees_supporting": 0, "committees_opposing": 0})
         k[r["stance"]] = round(k[r["stance"]] + r["amount"], 2)
         k["committees_" + ("supporting" if r["stance"] == "supports" else "opposing")] += 1
+    items = []
+    by_cat = {}
+    for x in fec.get("outside_itemized") or []:
+        items.append({"committee": x["committee"], "target": x["target_candidate"],
+                      "stance": "supports" if x["support_oppose"] == "S" else "opposes",
+                      "what": x["description"], "category": x["category"], "payee": x["payee"],
+                      "city": x["payee_city"], "state": x["payee_state"], "amount": x["amount"], "date": x["date"]})
+        by_cat[x["category"]] = round(by_cat.get(x["category"], 0.0) + (x["amount"] or 0), 2)
     return {"total": round(sum(r["amount"] for r in rows), 2), "rows": rows,
             "by_target": sorted(by_target.values(), key=lambda t: -(t["supports"] + t["opposes"])),
+            "itemized": items,
+            "by_category": sorted(({"category": k, "amount": v} for k, v in by_cat.items()), key=lambda r: -r["amount"]),
             "retrieved_utc": fec["retrieved_utc"]}
+
+
+def detail_block(fec, det):
+    """Spending by category and payee, contributions by state, size, district and
+    occupation, for the nominees. What was filed, nothing derived beyond shares."""
+    if not det:
+        return {"available": False}
+    out = {"available": True, "coverage_through": det["coverage_through"], "retrieved_utc": det["retrieved_utc"],
+           "in_district_zip_prefixes": det["in_district_zip_prefixes"], "committees": []}
+    for c in fec["candidates"]:
+        cid = c.get("committee_id")
+        if not c["nominee"] or cid not in det["committees"]:
+            continue
+        d = det["committees"][cid]
+        sp, co = d["spending"], d["contributions"]
+        pa = next((x["amount"] for x in sp["by_vendor_state"] if x["state"] == "PA"), 0.0)
+        states = co["by_state"]
+        top_states = states[:8]
+        other = round(sum(x["amount"] or 0 for x in states[8:]), 2)
+        out["committees"].append({
+            "candidate": c["name"], "party": c["party"], "committee_id": cid,
+            "spending": {
+                "itemized_total": sp["itemized_total"], "items": sp["items"],
+                "by_category": sp["by_category"],
+                "top_vendors": [{"vendor": v["vendor"], "city": v["city"], "state": v["state"],
+                                 "amount": v["amount"], "category": v["category"]} for v in sp["top_vendors"][:8]],
+                "in_pa_share": round(pa / sp["itemized_total"], 4) if sp["itemized_total"] else None,
+            },
+            "contributions": {
+                "itemized_total": co["itemized_total"],
+                "by_state": top_states + ([{"state": "All other", "amount": other, "count": None}] if other else []),
+                "by_size": co["by_size"],
+                "in_district_share": round(co["in_district_amount"] / co["zip_total"], 4) if co["zip_total"] else None,
+                "in_district_amount": co["in_district_amount"],
+                "by_occupation": co["by_occupation"][:6],
+            },
+        })
+    return out
 
 
 def history_block(hist):
@@ -150,7 +198,10 @@ def manifest(fec, hist, race, sizes, wb_bytes, wb_name):
 def run(src, site, workbook):
     data = os.path.join(site, "data")
     fec, hist, race = load(src, "fec.json"), load(src, "fec_history.json"), load(src, "race.json")
+    dpath = os.path.join(src, "fec_detail.json")
+    det = json.load(open(dpath)) if os.path.exists(dpath) else None
     sizes = {
+        "detail.json": write(data, "detail.json", detail_block(fec, det)),
         "candidates.json": write(data, "candidates.json", candidates_block(fec)),
         "outside.json": write(data, "outside.json", outside_block(fec)),
         "history.json": write(data, "history.json", history_block(hist)),
