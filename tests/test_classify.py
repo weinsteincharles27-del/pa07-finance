@@ -8,19 +8,26 @@ SPENDING_CASES = {
     "DIGITAL ADVERTISING": "Digital advertising",
     "DIGITAL CONSULTING SERVICES": "Digital advertising",
     "TEXT MESSAGE ADVERTISING": "Digital advertising",
-    "DIGITAL FUNDRAISING CONSULTING": "Fundraising",          # fundraising beats digital
-    "FUNDRAISING COMMISSION": "Fundraising",
-    "FUNDRIAISNG CONSULTING/COMMISSION": "Fundraising",       # as filed, typo and all
-    "DIRECT MAIL FUNDRAISING": "Fundraising",
-    "FUNDRAISING EVENT- FOOD AND BEVERAGE": "Fundraising",
-    "CREDIT CARD PROCESSING FEES": "Fundraising",
-    "PROCESSING FEE": "Fundraising",
-    "SUPPORTER APPRECIATION GIFTS": "Fundraising",
-    "DIRECT MAIL": "Print and mail",
-    "PRINT ADVERTISEMENT": "Print and mail",
-    "CAMPAIGN LITERATURE": "Print and mail",
-    "PRINTING": "Print and mail",
-    "INVITATIONS AND POSTAGE": "Print and mail",
+    "DIGITAL FUNDRAISING CONSULTING": "Fundraising consultants",   # fundraising beats digital
+    "FUNDRAISING COMMISSION": "Fundraising consultants",
+    "FUNDRIAISNG CONSULTING/COMMISSION": "Fundraising consultants",   # as filed, typo and all
+    "DIRECT MAIL FUNDRAISING": "Fundraising mail",
+    "DIRECT MAIL FUNDRAISING POSTAGE": "Fundraising mail",
+    "LIST ACQUISITION": "Fundraising mail",
+    "FUNDRAISING EVENT- FOOD AND BEVERAGE": "Fundraising events",
+    "FUNDRAISING COMMISSION AND FUNDRAISING EVENT": "Fundraising consultants",   # commission first
+    "FUNDRAISING COMMISSION/FUNDRAISING EVENTS/REIMBURSEMENT": "Fundraising consultants",
+    "FUNDRAISER EVENT INVITES AND POSTAGE": "Fundraising events",
+    "CREDIT CARD PROCESSING FEES": "Donation processing fees",
+    "PROCESSING FEE": "Donation processing fees",
+    "SUPPORTER APPRECIATION GIFTS": "Fundraising events",
+    "FUNDRAISING CONSULTING": "Fundraising consultants",
+    "FUNDRAISING EXPENSE": "Fundraising consultants",
+    "DIRECT MAIL": "Mail and printing",
+    "PRINT ADVERTISEMENT": "Print and radio advertising",
+    "CAMPAIGN LITERATURE": "Mail and printing",
+    "PRINTING": "Mail and printing",
+    "INVITATIONS AND POSTAGE": "Mail and printing",
     "PAYROLL": "Staff and payroll",
     "PAYROLL TAX": "Staff and payroll",
     "RESEARCH": "Polling and research",
@@ -60,7 +67,7 @@ SPENDING_CASES = {
     "IN KIND : TECHNOLOGY SERVICES": "Office and administrative",
     "BANK FEES": "Office and administrative",
     "WEBSITE HOSTING SERVICE": "Office and administrative",
-    "E-MAIL SERVICE": "Office and administrative",                # not print and mail
+    "E-MAIL SERVICE": "Office and administrative",                # not mail
     "LEGAL SERVICES": "Office and administrative",
     "REIMBURSEMENT - SEE BELOW": "Other",
     "": "Other",
@@ -111,6 +118,14 @@ def test_outside_descriptions_as_filed():
 def test_every_rule_label_is_in_the_display_order():
     assert set(l for l, _ in C.SPENDING) | {"Other"} == set(C.SPENDING_ORDER)
     assert set(l for l, _ in C.OUTSIDE) | {"Other"} == set(C.OUTSIDE_ORDER)
+
+
+def test_fundraising_is_split_so_the_reader_can_see_what_it_is():
+    labels = set(C.SPENDING_ORDER)
+    for want in ("Fundraising consultants", "Fundraising mail",
+                 "Donation processing fees", "Fundraising events"):
+        assert want in labels, want
+    assert "Fundraising" not in labels
 
 
 def test_other_is_small_on_the_real_data():

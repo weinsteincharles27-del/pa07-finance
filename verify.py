@@ -102,7 +102,7 @@ def run(WB, SRC, A, quiet=False):
     ck("no em-dash in workbook text", chr(0x2014).encode("utf-8") not in raw, "em-dash present")
 
     wb = openpyxl.load_workbook(WB)
-    ck("sheet order", wb.sheetnames == ["Summary", "Charts", "Money Sources", "Candidate Totals", "Outside Money",
+    ck("sheet order", wb.sheetnames == ["Summary", "Master Data", "Charts", "Money Sources", "Candidate Totals", "Outside Money",
                                         "Spending Detail", "Donor Detail", "Outside Detail",
                                         "History", "History Charts", "Money vs Results", "Notes & Sources"], str(wb.sheetnames))
     V = evaluate(WB)
@@ -242,6 +242,27 @@ def run(WB, SRC, A, quiet=False):
             cat = od.cell(i, 1).value
             num("outside category %s" % cat, V.get("OUTSIDE DETAIL!B%d" % i), by[cat], 1e-4)
         num("outside categories sum to total", V.get("OUTSIDE DETAIL!B%d" % A["OD_CAT_TOTAL"]), sum(by.values()), 1e-4)
+
+    # ---- master data: each dataset sums to the figure it mirrors
+    md = wb["Master Data"]
+    mrows = [[md.cell(r, c).value for c in range(1, 14)] for r in range(A["MD_FIRST"], A["MD_LAST"] + 1)]
+    def msum(ds, where=None):
+        where = where or {}
+        return sum((r[10] or 0) for r in mrows if r[0] == ds and all(r[i] == v for i, v in where.items()))
+    ck("master: one row per nominee per field", sum(1 for r in mrows if r[0] == "candidate_totals") == 2 * 11)
+    num("master: receipts == nominees' receipts", msum("candidate_totals", {6: "Receipts"}), sum(c["receipts"] for c in filed), 0.02)
+    num("master: outside by committee == IE total", msum("outside_by_committee"), sum(x["amount"] for x in ies), 1e-4)
+    if oi:
+        num("master: outside itemized == IE total", msum("outside_itemized"), sum(x["amount"] for x in oi), 1e-4)
+    if det:
+        for cid in nom_ids:
+            nm = det["committees"][cid]["candidate"]
+            num("master: spending by category, %s" % nm, msum("spending_by_category", {2: nm}),
+                det["committees"][cid]["spending"]["itemized_total"], 0.02)
+            num("master: contributions by state, %s" % nm, msum("contributions_by_state", {2: nm}),
+                det["committees"][cid]["contributions"]["itemized_total"], 0.05)
+    ck("master: history has every nominee-cycle", sum(1 for r in mrows if r[0] == "history_result") == sum(len(c["candidates"]) for c in H["cycles"]))
+    ck("master: no formulas", not any(isinstance(v, str) and v.startswith("=") for r in mrows for v in r))
 
     # ---- charts: series title must sit one row above the first data row
     nch = 0

@@ -213,6 +213,13 @@
 
   /* ------------------------------------------------- what the money bought */
 
+  /* The same rows in the same order for both nominees, so a zero is a zero. */
+  var SPEND_ROWS = ["Television advertising", "Digital advertising", "Print and radio advertising",
+                    "Mail and printing", "Fundraising consultants",
+                    "Fundraising mail", "Donation processing fees", "Fundraising events",
+                    "Staff and payroll", "Consulting", "Polling and research",
+                    "Field, phones and texting", "Office and administrative"];
+
   function bought(d) {
     var dt = d.detail;
     if (!dt || !dt.available || !dt.committees.length) return null;
@@ -227,12 +234,12 @@
       col.appendChild(h);
       var plot = elem("div");
       col.appendChild(plot);
-      C.hbars(plot, {
-        title: "Spending by category, " + c.candidate,
-        rows: c.spending.by_category.slice(0, 8).map(function (r) {
-          return { label: r.category, value: r.amount, color: P.partyColour(c.party) };
-        })
-      });
+      var have = {};
+      c.spending.by_category.forEach(function (r) { have[r.category] = r.amount; });
+      var shown = 0;
+      var rows = SPEND_ROWS.map(function (k) { shown += have[k] || 0; return { label: k, value: have[k] || 0, color: P.partyColour(c.party) }; });
+      rows.push({ label: "Everything else", value: Math.max(0, c.spending.itemized_total - shown), color: "#9AA3AD" });
+      C.hbars(plot, { title: "Spending by category, " + c.candidate, rows: rows });
       var ul = elem("ul", "stats");
       ul.appendChild(tile("Itemized spending", money(c.spending.itemized_total), count(c.spending.items) + " payments"));
       ul.appendChild(tile("Paid to Pennsylvania vendors", pct(c.spending.in_pa_share, 0), "share of itemized spending"));

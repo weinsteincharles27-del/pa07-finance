@@ -17,7 +17,7 @@ def test_sheet_order_and_chart_count():
     with support.sandbox() as (src, work):
         out, _ = support.built(src, work)
         wb = openpyxl.load_workbook(out)
-        assert wb.sheetnames == ["Summary", "Charts", "Money Sources", "Candidate Totals", "Outside Money",
+        assert wb.sheetnames == ["Summary", "Master Data", "Charts", "Money Sources", "Candidate Totals", "Outside Money",
                                  "Spending Detail", "Donor Detail", "Outside Detail",
                                  "History", "History Charts", "Money vs Results", "Notes & Sources"]
         assert sum(len(wb[s]._charts) for s in wb.sheetnames) == 16
@@ -101,3 +101,19 @@ def test_workbook_builds_without_detail_file():
         wb = openpyxl.load_workbook(out)
         assert "Spending Detail" in wb.sheetnames
         assert A["N_CHARTS"] == 13 and sum(len(wb[s]._charts) for s in wb.sheetnames) == 13
+
+
+def test_master_sheet_is_values_only_and_filterable():
+    with support.sandbox() as (src, work):
+        out, A = support.built(src, work)
+        ws = openpyxl.load_workbook(out)["Master Data"]
+        assert ws.auto_filter.ref and ws.freeze_panes
+        assert [ws.cell(A["MD_FIRST"] - 1, c).value for c in range(1, 4)] == ["Dataset", "Cycle", "Candidate"]
+        for r in range(A["MD_FIRST"], A["MD_LAST"] + 1):
+            for c in range(1, 14):
+                v = ws.cell(r, c).value
+                assert not (isinstance(v, str) and v.startswith("=")), (r, c, v)
+        datasets = {ws.cell(r, 1).value for r in range(A["MD_FIRST"], A["MD_LAST"] + 1)}
+        for want in ("candidate_totals", "outside_by_committee", "outside_itemized", "spending_by_category",
+                     "contributions_by_state", "history_finance", "history_result"):
+            assert want in datasets, want

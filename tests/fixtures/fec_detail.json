@@ -1,6 +1,6 @@
 {
   "source": "OpenFEC API: schedules/schedule_b (itemized disbursements), schedules/schedule_a aggregates by_state, by_size, by_zip, by_occupation",
-  "retrieved_utc": "2026-09-17T20:51:39Z",
+  "retrieved_utc": "2026-09-17T21:37:13Z",
   "cycle": 2026,
   "coverage_through": "2026-06-30",
   "in_district_zip_prefixes": [
@@ -9,6 +9,7 @@
     "182",
     "183"
   ],
+  "classifier": "b6b57aa87233",
   "committees": {
     "C00917096": {
       "candidate_id": "H6PA07188",
@@ -34,14 +35,14 @@
             "items": 61
           },
           {
-            "category": "Fundraising",
-            "amount": 105581.67,
-            "items": 169
-          },
-          {
             "category": "Office and administrative",
             "amount": 94451.94,
             "items": 48
+          },
+          {
+            "category": "Donation processing fees",
+            "amount": 72307.6,
+            "items": 154
           },
           {
             "category": "Field, phones and texting",
@@ -59,7 +60,12 @@
             "items": 5
           },
           {
-            "category": "Print and mail",
+            "category": "Fundraising consultants",
+            "amount": 32832.07,
+            "items": 14
+          },
+          {
+            "category": "Mail and printing",
             "amount": 22167.78,
             "items": 15
           },
@@ -96,6 +102,11 @@
           {
             "category": "Signs and merchandise",
             "amount": 750.0,
+            "items": 1
+          },
+          {
+            "category": "Fundraising mail",
+            "amount": 442.0,
             "items": 1
           }
         ],
@@ -146,7 +157,7 @@
             "state": "MA",
             "amount": 54605.66,
             "items": 76,
-            "category": "Fundraising"
+            "category": "Donation processing fees"
           },
           {
             "vendor": "ARC INITIATIVES",
@@ -194,7 +205,7 @@
             "state": "DC",
             "amount": 17832.07,
             "items": 12,
-            "category": "Fundraising"
+            "category": "Fundraising consultants"
           },
           {
             "vendor": "MCCOACH, JAKE",
@@ -708,9 +719,14 @@
         "items": 1261,
         "by_category": [
           {
-            "category": "Fundraising",
-            "amount": 1017403.05,
-            "items": 508
+            "category": "Fundraising consultants",
+            "amount": 721244.47,
+            "items": 245
+          },
+          {
+            "category": "Fundraising mail",
+            "amount": 204165.66,
+            "items": 92
           },
           {
             "category": "Office and administrative",
@@ -728,19 +744,29 @@
             "items": 140
           },
           {
+            "category": "Donation processing fees",
+            "amount": 46405.05,
+            "items": 127
+          },
+          {
+            "category": "Fundraising events",
+            "amount": 45587.87,
+            "items": 44
+          },
+          {
             "category": "Polling and research",
             "amount": 41376.2,
             "items": 19
           },
           {
-            "category": "Print and mail",
-            "amount": 39488.46,
-            "items": 105
-          },
-          {
             "category": "Travel",
             "amount": 36958.81,
             "items": 91
+          },
+          {
+            "category": "Mail and printing",
+            "amount": 36488.46,
+            "items": 102
           },
           {
             "category": "Signs and merchandise",
@@ -768,6 +794,11 @@
             "items": 2
           },
           {
+            "category": "Print and radio advertising",
+            "amount": 3000.0,
+            "items": 3
+          },
+          {
             "category": "Digital advertising",
             "amount": 2586.0,
             "items": 2
@@ -785,7 +816,7 @@
             "state": "IL",
             "amount": 332817.9,
             "items": 107,
-            "category": "Fundraising"
+            "category": "Fundraising consultants"
           },
           {
             "vendor": "DISTRICT CITY CONSULTING",
@@ -793,7 +824,7 @@
             "state": "DC",
             "amount": 166301.16,
             "items": 10,
-            "category": "Fundraising"
+            "category": "Fundraising consultants"
           },
           {
             "vendor": "CHRISTY CONSULTING LLC",
@@ -801,7 +832,7 @@
             "state": "PA",
             "amount": 132892.75,
             "items": 27,
-            "category": "Fundraising"
+            "category": "Fundraising consultants"
           },
           {
             "vendor": "FULFILLMENT SOLUTIONS INC.",
@@ -809,7 +840,7 @@
             "state": "VA",
             "amount": 74152.92,
             "items": 31,
-            "category": "Fundraising"
+            "category": "Fundraising mail"
           },
           {
             "vendor": "DIRECT MAIL FUNDRAISING LLC",
@@ -817,7 +848,7 @@
             "state": "VA",
             "amount": 64451.03,
             "items": 16,
-            "category": "Fundraising"
+            "category": "Fundraising mail"
           },
           {
             "vendor": "PATHFINDER COMMUNICATIONS, LLC",
@@ -841,7 +872,7 @@
             "state": "WY",
             "amount": 41412.94,
             "items": 83,
-            "category": "Fundraising"
+            "category": "Donation processing fees"
           },
           {
             "vendor": "ELITE CONSULTING",
@@ -849,7 +880,7 @@
             "state": "DC",
             "amount": 40643.9,
             "items": 10,
-            "category": "Fundraising"
+            "category": "Fundraising consultants"
           },
           {
             "vendor": "THE TARRANCE GROUP",
@@ -881,7 +912,7 @@
             "state": "VA",
             "amount": 24000.0,
             "items": 8,
-            "category": "Fundraising"
+            "category": "Fundraising consultants"
           },
           {
             "vendor": "ONPOINT DATA STRATEGY LLC",
@@ -889,7 +920,7 @@
             "state": "VA",
             "amount": 20586.36,
             "items": 18,
-            "category": "Fundraising"
+            "category": "Fundraising mail"
           },
           {
             "vendor": "MACKENZIE, RYAN",

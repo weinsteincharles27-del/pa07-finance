@@ -17,11 +17,22 @@ by tests/test_classify.py. A description that matches nothing is "Other".
 
 SPENDING = [
     ("Refunds",                    ("REFUND",)),
-    ("Fundraising",                ("FUNDRAIS", "FUNDRIAISNG", "PROCESSING FEE", "CREDIT CARD", "DONOR",
-                                    "SUPPORTER APPRECIATION", "APPRECIATION GIFT", "LIST ACQUISITION",
-                                    "RAFFLE")),
+    # Fundraising is money spent to raise money. It is split four ways so the
+    # reader can see what that means: consultants paid a commission on what
+    # they bring in, solicitation mail to prospect lists, the cut the online
+    # donation processors take, and the events themselves.
+    ("Donation processing fees",   ("PROCESSING FEE", "CREDIT CARD")),
+    # A consultant's combined "commission and event" line is a commission.
+    ("Fundraising consultants", ("COMMISSION",)),
+    ("Fundraising mail",           ("DIRECT MAIL FUNDRAIS", "FUNDRAISING- DIRECT MAIL", "FUNDRAISING DIRECT MAIL",
+                                    "LIST ACQUISITION", "FUNDRAISING POSTAGE")),
+    ("Fundraising events",         ("FUNDRAISING EVENT", "FUNDRAISER EVENT", "FUNDRAISING FOOD", "FUNDRAISER",
+                                    "SUPPORTER APPRECIATION", "APPRECIATION GIFT", "DONOR", "RAFFLE",
+                                    "FUNDRAISING TRAVEL")),
+    ("Fundraising consultants", ("FUNDRAIS", "FUNDRIAISNG")),
     ("Television advertising",     ("TELEVISION", "TV AD", "TV BUY")),
     ("Digital advertising",        ("DIGITAL", "ONLINE AD", "TEXT MESSAGE ADVERTISING", "WEB AD")),
+    ("Print and radio advertising", ("PRINT AD", "NEWSPAPER", "RADIO", "BILLBOARD")),
     ("Media production",           ("MEDIA PRODUCTION", "VIDEO", "PHOTO", "AD PRODUCTION")),
     ("Polling and research",       ("RESEARCH", "POLL", "VOTER DATA", "VOTER FILE", "SURVEY")),
     ("Staff and payroll",          ("PAYROLL", "SALARY", "STIPEND", "INCOME TAX", "HEALTH INSURANCE")),
@@ -29,7 +40,7 @@ SPENDING = [
                                     "TEXT MESSAGING", "TEXTING", "TEXT MESSAGES", "SMS")),
     # Email tooling is office spend, and "EMAIL" contains "MAIL", so it goes first.
     ("Office and administrative",  ("E-MAIL", "EMAIL")),
-    ("Print and mail",             ("DIRECT MAIL", "LITERATURE", "PRINT AD", "PRINTING", "POSTAGE",
+    ("Mail and printing", ("DIRECT MAIL", "LITERATURE", "PRINTING", "POSTAGE",
                                     "INVITATION", "ENVELOPE", "SHIPPING", "MAIL", "CHRISTMAS CARD")),
     ("Consulting",                 ("CONSULTING", "STRATEGY", "STRATEGIC")),
     ("Signs and merchandise",      ("SIGN", "STICKER", "SHIRT", "JACKET", "MAGNET", "APPAREL", "FLAG",
@@ -91,3 +102,9 @@ def _order(rules):
 
 SPENDING_ORDER = _order(SPENDING)
 OUTSIDE_ORDER = _order(OUTSIDE)
+
+# Changes when any rule changes. The collector stores it with the detail it
+# classified and refetches when it no longer matches, so a rule edit reaches
+# the page on the next run rather than at the next weekly pull.
+import hashlib as _h
+FINGERPRINT = _h.sha1(repr(SPENDING + OUTSIDE).encode("utf-8")).hexdigest()[:12]

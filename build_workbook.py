@@ -153,6 +153,82 @@ def status_of(c):
     return "Declared"
 
 
+# ============================================================ master data
+
+MASTER_COLS = ["Dataset", "Cycle", "Candidate", "Party", "Stance", "Category", "Item",
+               "Description", "City", "State", "Amount", "Count", "Date"]
+
+FIELD_LABELS = [("receipts", "Receipts"), ("disbursements", "Disbursements"), ("cash_on_hand", "Cash on hand"),
+                ("debts", "Debts"), ("individual_contributions", "Individual contributions, total"),
+                ("individual_itemized", "Individual contributions, itemized (over $200)"),
+                ("individual_unitemized", "Individual contributions, unitemized ($200 or less)"),
+                ("pac_contributions", "PAC contributions"), ("party_contributions", "Party committee contributions"),
+                ("transfers_in", "Transfers from other authorized committee"), ("self_funding", "Candidate self-funding")]
+
+
+def master_rows(fec, hist, det):
+    """Every figure the workbook shows, one row per fact, in one long table.
+    Values, not formulas: this is the data behind the other sheets."""
+    cy = fec["cycle"]
+    noms = [c for c in fec["candidates"] if c["nominee"]]
+    nominee_ids = {c["candidate_id"] for c in noms}
+    rows = []
+    for c in noms:
+        for k, lab in FIELD_LABELS:
+            if c["filed"]:
+                rows.append(("candidate_totals", cy, c["name"], c["party"], None, None, lab, None, None, None,
+                             c[k], None, c["coverage_end"]))
+    for e in fec["independent_expenditures"]:
+        if e["target_candidate_id"] in nominee_ids:
+            rows.append(("outside_by_committee", cy, e["target_candidate"], None, stance(e["support_oppose"]), None,
+                         e["committee"], None, None, None, e["amount"], e["filings"], None))
+    for x in fec.get("outside_itemized") or []:
+        if x["target_candidate_id"] in nominee_ids:
+            rows.append(("outside_itemized", cy, x["target_candidate"], None, stance(x["support_oppose"]), x["category"],
+                         x["committee"], x["description"], x["payee_city"], x["payee_state"], x["amount"], None, x["date"]))
+    if det:
+        for c in noms:
+            d = (det.get("committees") or {}).get(c["committee_id"])
+            if not d:
+                continue
+            sp, co = d["spending"], d["contributions"]
+            for x in sp["by_category"]:
+                rows.append(("spending_by_category", cy, c["name"], c["party"], None, x["category"], None, None, None, None,
+                             x["amount"], x["items"], det["coverage_through"]))
+            for v in sp["top_vendors"]:
+                rows.append(("spending_top_payees", cy, c["name"], c["party"], None, v["category"], v["vendor"], None,
+                             v["city"], v["state"], v["amount"], v["items"], det["coverage_through"]))
+            for x in sp["by_vendor_state"]:
+                rows.append(("spending_by_payee_state", cy, c["name"], c["party"], None, None, None, None, None, x["state"],
+                             x["amount"], x["items"], det["coverage_through"]))
+            for x in co["by_state"]:
+                rows.append(("contributions_by_state", cy, c["name"], c["party"], None, None, None, None, None, x["state"],
+                             x["amount"], x["count"], det["coverage_through"]))
+            for x in co["by_size"]:
+                rows.append(("contributions_by_size", cy, c["name"], c["party"], None, x["label"], None, None, None, None,
+                             x["amount"], x["count"], det["coverage_through"]))
+            rows.append(("contributions_in_district", cy, c["name"], c["party"], None, "Zip codes " + ", ".join(p + "xx" for p in det["in_district_zip_prefixes"]),
+                         "In district (approximate)", None, None, None, co["in_district_amount"], None, det["coverage_through"]))
+            rows.append(("contributions_in_district", cy, c["name"], c["party"], None, None, "All itemized, by zip", None, None, None,
+                         co["zip_total"], co["zips"], det["coverage_through"]))
+            for x in co["top_zips"]:
+                rows.append(("contributions_top_zips", cy, c["name"], c["party"], None, None, str(x["zip"]), None, None, None,
+                             x["amount"], x["count"], det["coverage_through"]))
+            for x in co["by_occupation"]:
+                rows.append(("contributions_by_occupation", cy, c["name"], c["party"], None, None, x["occupation"], None, None, None,
+                             x["amount"], x["count"], det["coverage_through"]))
+    for c in hist["cycles"]:
+        for x in c["candidates"]:
+            for k, lab in [("receipts", "Receipts"), ("disbursements", "Disbursements"), ("cash_on_hand", "Cash on hand at year end"),
+                           ("individual_contributions", "Individual contributions"), ("pac_contributions", "PAC contributions"),
+                           ("ie_supporting", "Outside spending supporting"), ("ie_opposing", "Outside spending opposing")]:
+                rows.append(("history_finance", c["cycle"], x["name"], x["party"], None, None, lab, None, None, None,
+                             x[k], None, c["election_date"]))
+            rows.append(("history_result", c["cycle"], x["name"], x["party"], None, None, "General election votes",
+                         "won" if x["winner"] else "lost", None, None, None, x["general_votes"], c["election_date"]))
+    return rows
+
+
 # ==================================================================== build
 
 def build(fec, hist, race, out=OUT, det=None):
@@ -300,6 +376,31 @@ def build(fec, hist, race, out=OUT, det=None):
         n = note(om, n, "- " + t, 7)
     om.freeze_panes = om.cell(f_ie, 1)
 
+    # ---------------------------------------------------- Master Data
+    md = wb.create_sheet("Master Data")
+    md["A1"] = "Master data: every figure in this workbook, one row per fact"
+    md["A1"].font = TITLE
+    md["A2"] = ("Values, not formulas. Filter on Dataset to isolate one table. Amounts in US dollars; Count is items, "
+                "filings, gifts or votes depending on the dataset; Date is the coverage or election date.")
+    md["A2"].font = SUB
+    for i2, w2 in enumerate([26, 7, 17, 6, 9, 30, 36, 34, 16, 6, 14, 9, 12], start=1):
+        md.column_dimensions[CL(i2)].width = w2
+    f_md = headers(md, 4, MASTER_COLS)
+    A["MD_FIRST"] = f_md
+    mrows = master_rows(fec, hist, det)
+    for i, row in enumerate(mrows):
+        rr = f_md + i
+        for j, v in enumerate(row):
+            c2 = md.cell(rr, 1 + j, v)
+            c2.font = INPUT if j in (10, 11) else BODY
+            if j == 10:
+                c2.number_format = MONEY2
+            elif j == 11:
+                c2.number_format = NUM
+    A["MD_LAST"] = f_md + len(mrows) - 1
+    md.auto_filter.ref = "A%d:%s%d" % (f_md - 1, CL(len(MASTER_COLS)), A["MD_LAST"])
+    md.freeze_panes = md.cell(f_md, 1)
+
     # ------------------------------------------------- Spending Detail
     NOM_IDS = [c["committee_id"] for c in fec["candidates"] if c["nominee"] and c["committee_id"]]
     NOM_LABEL = {c["committee_id"]: "%s (%s)" % (c["name"], "D" if c["party"] == "DEM" else "R")
@@ -321,7 +422,10 @@ def build(fec, hist, race, out=OUT, det=None):
         f_cat = headers(sd, r, hdrs)
         A["SD_CAT_FIRST"] = f_cat
         cat_amt = {cid: {x["category"]: x for x in det["committees"][cid]["spending"]["by_category"]} for cid in NOM_IDS}
-        cats = [c for c in classify.SPENDING_ORDER if any(c in cat_amt[cid] for cid in NOM_IDS)]
+        present = set().union(*[set(m) for m in cat_amt.values()])
+        # Known labels in display order, then any the source carries that the current
+        # rules do not (a detail file classified under older rules), so totals reconcile.
+        cats = [c for c in classify.SPENDING_ORDER if c in present] + sorted(c for c in present if c not in classify.SPENDING_ORDER)
         for i, cat in enumerate(cats):
             rr = f_cat + i
             sd.cell(rr, 1, cat).font = BODY
@@ -530,7 +634,8 @@ def build(fec, hist, race, out=OUT, det=None):
     if oi:
         f_oc = headers(od, r, ["Category", "Amount", "Share", "Items", "", "", "", "", "", ""])
         A["OD_CAT_FIRST"] = f_oc
-        ocats = [c for c in classify.OUTSIDE_ORDER if any(x["category"] == c for x in oi)]
+        opresent = {x["category"] for x in oi}
+        ocats = [c for c in classify.OUTSIDE_ORDER if c in opresent] + sorted(c for c in opresent if c not in classify.OUTSIDE_ORDER)
         r = section(od, f_oc + len(ocats) + 3, "EVERY ITEMIZED EXPENDITURE", 10)
         f_oi = headers(od, r, ["Committee", "About", "Stance", "What was bought", "Paid to", "City", "State",
                                "Amount", "Category", "Date"])
@@ -1217,7 +1322,7 @@ def build(fec, hist, race, out=OUT, det=None):
         r = note(ns, r, "- " + t, 1)
 
     A["_c6_top"], A["_c6_other"] = c6_top, c6_other
-    order = ["Summary", "Charts", "Money Sources", "Candidate Totals", "Outside Money",
+    order = ["Summary", "Master Data", "Charts", "Money Sources", "Candidate Totals", "Outside Money",
              "Spending Detail", "Donor Detail", "Outside Detail",
              "History", "History Charts", "Money vs Results", "Notes & Sources"]
     wb._sheets = [wb[s] for s in order]

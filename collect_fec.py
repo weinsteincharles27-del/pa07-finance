@@ -418,6 +418,7 @@ def detail(cur):
         "cycle": cur["cycle"],
         "coverage_through": cur["coverage_through"],
         "in_district_zip_prefixes": list(IN_DISTRICT_ZIP_PREFIXES),
+        "classifier": classify.FINGERPRINT,
         "committees": coms,
         "notes": [
             "Spending categories are assigned from the description each campaign wrote on its "
@@ -443,6 +444,8 @@ def detail_is_fresh(path, coverage_through, now_utc=None):
     try:
         d = json.load(open(path))
         if d.get("coverage_through") != coverage_through:
+            return False
+        if d.get("classifier") != classify.FINGERPRINT:      # the rules changed; re-sort
             return False
         then = datetime.datetime.strptime(d.get("retrieved_utc") or "", "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=datetime.timezone.utc)
     except (ValueError, TypeError, json.JSONDecodeError):

@@ -454,7 +454,8 @@
       var rows = opt.rows || [];
       var width = Math.max(260, host.clientWidth || 320);
       var narrow = width < 460;
-      var labelW = narrow ? Math.round(width * 0.42) : Math.round(width * 0.36);
+      var longest = Math.max.apply(null, rows.map(function (r) { return (r.short || r.label || "").length; }).concat([8]));
+      var labelW = Math.min(Math.round(width * 0.5), Math.max(Math.round(width * (narrow ? 0.4 : 0.3)), longest * 6.4 + 10));
       var rowH = 22, m = { l: labelW + 8, r: 56, t: 6, b: 22 };
       var height = m.t + m.b + rowH * rows.length;
       var iw = width - m.l - m.r;
