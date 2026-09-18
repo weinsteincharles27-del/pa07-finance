@@ -8,21 +8,21 @@ SPENDING_CASES = {
     "DIGITAL ADVERTISING": "Digital advertising",
     "DIGITAL CONSULTING SERVICES": "Digital advertising",
     "TEXT MESSAGE ADVERTISING": "Digital advertising",
-    "DIGITAL FUNDRAISING CONSULTING": "Fundraising consultants",   # fundraising beats digital
-    "FUNDRAISING COMMISSION": "Fundraising consultants",
-    "FUNDRIAISNG CONSULTING/COMMISSION": "Fundraising consultants",   # as filed, typo and all
-    "DIRECT MAIL FUNDRAISING": "Fundraising mail",
-    "DIRECT MAIL FUNDRAISING POSTAGE": "Fundraising mail",
-    "LIST ACQUISITION": "Fundraising mail",
-    "FUNDRAISING EVENT- FOOD AND BEVERAGE": "Fundraising events",
-    "FUNDRAISING COMMISSION AND FUNDRAISING EVENT": "Fundraising consultants",   # commission first
-    "FUNDRAISING COMMISSION/FUNDRAISING EVENTS/REIMBURSEMENT": "Fundraising consultants",
-    "FUNDRAISER EVENT INVITES AND POSTAGE": "Fundraising events",
-    "CREDIT CARD PROCESSING FEES": "Donation processing fees",
-    "PROCESSING FEE": "Donation processing fees",
-    "SUPPORTER APPRECIATION GIFTS": "Fundraising events",
-    "FUNDRAISING CONSULTING": "Fundraising consultants",
-    "FUNDRAISING EXPENSE": "Fundraising consultants",
+    "DIGITAL FUNDRAISING CONSULTING": "Fundraising",   # fundraising beats digital
+    "FUNDRAISING COMMISSION": "Fundraising",
+    "FUNDRIAISNG CONSULTING/COMMISSION": "Fundraising",   # as filed, typo and all
+    "DIRECT MAIL FUNDRAISING": "Fundraising",
+    "DIRECT MAIL FUNDRAISING POSTAGE": "Fundraising",
+    "LIST ACQUISITION": "Fundraising",
+    "FUNDRAISING EVENT- FOOD AND BEVERAGE": "Fundraising",
+    "FUNDRAISING COMMISSION AND FUNDRAISING EVENT": "Fundraising",   # commission first
+    "FUNDRAISING COMMISSION/FUNDRAISING EVENTS/REIMBURSEMENT": "Fundraising",
+    "FUNDRAISER EVENT INVITES AND POSTAGE": "Fundraising",
+    "CREDIT CARD PROCESSING FEES": "Fundraising",
+    "PROCESSING FEE": "Fundraising",
+    "SUPPORTER APPRECIATION GIFTS": "Fundraising",
+    "FUNDRAISING CONSULTING": "Fundraising",
+    "FUNDRAISING EXPENSE": "Fundraising",
     "DIRECT MAIL": "Mail and printing",
     "PRINT ADVERTISEMENT": "Print and radio advertising",
     "CAMPAIGN LITERATURE": "Mail and printing",
@@ -118,14 +118,6 @@ def test_outside_descriptions_as_filed():
 def test_every_rule_label_is_in_the_display_order():
     assert set(l for l, _ in C.SPENDING) | {"Other"} == set(C.SPENDING_ORDER)
     assert set(l for l, _ in C.OUTSIDE) | {"Other"} == set(C.OUTSIDE_ORDER)
-
-
-def test_fundraising_is_split_so_the_reader_can_see_what_it_is():
-    labels = set(C.SPENDING_ORDER)
-    for want in ("Fundraising consultants", "Fundraising mail",
-                 "Donation processing fees", "Fundraising events"):
-        assert want in labels, want
-    assert "Fundraising" not in labels
 
 
 def test_other_is_small_on_the_real_data():

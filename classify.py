@@ -17,19 +17,9 @@ by tests/test_classify.py. A description that matches nothing is "Other".
 
 SPENDING = [
     ("Refunds",                    ("REFUND",)),
-    # Fundraising is money spent to raise money. It is split four ways so the
-    # reader can see what that means: consultants paid a commission on what
-    # they bring in, solicitation mail to prospect lists, the cut the online
-    # donation processors take, and the events themselves.
-    ("Donation processing fees",   ("PROCESSING FEE", "CREDIT CARD")),
-    # A consultant's combined "commission and event" line is a commission.
-    ("Fundraising consultants", ("COMMISSION",)),
-    ("Fundraising mail",           ("DIRECT MAIL FUNDRAIS", "FUNDRAISING- DIRECT MAIL", "FUNDRAISING DIRECT MAIL",
-                                    "LIST ACQUISITION", "FUNDRAISING POSTAGE")),
-    ("Fundraising events",         ("FUNDRAISING EVENT", "FUNDRAISER EVENT", "FUNDRAISING FOOD", "FUNDRAISER",
-                                    "SUPPORTER APPRECIATION", "APPRECIATION GIFT", "DONOR", "RAFFLE",
-                                    "FUNDRAISING TRAVEL")),
-    ("Fundraising consultants", ("FUNDRAIS", "FUNDRIAISNG")),
+    ("Fundraising",                ("FUNDRAIS", "FUNDRIAISNG", "COMMISSION", "PROCESSING FEE", "CREDIT CARD",
+                                    "DONOR", "SUPPORTER APPRECIATION", "APPRECIATION GIFT", "LIST ACQUISITION",
+                                    "RAFFLE")),
     ("Television advertising",     ("TELEVISION", "TV AD", "TV BUY")),
     ("Digital advertising",        ("DIGITAL", "ONLINE AD", "TEXT MESSAGE ADVERTISING", "WEB AD")),
     ("Print and radio advertising", ("PRINT AD", "NEWSPAPER", "RADIO", "BILLBOARD")),
