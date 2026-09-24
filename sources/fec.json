@@ -1,7 +1,7 @@
 {
   "source": "FEC / OpenFEC API",
   "url": "https://www.fec.gov/data/elections/house/PA/07/2026/",
-  "retrieved_utc": "2026-09-18T01:20:24Z",
+  "retrieved_utc": "2026-09-24T15:07:26Z",
   "cycle": 2026,
   "coverage_through": "2026-06-30",
   "candidates": [
@@ -358,6 +358,15 @@
       "target_candidate": "Ryan Crosswell"
     },
     {
+      "committee_id": "C00606962",
+      "committee": "WORKING FAMILIES PARTY PAC",
+      "target_candidate_id": "H6PA07188",
+      "support_oppose": "S",
+      "amount": 41020.59,
+      "filings": 3,
+      "target_candidate": "Bob Brooks"
+    },
+    {
       "committee_id": "C00689745",
       "committee": "MAKE THE ROAD ACTION POLITICAL COMMITTEE",
       "target_candidate_id": "H6PA07188",
@@ -430,12 +439,12 @@
       "target_candidate": "Bob Brooks"
     },
     {
-      "committee_id": "C00606962",
-      "committee": "WORKING FAMILIES PARTY PAC",
+      "committee_id": "C00004036",
+      "committee": "SEIU COPE (SERVICE EMPLOYEES INTERNATIONAL UNION COMMITTEE ON POLITICAL EDUCATION)",
       "target_candidate_id": "H6PA07188",
       "support_oppose": "S",
-      "amount": 3556.19,
-      "filings": 1,
+      "amount": 3140.99,
+      "filings": 3,
       "target_candidate": "Bob Brooks"
     },
     {
@@ -507,6 +516,15 @@
       "target_candidate_id": "H6PA07188",
       "support_oppose": "S",
       "amount": 638.3,
+      "filings": 1,
+      "target_candidate": "Bob Brooks"
+    },
+    {
+      "committee_id": "C00738237",
+      "committee": "PEOPLE'S ACTION POWER",
+      "target_candidate_id": "H6PA07188",
+      "support_oppose": "S",
+      "amount": 530.05,
       "filings": 1,
       "target_candidate": "Bob Brooks"
     },
@@ -948,6 +966,20 @@
       "payee_state": "PA",
       "amount": 45110.0,
       "date": "2026-03-30"
+    },
+    {
+      "committee_id": "C00606962",
+      "committee": "WORKING FAMILIES PARTY PAC",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "DIRECT MAIL  FEC-1979274",
+      "category": "Mail and print",
+      "payee": "PERSON2PERSON SOLUTIONS",
+      "payee_city": "BROOKLYN",
+      "payee_state": "NY",
+      "amount": 32824.6,
+      "date": "2026-08-10"
     },
     {
       "committee_id": "C00936153",
@@ -1454,6 +1486,20 @@
       "date": "2025-04-14"
     },
     {
+      "committee_id": "C00606962",
+      "committee": "WORKING FAMILIES PARTY PAC",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "DIRECT MAIL  FEC-1979274",
+      "category": "Mail and print",
+      "payee": "PERSON2PERSON SOLUTIONS",
+      "payee_city": "BROOKLYN",
+      "payee_state": "NY",
+      "amount": 4639.8,
+      "date": "2026-08-10"
+    },
+    {
       "committee_id": "C00685552",
       "committee": "MEDICARE FOR ALL",
       "target_candidate_id": "H6PA07188",
@@ -1634,6 +1680,20 @@
       "payee_state": "PA",
       "amount": 2040.0,
       "date": "2026-05-11"
+    },
+    {
+      "committee_id": "C00004036",
+      "committee": "SEIU COPE (SERVICE EMPLOYEES INTERNATIONAL UNION COMMITTEE ON POLITICAL EDUCATION)",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "PAYMENT FOR TEXTING AS DISCLOSED ON 5/17 24-HOUR NOTICE & 6/20 MONTHLY REPORT",
+      "category": "Texting and phone calls",
+      "payee": "SCALE TO WIN",
+      "payee_city": "SANTA ANA",
+      "payee_state": "CA",
+      "amount": 2001.41,
+      "date": "2026-08-13"
     },
     {
       "committee_id": "C00924159",
@@ -1818,6 +1878,20 @@
       "date": "2026-04-20"
     },
     {
+      "committee_id": "C00004036",
+      "committee": "SEIU COPE (SERVICE EMPLOYEES INTERNATIONAL UNION COMMITTEE ON POLITICAL EDUCATION)",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "PAYMENT FOR TEXTING AS DISCLOSED ON 6/20 MONTHLY REPORT",
+      "category": "Texting and phone calls",
+      "payee": "SCALE TO WIN",
+      "payee_city": "SANTA ANA",
+      "payee_state": "CA",
+      "amount": 907.68,
+      "date": "2026-08-13"
+    },
+    {
       "committee_id": "C00897363",
       "committee": "BLUE MAJORITY PROJECT",
       "target_candidate_id": "H6PA07188",
@@ -1916,6 +1990,20 @@
       "date": "2026-04-30"
     },
     {
+      "committee_id": "C00738237",
+      "committee": "PEOPLE'S ACTION POWER",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "NON-CONTRIBUTION ACCOUNT: TEXT MESSAGING",
+      "category": "Texting and phone calls",
+      "payee": "SCALE TO WIN",
+      "payee_city": "SANTA ANA",
+      "payee_state": "CA",
+      "amount": 530.05,
+      "date": "2026-08-07"
+    },
+    {
       "committee_id": "C00909465",
       "committee": "INDIGO PAC",
       "target_candidate_id": "H8PA15195",
@@ -1998,6 +2086,20 @@
       "payee_state": "CA",
       "amount": 236.81,
       "date": "2026-02-04"
+    },
+    {
+      "committee_id": "C00004036",
+      "committee": "SEIU COPE (SERVICE EMPLOYEES INTERNATIONAL UNION COMMITTEE ON POLITICAL EDUCATION)",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "PAYMENT FOR TEXTING AS DISCLOSED ON 6/20 MONTHLY REPORT",
+      "category": "Texting and phone calls",
+      "payee": "SCALE TO WIN",
+      "payee_city": "SANTA ANA",
+      "payee_state": "CA",
+      "amount": 231.9,
+      "date": "2026-08-13"
     },
     {
       "committee_id": "C00909465",
