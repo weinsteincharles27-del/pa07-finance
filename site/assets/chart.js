@@ -520,6 +520,66 @@
     return d;
   }
 
-  global.Chart = { line: line, bars: bars, groups: groups, stacked: stacked, hbars: hbars,
+  /* One row per category and one thin bar per series inside it, all on one
+     shared scale. Two campaigns' figures set side by side on separate charts
+     get separate axes, and a $500K bar on one can look as long as a $1M bar on
+     the other; here they cannot. Every bar carries its own value, so nobody
+     has to read it off the axis. When the longest row label will not fit to
+     the left, labels move above their bars (the phone layout).
+     opt.rows = [{label}], opt.series = [{label, color, values[]}],
+     opt.valueLabel(v, row, series) for the text at the end of each bar. */
+  function pairs(host, opt) {
+    host.classList.add("plot");
+    var draw = function () {
+      var rows = opt.rows || [], series = opt.series || [];
+      var width = Math.max(260, host.clientWidth || 320);
+      var longest = Math.max.apply(null, rows.map(function (r) { return r.label.length; }).concat([6]));
+      var need = longest * 6.6 + 14, above = need > width * 0.36;
+      var barH = 9, gap = 3, pad = 8, lab = above ? 16 : 0;
+      var rowH = series.length * (barH + gap) - gap + pad * 2;
+      var m = { l: above ? 0 : need, r: opt.valueRoom || 64, t: 2, b: 22 };
+      var iw = width - m.l - m.r;
+      var hi = opt.xMax !== undefined ? opt.xMax : Math.max.apply(null, series.map(function (s) {
+        return Math.max.apply(null, s.values.map(function (v) { return v || 0; }));
+      }).concat([1]));
+      var X = function (v) { return m.l + v / hi * iw; };
+      var height = m.t + m.b + rows.length * (rowH + lab);
+      var svg = el("svg", { width: width, height: height, viewBox: "0 0 " + width + " " + height,
+                            role: "img", "aria-label": opt.aria || opt.title || "chart" });
+      if (opt.title) svg.appendChild(el("title", {}, opt.title));
+      var ax = el("g", { class: "axis" });
+      niceTicks(0, hi, width < 460 ? 3 : 4).forEach(function (v) {
+        ax.appendChild(el("line", { class: "gridline", x1: X(v), x2: X(v), y1: m.t, y2: height - m.b }));
+        ax.appendChild(el("text", { x: X(v), y: height - 6, "text-anchor": "middle" }, (opt.xFormat || fmt.money)(v)));
+      });
+      svg.appendChild(ax);
+      rows.forEach(function (r, i) {
+        var y0 = m.t + i * (rowH + lab);
+        svg.appendChild(el("text", above ? { x: 0, y: y0 + 12, class: "rowlabel" }
+                                         : { x: m.l - 10, y: y0 + rowH / 2 + 4, "text-anchor": "end", class: "rowlabel" },
+                           r.label));
+        series.forEach(function (s, j) {
+          var v = s.values[i], y = y0 + lab + pad + j * (barH + gap);
+          if (v === null || v === undefined) {
+            /* Not reported is not zero: no bar, and it says so. */
+            svg.appendChild(el("text", { x: X(0) + 4, y: y + barH - 1, class: "barvalue" }, "not reported"));
+            return;
+          }
+          var rect = el("rect", { x: m.l, y: y, width: Math.max(1, X(v) - m.l), height: barH, fill: s.color, rx: 1.5 });
+          rect.appendChild(el("title", {}, r.label + ", " + s.label + ": " + fmt.dollars(v)));
+          svg.appendChild(rect);
+          svg.appendChild(el("text", { x: X(v) + 5, y: y + barH - 1, class: "barvalue" },
+                             (opt.valueLabel || fmt.money)(v, i, j)));
+        });
+      });
+      host.innerHTML = "";
+      host.appendChild(svg);
+    };
+    draw();
+    observe(host, draw);
+    return draw;
+  }
+
+  global.Chart = { line: line, bars: bars, groups: groups, stacked: stacked, hbars: hbars, pairs: pairs,
                    fmt: fmt, legend: legend, ms: ms };
 })(window);

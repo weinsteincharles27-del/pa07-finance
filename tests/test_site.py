@@ -45,5 +45,5 @@ def test_no_standings_language_in_page_copy():
 def test_chart_library_exposes_the_kinds_the_page_uses():
     chart = read("assets/chart.js")
     fin = read("assets/finance.js")
-    for kind in re.findall(r"\bC\.(groups|stacked|hbars|bars|line)\(", fin):
+    for kind in re.findall(r"\bC\.(groups|stacked|hbars|pairs|bars|line)\(", fin):
         assert ("%s: %s" % (kind, kind)) in chart, kind

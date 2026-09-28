@@ -49,17 +49,24 @@
     h.appendChild(elem("span", "dem", "(D)"));
     h.appendChild(document.createTextNode(" and " + r.republican + " "));
     h.appendChild(elem("span", "rep", "(R)"));
+    /* Counted from the reader's own date, not the export's: the manifest's
+       days_to_election is frozen when the figures last changed, which can be
+       days ago, since an unchanged FEC read commits nothing. */
+    var e = Date.parse(r.election + "T00:00:00Z"), n = new Date();
+    var days = Math.round((e - Date.UTC(n.getFullYear(), n.getMonth(), n.getDate())) / 86400000);
+    var when = longDate(r.election);
     $("countdown").textContent =
-      (r.days_to_election > 0 ? r.days_to_election + " days to the election" : "Election day has passed") +
-      " · " + longDate(r.election);
+      days > 1 ? days + " days to the election on " + when + "." :
+      days === 1 ? "The election is tomorrow, " + when + "." :
+      days === 0 ? "Election day, " + when + "." : "The election was on " + when + ".";
     $("built").textContent = "Data updated " + utc(man.generated_utc) +
-      " · candidate totals through " + longDate(man.coverage_through);
+      ". Candidate totals run through " + longDate(man.coverage_through) + ".";
   }
 
   function fail(err) {
     var box = $("boot");
     if (!box) return;
-    box.className = "caveat high";
+    box.className = "caveat";
     box.innerHTML = "<b>Could not load the data files.</b><p>" + String(err) + "</p>" +
       "<p>If you opened this file directly, the browser is blocking the fetch. Serve the " +
       "directory instead: <code>cd site &amp;&amp; python3 -m http.server 8000</code></p>";
@@ -71,9 +78,13 @@
       get("data/candidates.json"),
       get("data/outside.json"),
       get("data/history.json"),
-      get("data/detail.json").catch(function () { return { available: false, committees: [] }; })
+      get("data/detail.json").catch(function () { return { available: false, committees: [] }; }),
+      /* The warnings travel with the numbers they qualify, inline, rather than
+         in an appendix nobody scrolls to. */
+      get("data/caveats.json").catch(function () { return { items: [] }; })
     ]).then(function (r) {
-      State.data = { manifest: r[0], candidates: r[1], outside: r[2], history: r[3], detail: r[4] };
+      State.data = { manifest: r[0], candidates: r[1], outside: r[2], history: r[3], detail: r[4],
+                     caveats: r[5] };
       renderHeader(State.data.manifest);
       var b = $("boot");
       if (b) b.remove();

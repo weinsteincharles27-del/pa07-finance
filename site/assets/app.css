@@ -1,12 +1,17 @@
-/* PA-07 tracker: design system.
+/* PA-07 campaign finance: design system, shared with the pa07-tracker site.
+ *
+ * The base is the tracker's file unchanged; the finance additions (tables,
+ * collapsible detail, the two-nominee columns) are at the end, so a diff
+ * against the tracker's copy shows exactly what this page adds.
  *
  * A data page, not a marketing page: dark text on a light ground, one accent
- * per party, and no colour that does not mean something. The rule the whole
- * palette rests on is that COLOUR ENCODES PARTY and LINE STYLE ENCODES VENUE.
- * Polymarket and Kalshi both quote the same Democratic probability, so giving
- * them separate hues would imply they measure different things; solid versus
- * dashed says "same quantity, different book". It also survives being printed
- * in grey and read by someone who cannot separate blue from red.
+ * per party, and no colour that does not mean something. COLOUR ENCODES
+ * PARTY. A category of money (donors, PACs, transfers) is a row, never a hue,
+ * so a blue bar always means the Democratic nominee and a red one the
+ * Republican. No figure is marked good or bad.
+ *
+ * The page reads top to bottom as one column, not as a stack of boxed cards.
+ * Sections are separated by space and a hairline.
  *
  * Everything is sized in rem off a 16px root so the page respects the reader's
  * own text size, and every layout switch is a min-width query rather than a
@@ -15,13 +20,14 @@
 
 :root {
   --dem: #2E5FA3;
+  --dem-deep: #1F4374;
   --rep: #C0392B;
   --dem-soft: #DCE6F4;
-  --rep-soft: #F7DEDA;
 
   /* Third parties to the race get hues that belong to neither side. */
   --model: #6D4C9F;   /* PollsMax statistical forecast */
   --poll: #A8620B;    /* survey research */
+  --gap: #6B7C93;     /* one venue minus the other: a difference, not a side */
 
   --ink: #16181D;
   --ink-2: #454B58;
@@ -30,17 +36,14 @@
   --line-2: #EDF0F5;
   --ground: #FFFFFF;
   --ground-2: #F7F8FA;
-  --ground-3: #EFF2F7;
 
-  --warn-bg: #FDF6E3;
-  --warn-line: #E4CE8F;
   --alert-bg: #FCEDEA;
   --alert-line: #E9B4A9;
-  --live: #1E7A46;
 
   --radius: 6px;
   --pad: 1rem;
   --max: 66rem;
+  --measure: 40rem;
 
   font-size: 16px;
 }
@@ -49,7 +52,7 @@
 
 body {
   margin: 0;
-  background: var(--ground-2);
+  background: var(--ground);
   color: var(--ink);
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
                Arial, sans-serif;
@@ -58,119 +61,154 @@ body {
   -webkit-text-size-adjust: 100%;
 }
 
-.wrap { max-width: var(--max); margin: 0 auto; padding: 0 var(--pad) 4rem; }
+::selection { background: var(--dem-soft); color: var(--ink); }
+:focus-visible { outline: 2px solid var(--dem); outline-offset: 2px; border-radius: 2px; }
 
-h1, h2, h3 { line-height: 1.25; margin: 0; font-weight: 650; letter-spacing: -0.01em; }
-h1 { font-size: 1.5rem; }
-h2 { font-size: 1.15rem; }
-h3 { font-size: 0.95rem; }
+.wrap { max-width: var(--max); margin: 0 auto; padding: 0 var(--pad); }
+
+h1, h2, h3 { line-height: 1.25; margin: 0; font-weight: 650; letter-spacing: -0.01em; text-wrap: balance; }
+h1 { font-size: 1.3rem; }
+h2 { font-size: 1.2rem; margin-bottom: 1rem; }
 p { margin: 0 0 0.75rem; }
-a { color: var(--dem); }
-a:hover { color: #1F4374; }
+a { color: var(--dem); text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
+a:hover { color: var(--dem-deep); text-decoration-thickness: 2px; }
 
 .num { font-variant-numeric: tabular-nums; font-feature-settings: "tnum"; }
 .muted { color: var(--ink-3); }
-.small { font-size: 0.8rem; }
-.tiny { font-size: 0.72rem; }
 .dem { color: var(--dem); }
 .rep { color: var(--rep); }
 
 /* ------------------------------------------------------------------ header */
 
-header.top {
-  background: var(--ground);
-  border-bottom: 1px solid var(--line);
-}
-header.top .wrap { padding-top: 1.25rem; padding-bottom: 1rem; }
-.eyebrow {
-  font-size: 0.72rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--ink-3);
+header.top .wrap { padding-top: 1.5rem; }
+.dek { color: var(--ink-2); font-size: 0.9rem; margin: 0.3rem 0 0; }
+
+/* ------------------------------------------------------------------ lead */
+
+.lead { padding: 2rem 0 0.25rem; }
+.lede {
+  font-size: 1.6rem;
   font-weight: 600;
-}
-.countdown { font-weight: 600; color: var(--ink-2); }
-
-/* --------------------------------------------------------------- freshness */
-
-
-/* ------------------------------------------------------------------ blocks */
-
-section.block {
-  background: var(--ground);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  padding: 1.1rem;
-  margin-top: 1.1rem;
-}
-section.block > header { margin-bottom: 0.75rem; }
-section.block > header p { margin: 0.25rem 0 0; color: var(--ink-2); font-size: 0.85rem; }
-
-section.block h3 { margin-top: 1.5rem; margin-bottom: 0.5rem; }
-
-.grid { display: grid; gap: 1.1rem; }
-@media (min-width: 48rem) { .grid.two { grid-template-columns: 1fr 1fr; } }
-
-/* --------------------------------------------------------------- stat tiles */
-
-.stats {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr));
-  gap: 0.75rem;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-.stat {
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  padding: 0.7rem 0.8rem;
-  background: var(--ground-2);
-}
-.stat .k { font-size: 0.72rem; color: var(--ink-3); font-weight: 600; }
-.stat .v {
-  font-size: 1.5rem;
-  font-weight: 650;
-  font-variant-numeric: tabular-nums;
+  line-height: 1.2;
   letter-spacing: -0.02em;
-  line-height: 1.15;
-  margin-top: 0.15rem;
+  max-width: 18em;
+  margin: 0;
+  text-wrap: balance;
 }
-.stat .sub { font-size: 0.74rem; color: var(--ink-3); font-variant-numeric: tabular-nums; }
-.stat.lead { background: var(--dem-soft); border-color: #BFD1E8; }
+.lede b { font-weight: 750; font-variant-numeric: tabular-nums; }
+.since { color: var(--ink-2); max-width: var(--measure); margin: 0.9rem 0 0; }
+
+ul.venues {
+  list-style: none;
+  padding: 0;
+  margin: 1.1rem 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1.75rem;
+  font-size: 0.88rem;
+}
+ul.venues li { display: flex; align-items: baseline; gap: 0.45rem; }
+ul.venues i { align-self: center; }
+ul.venues .v { font-weight: 650; font-variant-numeric: tabular-nums; }
+ul.venues .age { color: var(--ink-3); font-size: 0.8rem; }
+
+.livebar { display: flex; flex-wrap: wrap; align-items: center; gap: 0 0.75rem;
+           font-size: 0.78rem; color: var(--ink-3); margin-top: 0.25rem; }
+
+/* ---------------------------------------------------------------- sections */
+
+main > section:not(.lead) {
+  border-top: 1px solid var(--line);
+  margin-top: 2.75rem;
+  padding-top: 2rem;
+}
+.prose { max-width: var(--measure); color: var(--ink-2); }
+.prose p:last-child { margin-bottom: 0; }
+
+/* A dated list keyed to the pins on the chart above it. */
+ol.moments {
+  list-style: none;
+  margin: 1.5rem 0 0;
+  padding: 0;
+  font-size: 0.88rem;
+}
+ol.moments li {
+  display: grid;
+  grid-template-columns: 1.75rem 1fr;
+  column-gap: 0.5rem;
+  padding: 0.45rem 0;
+  break-inside: avoid;
+}
+ol.moments .pin {
+  grid-row: span 2;
+  width: 1.2rem;
+  height: 1.2rem;
+  border: 1px solid var(--ink-2);
+  border-radius: 50%;
+  font-size: 0.66rem;
+  font-weight: 650;
+  line-height: calc(1.2rem - 2px);
+  text-align: center;
+  margin-top: 0.1rem;
+}
+ol.moments time { color: var(--ink-3); font-size: 0.78rem; font-variant-numeric: tabular-nums; }
+ol.moments .what { color: var(--ink-2); }
+
+@media (min-width: 40rem) {
+  ol.moments li { grid-template-columns: 1.75rem 7.25rem 1fr; }
+  ol.moments .pin { grid-row: auto; }
+  ol.moments time { font-size: 0.82rem; padding-top: 0.05rem; }
+}
+@media (min-width: 60rem) {
+  ol.moments.split { columns: 2; column-gap: 3rem; }
+}
+
+@media (min-width: 48rem) {
+  header.top .wrap { padding-top: 2.25rem; }
+  .lead { padding-top: 2.5rem; }
+  .lede { font-size: 2.35rem; }
+  main > section:not(.lead) { margin-top: 3.5rem; padding-top: 2.5rem; }
+}
 
 /* ------------------------------------------------------------------ charts */
 
 figure.chart { margin: 0; }
 figure.chart figcaption {
-  font-size: 0.78rem;
-  color: var(--ink-3);
-  margin-top: 0.5rem;
+  font-size: 0.82rem;
+  color: var(--ink-2);
+  margin-top: 0.6rem;
+  max-width: var(--measure);
 }
 .plot { width: 100%; position: relative; }
 .plot svg { display: block; width: 100%; height: auto; overflow: visible; }
-.axis text { fill: var(--ink-3); font-size: 11px; }
+.axis text { fill: var(--ink-3); font-size: 11px; font-variant-numeric: tabular-nums; }
 .axis line, .axis path { stroke: var(--line); }
 .gridline { stroke: var(--line-2); }
 .refline { stroke: var(--ink-3); stroke-dasharray: 2 3; }
 .reflabel { fill: var(--ink-3); font-size: 10px; }
 .crosshair { stroke: var(--ink-3); stroke-width: 1; stroke-dasharray: 2 2; }
+.pin circle { fill: var(--ground); stroke: var(--ink-2); stroke-width: 1; }
+.pin text { fill: var(--ink); font-size: 9.5px; font-weight: 650; }
+.guide { stroke: var(--line); stroke-dasharray: 1 3; }
+.span { fill: var(--ink); fill-opacity: 0.045; }
 
 .legend {
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
   font-size: 0.78rem;
+  color: var(--ink-2);
   margin-bottom: 0.4rem;
 }
 .legend span { display: inline-flex; align-items: center; gap: 0.35rem; }
-.legend i {
+.legend i, ul.venues i {
   width: 1.1rem;
   height: 0;
   border-top-width: 2.5px;
   border-top-style: solid;
   display: inline-block;
 }
+ul.venues i.dash { border-top-style: dashed; }
 .legend i.dot {
   width: 0.6rem; height: 0.6rem; border-radius: 50%; border: 0;
 }
@@ -179,7 +217,7 @@ figure.chart figcaption {
   position: absolute;
   pointer-events: none;
   background: var(--ink);
-  color: #fff;
+  color: var(--ground);
   border-radius: 4px;
   padding: 0.35rem 0.5rem;
   font-size: 0.72rem;
@@ -195,74 +233,46 @@ figure.chart figcaption {
 
 /* ------------------------------------------------------------------- notes */
 
-.note, .caveat {
-  border: 1px solid var(--line);
-  border-left-width: 3px;
+.note { color: var(--ink-3); font-size: 0.88rem; padding: 2rem 0; margin: 0; }
+.caveat {
+  border: 1px solid var(--alert-line);
+  background: var(--alert-bg);
   border-radius: var(--radius);
-  padding: 0.6rem 0.75rem;
-  font-size: 0.83rem;
-  background: var(--ground-2);
-  margin-top: 0.75rem;
+  padding: 0.75rem 0.9rem;
+  font-size: 0.85rem;
+  margin-top: 1.5rem;
+  max-width: var(--measure);
 }
-.caveat.high { background: var(--alert-bg); border-color: var(--alert-line); border-left-color: var(--rep); }
-.caveat.medium { background: var(--warn-bg); border-color: var(--warn-line); border-left-color: #B8912A; }
-.caveat.low { border-left-color: var(--ink-3); }
 .caveat b { display: block; margin-bottom: 0.2rem; }
-.caveat p { margin: 0; color: var(--ink-2); }
-
-/* ------------------------------------------------------------------ tables */
-
-dl.defs { margin: 0; }
-dl.defs dt { font-weight: 650; font-size: 0.85rem; margin-top: 0.6rem; }
-dl.defs dd { margin: 0.1rem 0 0; color: var(--ink-2); font-size: 0.83rem; }
-
-ul.small { padding-left: 1.1rem; margin: 0.4rem 0 0; }
-ul.small li { margin-bottom: 0.3rem; }
-
-.scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-table { border-collapse: collapse; width: 100%; font-size: 0.82rem; }
-th, td { text-align: right; padding: 0.35rem 0.5rem; border-bottom: 1px solid var(--line-2); }
-th:first-child, td:first-child { text-align: left; }
-thead th {
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  color: var(--ink-3);
-  border-bottom: 1px solid var(--line);
-  white-space: nowrap;
-}
-td.num, th.num { font-variant-numeric: tabular-nums; }
-tr.d td:first-child { box-shadow: inset 3px 0 0 var(--dem); }
-tr.r td:first-child { box-shadow: inset 3px 0 0 var(--rep); }
-td.gap { color: var(--ink-3); font-style: italic; }
+.caveat p { margin: 0.25rem 0 0; color: var(--ink-2); }
 
 /* ----------------------------------------------------------------- buttons */
 
-button, .button {
+button.text {
   font: inherit;
-  font-size: 0.8rem;
-  border: 1px solid var(--line);
-  background: var(--ground);
-  color: var(--ink);
-  border-radius: var(--radius);
-  padding: 0.35rem 0.7rem;
+  color: var(--dem);
+  background: none;
+  border: 0;
+  padding: 0;
+  min-height: 2.75rem;
   cursor: pointer;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
 }
-button:hover, .button:hover { background: var(--ground-3); }
-button[aria-pressed="true"] { background: var(--ink); color: #fff; border-color: var(--ink); }
-.controls { display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: center; }
+button.text:hover { color: var(--dem-deep); text-decoration-thickness: 2px; }
 
-details { margin-top: 0.75rem; }
-summary { cursor: pointer; font-weight: 600; font-size: 0.85rem; }
-summary::-webkit-details-marker { color: var(--ink-3); }
+/* ------------------------------------------------------------------ footer */
 
 footer.foot {
+  background: var(--ground-2);
   border-top: 1px solid var(--line);
-  margin-top: 2rem;
-  padding-top: 1rem;
-  font-size: 0.78rem;
+  margin-top: 4rem;
+  padding: 1.5rem 0 3rem;
+  font-size: 0.8rem;
   color: var(--ink-3);
 }
+footer.foot p { max-width: var(--measure); margin-bottom: 0.4rem; }
 
 .skip {
   position: absolute;
@@ -273,18 +283,30 @@ footer.foot {
   background: var(--ground); padding: 0.4rem 0.6rem; border: 1px solid var(--ink);
 }
 
-/* ---- additions for the lean layout ---------------------------------- */
-.tbl { width: 100%; border-collapse: collapse; margin: 0.6rem 0 0.2rem; font-size: 0.92rem; }
-.tbl th, .tbl td { padding: 0.42rem 0.55rem; text-align: left; border-bottom: 1px solid #e6e9ef; vertical-align: top; }
-.tbl th { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.04em; color: #6b7280; font-weight: 600; }
-.tbl td.num { font-variant-numeric: tabular-nums; }
-.up { color: #1f7a3a; font-weight: 600; }
-.down { color: #b42318; font-weight: 600; }
-.muted { color: #9aa3ad; font-style: italic; }
-.stat.up .v { color: #1f7a3a; }
-.stat.down .v { color: #b42318; }
-.stat.lead .v { font-size: 2.1rem; }
-.fine { font-size: 0.82rem; color: #6b7280; margin: 0.6rem 0 0; }
-ul.plain { list-style: disc; padding-left: 1.2rem; margin: 0.5rem 0 0; }
-ul.plain li { margin: 0.3rem 0; line-height: 1.45; }
-.block h3 { font-size: 0.95rem; margin: 1rem 0 0.2rem; color: #374151; }
+/* ------------------------------------------------------ finance additions */
+
+h3 { font-size: 0.95rem; margin: 1.75rem 0 0.6rem; }
+.lead h3:first-child, .cols > div > h3:first-child { margin-top: 0; }
+.rowlabel { fill: var(--ink-2); font-size: 11.5px; }
+.barvalue { fill: var(--ink-3); font-size: 10.5px; font-variant-numeric: tabular-nums; }
+
+.flag { max-width: var(--measure); font-size: 0.85rem; color: var(--ink-2); margin: 1.25rem 0 0; }
+.flag b { color: var(--ink); font-weight: 650; }
+
+.cols { display: grid; gap: 2rem; margin-top: 1.5rem; }
+@media (min-width: 48rem) { .cols { grid-template-columns: 1fr 1fr; gap: 3rem; } }
+
+.scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+figure.chart + .scroll { margin-top: 1.25rem; }
+table { border-collapse: collapse; width: 100%; font-size: 0.84rem; }
+th, td { text-align: left; padding: 0.4rem 0.6rem 0.4rem 0; border-bottom: 1px solid var(--line-2); vertical-align: top; }
+th:last-child, td:last-child { padding-right: 0; }
+thead th { font-size: 0.76rem; font-weight: 600; color: var(--ink-3); border-bottom-color: var(--line); white-space: nowrap; }
+th.num, td.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+td .place { display: block; color: var(--ink-3); font-size: 0.78rem; }
+tr.total td { font-weight: 650; border-bottom: 0; }
+
+details { margin-top: 1.25rem; }
+summary { cursor: pointer; color: var(--dem); font-size: 0.85rem; min-height: 2.75rem; display: flex; align-items: center; }
+summary:hover { color: var(--dem-deep); }
+details[open] summary { margin-bottom: 0.5rem; }

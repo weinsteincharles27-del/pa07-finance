@@ -41,8 +41,10 @@ Two files in `sources/` are maintained by hand and never fetched:
 - `results.json`: certified vote totals for 2018 to 2024, with the source of each. These
   are historical facts and do not change.
 
-`.github/workflows/refresh.yml` runs the four steps every five minutes, GitHub's cron
-floor. A run makes 21 API calls (37 once a week, when the final 2018 to 2024 figures are
+`.github/workflows/refresh.yml` asks to run the four steps every five minutes, GitHub's
+cron floor. GitHub runs it far less often than that in practice: the run history in late
+September 2026 shows gaps of three to seven hours, which is why the page footer says
+"several times a day" and promises no cadence. A run makes 21 API calls (37 once a week, when the final 2018 to 2024 figures are
 re-pulled); the key allows 60 a minute and 1,000 an hour. `changed.py` then compares the
 result to what is committed with the timestamps removed: if nothing else moved, the run
 leaves no commit and no deploy. The FEC processes filings in batches, so most runs find
