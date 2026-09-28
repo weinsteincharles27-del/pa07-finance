@@ -1,6 +1,6 @@
 {
   "source": "OpenFEC API: schedules/schedule_b (itemized disbursements), schedules/schedule_a aggregates by_state, by_size, by_zip, by_occupation",
-  "retrieved_utc": "2026-09-18T01:21:30Z",
+  "retrieved_utc": "2026-09-28T23:33:24Z",
   "cycle": 2026,
   "coverage_through": "2026-06-30",
   "in_district_zip_prefixes": [
