@@ -160,7 +160,7 @@ def caveats_block(fec, hist, race):
                  "report on file. The next report, the %s, is due %s and will cover through %s." %
                  (fec["coverage_through"], nxt.get("name", "next quarterly"), nxt.get("due", "?"), nxt.get("covers_through", "?"))},
         {"id": "two-clocks", "severity": "medium", "title": "Outside spending is on a different clock.",
-         "text": "Outside groups report as they spend, so that table is usually fresher than the candidate totals. "
+         "text": "Outside groups report as they spend, so these figures are usually fresher than the candidate totals. "
                  "The two halves of this page are not as of the same date."},
         {"id": "primary", "severity": "medium", "title": "Much of the outside money went to the primary.",
          "text": "The largest outside-spending committees were active in May 2026, before the Democratic primary "

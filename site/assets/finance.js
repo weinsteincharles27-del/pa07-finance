@@ -1,20 +1,37 @@
-/* PA-07 finance: the sections.
+/* PA-07 finance: the sections, read top to bottom as one column.
  *
  * Reports what the FEC filed, by candidate and by committee. Colour identifies
  * party and nothing else: no figure is marked good or bad, no side is called
- * ahead, and support and oppose are words in a column rather than a red and a
- * green. The analytical sheets live in the workbook this page links to.
+ * ahead, and support and oppose are words rather than a red and a green. A
+ * category of money is a row with one bar per nominee on one shared scale,
+ * never a hue of its own, so blue always means the Democrat and red the
+ * Republican. Sentences state both nominees' figures and let the reader
+ * compare. Each caveat from caveats.json sits beside the figures it
+ * qualifies. The analytical sheets live in the workbook this page links to.
  */
 (function () {
   "use strict";
 
   var P = window.PA07, elem = P.elem, C = window.Chart, fmt = C.fmt;
 
-  function money(v) { return v === null || v === undefined ? "–" : "$" + Math.round(v).toLocaleString("en-US"); }
-  function pct(v, dp) { return v === null || v === undefined ? "–" : (v * 100).toFixed(dp === undefined ? 1 : dp) + "%"; }
-  function count(v) { return v === null || v === undefined ? "–" : v.toLocaleString("en-US"); }
+  function has(v) { return v !== null && v !== undefined; }
+  function money(v) { return has(v) ? "$" + Math.round(v).toLocaleString("en-US") : "–"; }
+  function pct(v, dp) { return has(v) ? (v * 100).toFixed(dp === undefined ? 1 : dp) + "%" : "–"; }
+  function count(v) { return has(v) ? v.toLocaleString("en-US") : "–"; }
   function party(p) { return p === "DEM" ? "D" : p === "REP" ? "R" : p === "IND" ? "Ind" : p === "UN" ? "Unaff." : p; }
   function last(name) { return name.split(" ").filter(function (t) { return !/^(Jr|Sr|II|III)\.?$/.test(t); }).pop(); }
+  function poss(name) { return name + "’s"; }
+  function text(host, s) { host.appendChild(document.createTextNode(s)); }
+
+  /* Money in a sentence: millions to two places, thousands rounded. */
+  function said(v) {
+    if (!has(v)) return "no figure";
+    var a = Math.abs(v);
+    if (a >= 1e6) return "$" + (v / 1e6).toFixed(2) + " million";
+    if (a >= 1e3) return "$" + Math.round(v / 1e3).toLocaleString("en-US") + ",000";
+    return "$" + Math.round(v);
+  }
+
   function nice(s) {
     /* FEC committee names arrive in capitals. Title-case them, keeping acronyms. */
     var keep = { PA: 1, PAC: 1, DLP: 1, FF: 1, SURJ: 1, LLC: 1, USA: 1, "SEED-PAC": 1, US: 1, LC: 1, DC: 1, NGP: 1, VAN: 1, SEIU: 1, USW: 1 };
@@ -26,189 +43,177 @@
       return w.charAt(0).toUpperCase() + w.slice(1).toLowerCase();
     }).join(" ");
   }
+  function place(city, state) { return [nice(city || ""), state].filter(Boolean).join(", "); }
 
-  function block(id, title, blurb) {
-    var sec = elem("section", "block");
-    sec.id = id;
-    var h = elem("header");
-    h.appendChild(elem("h2", null, title));
-    if (blurb) h.appendChild(elem("p", null, blurb));
-    sec.appendChild(h);
-    return sec;
+  /* Sections go into the page before they are drawn into, so each chart
+     measures its real width on the first pass instead of redrawing. */
+  function section(id, title) {
+    var s = elem("section"), h = elem("h2", null, title);
+    s.id = id; h.id = id + "-h";
+    s.setAttribute("aria-labelledby", h.id);
+    s.appendChild(h);
+    document.getElementById("main").appendChild(s);
+    return s;
   }
 
   function figure(host, legendItems, caption) {
-    var fig = elem("figure", "chart");
+    var fig = elem("figure", "chart"), plot = elem("div");
     if (legendItems) fig.appendChild(C.legend(legendItems));
-    var plot = elem("div");
     fig.appendChild(plot);
     if (caption) fig.appendChild(elem("figcaption", null, caption));
     host.appendChild(fig);
     return plot;
   }
 
-  function tile(k, v, sub) {
-    var li = elem("li", "stat");
-    li.appendChild(elem("div", "k", k));
-    li.appendChild(elem("div", "v num", v));
-    if (sub) li.appendChild(elem("div", "sub", sub));
-    return li;
-  }
+  function para(host, cls, s) { var p = elem("p", cls, s); host.appendChild(p); return p; }
 
   function table(host, head, rows, rowClass) {
-    var wrap = elem("div", "scroll");
-    var t = elem("table");
-    var thead = elem("thead"), tr = elem("tr");
+    var wrap = elem("div", "scroll"), t = elem("table"), thead = elem("thead"), tr = elem("tr");
     head.forEach(function (h) { tr.appendChild(elem("th", h.num ? "num" : null, h.label || h)); });
     thead.appendChild(tr);
     t.appendChild(thead);
     var tb = elem("tbody");
     rows.forEach(function (r, i) {
-      var tr2 = elem("tr", rowClass ? rowClass(r, i) : null);
+      var row = elem("tr", rowClass ? rowClass(r, i) : null);
       r.cells.forEach(function (c, j) {
-        var td = elem("td", head[j] && head[j].num ? "num" : (c === "–" ? "gap" : null), c);
-        tr2.appendChild(td);
+        var td = elem("td", head[j] && head[j].num ? "num" : null);
+        if (c && c.nodeType) td.appendChild(c); else td.textContent = c;
+        row.appendChild(td);
       });
-      tb.appendChild(tr2);
+      tb.appendChild(row);
     });
     t.appendChild(tb);
     wrap.appendChild(t);
     host.appendChild(wrap);
   }
 
-  function note(host, text, cls) {
-    var n = elem("div", cls || "note", text);
-    host.appendChild(n);
-    return n;
+  function details(host, summary) {
+    var d = elem("details");
+    d.appendChild(elem("summary", null, summary));
+    host.appendChild(d);
+    return d;
   }
 
-  /* ------------------------------------------------------------- sections */
+  /* A caveat from caveats.json, inline. Its ISO dates are read out as dates. */
+  function flag(host, d, id) {
+    var c = ((d.caveats || {}).items || []).filter(function (x) { return x.id === id; })[0];
+    if (!c) return;
+    var p = elem("p", "flag");
+    p.appendChild(elem("b", null, c.title));
+    text(p, " " + c.text.replace(/\b(\d{4}-\d{2}-\d{2})\b/g, function (_, iso) { return P.longDate(iso); }));
+    host.appendChild(p);
+  }
+
+  /* A payee or occupation cell: the name, with its place under it. */
+  function named(name, where) {
+    var s = elem("span", null, name);
+    if (where) s.appendChild(elem("span", "place", where));
+    return s;
+  }
+
+  function nameWithParty(host, name, p, extra) {
+    text(host, name + " ");
+    host.appendChild(elem("span", p === "DEM" ? "dem" : "rep", "(" + party(p) + ")"));
+    if (extra) text(host, extra);
+  }
 
   function nominees(d) {
     return d.candidates.candidates.filter(function (c) { return c.status === "nominee"; })
       .sort(function (a, b) { return last(a.name) < last(b.name) ? -1 : 1; });
   }
 
-  function standing(d) {
-    var noms = nominees(d);
-    var sec = block("standing", "Where the money stands",
-      "Each nominee's campaign committee, cycle to date, from its latest quarterly report to the FEC. " +
-      "Figures run through " + P.longDate(d.candidates.coverage_through) + ".");
-    var grid = elem("div", "grid two");
-    noms.forEach(function (c) {
-      var col = elem("div");
-      var h = elem("h3");
-      h.appendChild(document.createTextNode(c.name + " "));
-      h.appendChild(elem("span", c.party === "DEM" ? "dem" : "rep", "(" + party(c.party) + ")"));
-      if (c.incumbent) h.appendChild(document.createTextNode(" · incumbent"));
-      col.appendChild(h);
-      var ul = elem("ul", "stats");
-      ul.appendChild(tile("Raised", money(c.receipts), "all receipts this cycle"));
-      ul.appendChild(tile("Spent", money(c.disbursements), "all disbursements this cycle"));
-      ul.appendChild(tile("Cash on hand", money(c.cash_on_hand), "at " + P.longDate(c.coverage_end)));
-      col.appendChild(ul);
-      grid.appendChild(col);
-    });
-    sec.appendChild(grid);
-    var plot = figure(sec, noms.map(function (c) {
-      return { label: c.name + " (" + party(c.party) + ")", color: P.partyColour(c.party) };
-    }), "Raised, spent and cash on hand, by nominee. Hover a bar for the exact figure.");
-    C.groups(plot, {
-      title: "Raised, spent and cash on hand",
-      categories: ["Raised", "Spent", "Cash on hand"],
-      series: noms.map(function (c) {
-        return { label: c.name, color: P.partyColour(c.party),
-                 values: [c.receipts, c.disbursements, c.cash_on_hand] };
-      })
-    });
-    return sec;
+  function committees(d) {
+    var dt = d.detail;
+    if (!dt || !dt.available || !dt.committees.length) return null;
+    return dt.committees.slice().sort(function (a, b) { return last(a.candidate) < last(b.candidate) ? -1 : 1; });
   }
 
+  function key(noms) {
+    return noms.map(function (c) {
+      return { label: c.name + " (" + party(c.party) + ")" + (c.incumbent ? ", incumbent" : ""),
+               color: P.partyColour(c.party), dot: true };
+    });
+  }
+
+  function both(noms, pick) {
+    return noms.map(function (c) { return { label: c.name, color: P.partyColour(c.party), values: pick(c) }; });
+  }
+
+  /* ------------------------------------------------------------- the lead */
+
+  function lead(d) {
+    var noms = nominees(d), through = P.longDate(d.candidates.coverage_through);
+    var s = elem("section", "lead");
+    s.id = "standing";
+    s.setAttribute("aria-label", "Where the money stands");
+    document.getElementById("main").appendChild(s);
+
+    var lede = elem("p", "lede");
+    text(lede, "By " + through.replace(/ \d{4}$/, "") + ", ");
+    noms.forEach(function (c, i) {
+      if (i) text(lede, i === noms.length - 1 ? " and " : ", ");
+      text(lede, last(c.name) + (i ? " " : " had raised "));
+      lede.appendChild(elem("b", null, said(c.receipts)));
+    });
+    text(lede, ".");
+    s.appendChild(lede);
+
+    para(s, "since", noms.map(function (c) {
+      return poss(last(c.name)) + " campaign had spent " + said(c.disbursements) + " and had " +
+             said(c.cash_on_hand) + " in the bank";
+    }).join("; ") + ". Each figure is cycle to date, from the campaign’s latest quarterly report to the FEC.");
+
+    var plot = figure(s, key(noms), null);
+    plot.parentNode.style.marginTop = "1.5rem";
+    C.pairs(plot, {
+      title: "Raised, spent and cash on hand, by nominee",
+      rows: [{ label: "Raised" }, { label: "Spent" }, { label: "Cash on hand" }],
+      series: both(noms, function (c) { return [c.receipts, c.disbursements, c.cash_on_hand]; })
+    });
+    flag(s, d, "vintage");
+  }
+
+  /* ------------------------------------------------ where the money came from */
+
   var SOURCES = [
-    { key: "individual_itemized", label: "Individual donors, over $200", color: "#1F4E79" },
-    { key: "individual_unitemized", label: "Small donations, $200 or less", color: "#7EA6D9" },
-    { key: "pac_contributions", label: "Political action committees", color: "#A8620B" },
-    { key: "party_contributions", label: "Party committees", color: "#D9A441" },
-    { key: "transfers_in", label: "Transfers from another authorized committee", color: "#6D4C9F" },
-    { key: "self_funding", label: "Candidate's own money", color: "#4B5563" },
-    { key: "other", label: "Other", color: "#C4C9D2" }
+    { key: "individual_itemized", label: "Donors giving over $200", full: "Individual donors, over $200" },
+    { key: "individual_unitemized", label: "Donors giving $200 or less", full: "Small donations, $200 or less" },
+    { key: "pac_contributions", label: "Political action committees" },
+    { key: "party_contributions", label: "Party committees" },
+    { key: "transfers_in", label: "Transfers from own committees", full: "Transfers from another authorized committee" },
+    { key: "self_funding", label: "Candidate’s own money" },
+    { key: "other", label: "Other" }
   ];
 
   function sources(d) {
     var noms = nominees(d);
-    var sec = block("sources", "Where each nominee's money came from",
-      "Every dollar of receipts, by source, as reported to the FEC. The bars add up to each " +
-      "nominee's total raised.");
-    var plot = figure(sec, SOURCES.map(function (s) { return { label: s.label, color: s.color, dot: true }; }),
-      "Receipts by source. A transfer from another authorized committee is counted in receipts but was not raised from donors this cycle.");
-    C.stacked(plot, {
-      title: "Receipts by source",
-      categories: noms.map(function (c) { return c.name + " (" + party(c.party) + ")"; }),
-      series: SOURCES.map(function (s) {
-        return { label: s.label, color: s.color, values: noms.map(function (c) { return c[s.key]; }) };
-      })
+    var sec = section("sources", "Where the money came from");
+    var plot = figure(sec, key(noms),
+      "Every dollar of receipts by source, as each campaign reported it, with each source’s share of " +
+      "that campaign’s total. Each nominee’s bars add up to their total raised.");
+    C.pairs(plot, {
+      title: "Receipts by source, by nominee",
+      rows: SOURCES.map(function (s) { return { label: s.label }; }),
+      series: both(noms, function (c) { return SOURCES.map(function (s) { return c[s.key]; }); }),
+      valueRoom: 92,
+      valueLabel: function (v, i, j) {
+        var total = noms[j].receipts, share = total ? v / total : null;
+        /* A real $5,000 is not "0%". */
+        return fmt.money(v) + (share === null ? "" : " · " + (share > 0 && share < 0.005 ? "<1%" : pct(share, 0)));
+      }
     });
+    flag(sec, d, "transfer");
+
+    var det = details(sec, "Exact figures");
     var head = [{ label: "Source" }].concat(noms.map(function (c) { return { label: c.name, num: true }; }))
       .concat(noms.map(function (c) { return { label: last(c.name) + ", share", num: true }; }));
     var rows = SOURCES.map(function (s) {
-      return { cells: [s.label].concat(noms.map(function (c) { return money(c[s.key]); }))
+      return { cells: [s.full || s.label].concat(noms.map(function (c) { return money(c[s.key]); }))
         .concat(noms.map(function (c) { return c.receipts ? pct(c[s.key] / c.receipts) : "–"; })) };
     });
     rows.push({ cells: ["Total raised"].concat(noms.map(function (c) { return money(c.receipts); }))
       .concat(noms.map(function () { return "100%"; })), total: true });
-    table(sec, head, rows, function (r) { return r.total ? "total" : null; });
-    return sec;
-  }
-
-  function outside(d) {
-    var o = d.outside;
-    var sec = block("outside", "Outside spending",
-      "Money that groups spent on their own, without coordinating with any campaign, to support or " +
-      "oppose one of the two nominees. Total: " + money(o.total) + ".");
-    table(sec, ["Candidate the spending was about", { label: "Supporting", num: true },
-                { label: "Opposing", num: true }, { label: "Committees", num: true }],
-      o.by_target.map(function (t) {
-        return { cells: [t.target, money(t.supports), money(t.opposes),
-                         count(t.committees_supporting + t.committees_opposing)] };
-      }));
-    var top = o.rows.slice(0, 10);
-    var byName = {};
-    d.candidates.candidates.forEach(function (c) { byName[c.name] = c; });
-    var plot = figure(sec, null, "The ten largest outside spenders. Bar colour is the party of the candidate the spending was about; the label says whether it supported or opposed them.");
-    C.hbars(plot, {
-      title: "Ten largest outside spenders",
-      rows: top.map(function (r) {
-        var c = byName[r.target] || {};
-        return { label: nice(r.committee) + ", " + r.stance + " " + r.target,
-                 short: (nice(r.committee).length > 26 ? nice(r.committee).slice(0, 24) + "…" : nice(r.committee)) +
-                        " · " + r.stance + " " + last(r.target),
-                 value: r.amount, color: P.partyColour(c.party) };
-      })
-    });
-    var det = elem("details");
-    det.appendChild(elem("summary", null, "Every committee, " + o.rows.length + " rows"));
-    table(det, ["Committee", "About", "Stance", { label: "Amount", num: true }, { label: "Filings", num: true }],
-      o.rows.map(function (r) {
-        return { cells: [nice(r.committee), r.target, r.stance, money(r.amount), count(r.filings)] };
-      }));
-    sec.appendChild(det);
-    if (o.by_category && o.by_category.length) {
-      sec.appendChild(elem("h3", null, "What was bought"));
-      var plot2 = figure(sec, null, "Itemized outside expenditures by what they paid for.");
-      C.hbars(plot2, {
-        title: "Outside spending by what was bought",
-        rows: o.by_category.map(function (r) { return { label: r.category, value: r.amount, color: "#4B5563" }; })
-      });
-      var det2 = elem("details");
-      det2.appendChild(elem("summary", null, "Every expenditure, " + o.itemized.length + " rows"));
-      table(det2, ["Committee", "About", "Stance", "What", "Paid to", "Where", { label: "Amount", num: true }, "Date"],
-        o.itemized.map(function (r) {
-          return { cells: [nice(r.committee), r.target, r.stance, nice(r.what || ""), nice(r.payee || ""),
-                           [nice(r.city || ""), r.state].filter(Boolean).join(", "), money(r.amount), r.date || ""] };
-        }));
-      sec.appendChild(det2);
-    }
-    return sec;
+    table(det, head, rows, function (r) { return r.total ? "total" : null; });
   }
 
   /* ------------------------------------------------- what the money bought */
@@ -219,145 +224,197 @@
                     "Polling and research", "Field, phones and texting", "Office and administrative"];
 
   function bought(d) {
-    var dt = d.detail;
-    if (!dt || !dt.available || !dt.committees.length) return null;
-    var sec = block("bought", "What the money bought",
-      "Itemized campaign spending, each payment over $200, through " + P.longDate(dt.coverage_through) + ".");
-    var grid = elem("div", "grid two");
-    dt.committees.forEach(function (c) {
-      var col = elem("div");
-      var h = elem("h3");
-      h.appendChild(document.createTextNode(c.candidate + " "));
-      h.appendChild(elem("span", c.party === "DEM" ? "dem" : "rep", "(" + party(c.party) + ")"));
-      col.appendChild(h);
-      var plot = elem("div");
-      col.appendChild(plot);
-      var have = {};
-      c.spending.by_category.forEach(function (r) { have[r.category] = r.amount; });
-      var shown = 0;
-      var rows = SPEND_ROWS.map(function (k) { shown += have[k] || 0; return { label: k, value: have[k] || 0, color: P.partyColour(c.party) }; });
-      rows.push({ label: "Everything else", value: Math.max(0, c.spending.itemized_total - shown), color: "#9AA3AD" });
-      C.hbars(plot, { title: "Spending by category, " + c.candidate, rows: rows });
-      var ul = elem("ul", "stats");
-      ul.appendChild(tile("Itemized spending", money(c.spending.itemized_total), count(c.spending.items) + " payments"));
-      ul.appendChild(tile("Paid to Pennsylvania vendors", pct(c.spending.in_pa_share, 0), "share of itemized spending"));
-      col.appendChild(ul);
-      col.appendChild(elem("h3", null, "Largest payees"));
-      table(col, ["Payee", "Where", { label: "Amount", num: true }],
-        c.spending.top_vendors.map(function (v) {
-          return { cells: [nice(v.vendor), [nice(v.city || ""), v.state].filter(Boolean).join(", "), money(v.amount)] };
-        }));
-      grid.appendChild(col);
+    var cs = committees(d);
+    if (!cs) return;
+    var sec = section("bought", "What the money bought");
+    para(sec, "prose", "Campaigns itemize every payment over $200. Through " +
+      P.longDate(d.detail.coverage_through) + ", " + cs.map(function (c, i) {
+        return (i ? last(c.candidate) + "’s" : poss(last(c.candidate)) + " campaign") + " itemized " +
+               said(c.spending.itemized_total) + " in " + count(c.spending.items) + " payments, " +
+               pct(c.spending.in_pa_share, 0) + " of it to Pennsylvania vendors";
+      }).join("; ") + ".");
+
+    var rows = SPEND_ROWS.concat(["Everything else"]).map(function (k) { return { label: k }; });
+    var plot = figure(sec, cs.map(function (c) {
+      return { label: c.candidate + " (" + party(c.party) + ")", color: P.partyColour(c.party), dot: true };
+    }), "Itemized spending by what it paid for. “Everything else” is itemized spending outside these ten categories.");
+    C.pairs(plot, {
+      title: "Itemized spending by category, by nominee",
+      rows: rows,
+      series: cs.map(function (c) {
+        var have = {}, shown = 0;
+        c.spending.by_category.forEach(function (r) { have[r.category] = r.amount; });
+        var vals = SPEND_ROWS.map(function (k) { shown += have[k] || 0; return have[k] || 0; });
+        vals.push(Math.max(0, c.spending.itemized_total - shown));
+        return { label: c.candidate, color: P.partyColour(c.party), values: vals };
+      })
     });
-    sec.appendChild(grid);
-    return sec;
+
+    var cols = elem("div", "cols");
+    cs.forEach(function (c) {
+      var col = elem("div"), h = elem("h3");
+      text(h, "Largest payees, ");
+      nameWithParty(h, c.candidate, c.party);
+      col.appendChild(h);
+      table(col, ["Payee", { label: "Amount", num: true }], c.spending.top_vendors.map(function (v) {
+        return { cells: [named(nice(v.vendor), place(v.city, v.state)), money(v.amount)] };
+      }));
+      cols.appendChild(col);
+    });
+    sec.appendChild(cols);
   }
 
-  /* --------------------------------------------- where the money came from */
+  /* --------------------------------------------------- where the donors are */
 
   function from(d) {
-    var dt = d.detail;
-    if (!dt || !dt.available || !dt.committees.length) return null;
-    var sec = block("from", "Where the donors are",
-      "Itemized individual contributions, each over $200, by where the donor lives.");
-    var grid = elem("div", "grid two");
-    dt.committees.forEach(function (c) {
-      var co = c.contributions;
-      var col = elem("div");
-      var h = elem("h3");
-      h.appendChild(document.createTextNode(c.candidate + " "));
-      h.appendChild(elem("span", c.party === "DEM" ? "dem" : "rep", "(" + party(c.party) + ")"));
-      col.appendChild(h);
-      var plot = elem("div");
-      col.appendChild(plot);
-      C.hbars(plot, {
-        title: "Contributions by state, " + c.candidate,
-        rows: co.by_state.map(function (r) { return { label: r.state, value: r.amount, color: P.partyColour(c.party) }; })
-      });
+    var cs = committees(d);
+    if (!cs) return;
+    var sec = section("from", "Where the donors are");
+    var zips = d.detail.in_district_zip_prefixes.join(", ");
+    var prose = elem("div", "prose");
+    para(prose, null, "Itemized individual contributions, each over $200, by where the donor lives. The " +
+      "district share is approximate: it counts zip codes beginning " + zips + ".");
+    cs.forEach(function (c) {
+      var co = c.contributions, all = co.by_size.reduce(function (a, s) { return a + (s.amount || 0); }, 0);
       var big = co.by_size.filter(function (s) { return s.size >= 2000; })[0];
-      var all = co.by_size.reduce(function (a, s) { return a + (s.amount || 0); }, 0);
-      var ul = elem("ul", "stats");
-      ul.appendChild(tile("From the district", pct(co.in_district_share, 0), "zip codes " + dt.in_district_zip_prefixes.join(", ") + "; approximate"));
-      ul.appendChild(tile("Gifts of $2,000 and over", big ? pct(big.amount / all, 0) : "\u2013", "share of all individual money"));
-      ul.appendChild(tile("Gifts of $200 or less", pct(co.by_size[0].amount / all, 0), "share of all individual money"));
-      col.appendChild(ul);
+      para(prose, null, pct(co.in_district_share, 0) + " of " + poss(last(c.candidate)) +
+        " itemized individual money came from inside the district. Of all individual money " +
+        last(c.candidate) + " reported, " + (big && all ? pct(big.amount / all, 0) : "no share") +
+        " came in gifts of $2,000 and over, and " + (all ? pct(co.by_size[0].amount / all, 0) : "no share") +
+        " in gifts of $200 or less.");
+    });
+    sec.appendChild(prose);
+
+    /* One scale for both, or a state that gave $300K to one campaign draws as
+       long as a state that gave $700K to the other. */
+    var hi = 0;
+    cs.forEach(function (c) { c.contributions.by_state.forEach(function (r) { hi = Math.max(hi, r.amount || 0); }); });
+    var cols = elem("div", "cols");
+    sec.appendChild(cols);
+    cs.forEach(function (c) {
+      var col = elem("div"), h = elem("h3");
+      nameWithParty(h, c.candidate, c.party);
+      col.appendChild(h);
+      cols.appendChild(col);
+      var plot = figure(col, null, null);
+      C.hbars(plot, {
+        title: "Itemized contributions by state, " + c.candidate, xMax: hi,
+        rows: c.contributions.by_state.map(function (r) {
+          return { label: r.state, value: r.amount, color: P.partyColour(c.party) };
+        })
+      });
       col.appendChild(elem("h3", null, "Top occupations, as donors reported them"));
       table(col, ["Occupation", { label: "Amount", num: true }, { label: "Gifts", num: true }],
-        co.by_occupation.map(function (o) {
+        c.contributions.by_occupation.map(function (o) {
           return { cells: [nice(o.occupation || "(not stated)"), money(o.amount), count(o.count)] };
         }));
-      grid.appendChild(col);
     });
-    sec.appendChild(grid);
-    return sec;
   }
+
+  /* --------------------------------------------------------- outside money */
+
+  function outside(d) {
+    var o = d.outside, byName = {};
+    d.candidates.candidates.forEach(function (c) { byName[c.name] = c; });
+    var sec = section("outside", "Money from outside groups");
+    para(sec, "prose", "Groups that spend on their own, without coordinating with any campaign, reported " +
+      said(o.total) + " about the two nominees: " + o.by_target.map(function (t) {
+        return said(t.supports) + " supporting " + last(t.target) + " and " + said(t.opposes) + " opposing " +
+               last(t.target) + ", from " + count(t.committees_supporting + t.committees_opposing) + " committees";
+      }).join("; ") + ".");
+    flag(sec, d, "primary");
+    flag(sec, d, "two-clocks");
+
+    sec.appendChild(elem("h3", null, "The ten largest outside spenders"));
+    var plot = figure(sec, null, "Bar colour is the party of the candidate the spending was about; the label says whether it supported or opposed them.");
+    C.hbars(plot, {
+      title: "Ten largest outside spenders",
+      rows: o.rows.slice(0, 10).map(function (r) {
+        var c = byName[r.target] || {}, n = nice(r.committee);
+        return { label: n + ", " + r.stance + " " + r.target,
+                 short: (n.length > 26 ? n.slice(0, 24) + "…" : n) + " · " + r.stance + " " + last(r.target),
+                 value: r.amount, color: P.partyColour(c.party) };
+      })
+    });
+    table(details(sec, "Every committee, " + o.rows.length + " rows"),
+      ["Committee", "About", "Stance", { label: "Amount", num: true }, { label: "Filings", num: true }],
+      o.rows.map(function (r) { return { cells: [nice(r.committee), r.target, r.stance, money(r.amount), count(r.filings)] }; }));
+
+    if (o.by_category && o.by_category.length) {
+      sec.appendChild(elem("h3", null, "What outside groups bought"));
+      var plot2 = figure(sec, null, "Itemized outside expenditures by what they paid for.");
+      C.hbars(plot2, {
+        title: "Outside spending by what was bought",
+        rows: o.by_category.map(function (r) { return { label: r.category, value: r.amount, color: "#4B5563" }; })
+      });
+      table(details(sec, "Every expenditure, " + o.itemized.length + " rows"),
+        ["Committee", "About", "Stance", "What", "Paid to", { label: "Amount", num: true }, "Date"],
+        o.itemized.map(function (r) {
+          return { cells: [nice(r.committee), r.target, r.stance, nice(r.what || ""),
+                           named(nice(r.payee || ""), place(r.city, r.state)), money(r.amount),
+                           r.date ? P.longDate(r.date) : ""] };
+        }));
+    }
+  }
+
+  /* -------------------------------------------------------------- history */
 
   function history(d) {
     var h = d.history;
-    var sec = block("history", "The last four elections",
-      "Final full-cycle totals for the two nominees in each general election, with the certified " +
-      "result. Outside spending here is the total that supported or opposed each candidate over the whole cycle.");
+    var sec = section("history", "The last four elections");
     var cycles = h.cycles.map(function (c) { return String(c.cycle); });
-    var dem = h.cycles.map(function (c) { return c.candidates.filter(function (x) { return x.party === "DEM"; })[0]; });
-    var rep = h.cycles.map(function (c) { return c.candidates.filter(function (x) { return x.party === "REP"; })[0]; });
-    var plot = figure(sec, [{ label: "Democratic nominee", color: P.colours.D }, { label: "Republican nominee", color: P.colours.R }],
-      "Money raised by each party's nominee, by election. Hover a bar for the exact figure.");
+    function nominee(c, p) { return c.candidates.filter(function (x) { return x.party === p; })[0] || {}; }
+    var plot = figure(sec, [{ label: "Democratic nominee", color: P.colours.D, dot: true },
+                            { label: "Republican nominee", color: P.colours.R, dot: true }],
+      "Money raised by each party’s nominee over the whole cycle, by election. Hover a bar for the exact figure.");
     C.groups(plot, {
       title: "Raised by each nominee, by election",
       categories: cycles,
-      series: [{ label: "Democratic nominee", color: P.colours.D, values: dem.map(function (x) { return x.receipts; }) },
-               { label: "Republican nominee", color: P.colours.R, values: rep.map(function (x) { return x.receipts; }) }]
+      series: [{ label: "Democratic nominee", color: P.colours.D, values: h.cycles.map(function (c) { return nominee(c, "DEM").receipts; }) },
+               { label: "Republican nominee", color: P.colours.R, values: h.cycles.map(function (c) { return nominee(c, "REP").receipts; }) }]
     });
     var rows = [];
     h.cycles.forEach(function (c) {
       c.candidates.forEach(function (x) {
-        rows.push({ party: x.party, cells: [String(c.cycle), x.name + (x.incumbent ? " (incumbent)" : ""), party(x.party),
+        rows.push({ cells: [String(c.cycle), x.name + (x.incumbent ? " (incumbent)" : ""),
+          elem("span", x.party === "DEM" ? "dem" : x.party === "REP" ? "rep" : null, party(x.party)),
           money(x.receipts), money(x.disbursements), money(x.ie_supporting), money(x.ie_opposing),
           count(x.general_votes), pct(x.two_party_share), x.winner ? "won" : "lost"] });
       });
     });
     table(sec, ["Election", "Candidate", "Party", { label: "Raised", num: true }, { label: "Spent", num: true },
                 { label: "Outside, supporting", num: true }, { label: "Outside, opposing", num: true },
-                { label: "Votes", num: true }, { label: "Two-party share", num: true }, "Result"],
-      rows, function (r) { return r.party === "DEM" ? "d" : "r"; });
-    var n = note(sec, "Two-party share is the candidate's votes divided by Democratic plus Republican votes, so the four elections compare on the same footing. " +
+                { label: "Votes", num: true }, { label: "Two-party share", num: true }, "Result"], rows);
+    var n = para(sec, "flag", "Two-party share is the candidate’s votes divided by Democratic plus Republican votes, so the four elections compare on the same footing. " +
       "District lines changed between 2020 and 2022, so the electorate is not identical across all four. Certified results: ");
     h.cycles.forEach(function (c, i) {
       var a = elem("a", null, String(c.cycle));
       a.href = c.source_url;
       a.title = c.source;
       n.appendChild(a);
-      n.appendChild(document.createTextNode(i < h.cycles.length - 1 ? ", " : "."));
+      text(n, i < h.cycles.length - 1 ? ", " : ".");
     });
-    return sec;
   }
 
-  function download(d) {
-    var wb = d.manifest.workbook;
-    var sec = block("download", "Download",
-      "The full workbook behind this page: every figure above, the source-of-funds reconciliation, " +
-      "the four-election history, and a money-against-results analysis with its caveats. Native Excel " +
-      "charts, no macros, rebuilt on every scheduled run.");
-    if (wb && wb.available) {
-      var p = elem("p");
-      var a = elem("a", "button", "PA07_Campaign_Finance.xlsx");
-      a.href = wb.href;
-      a.setAttribute("download", "");
-      p.appendChild(a);
-      p.appendChild(document.createTextNode("  " + Math.round(wb.bytes / 1024) + " KB · nine sheets · thirteen charts"));
-      sec.appendChild(p);
-    } else {
-      note(sec, "The workbook is not available in this build.", "caveat medium");
-    }
-    return sec;
+  /* ------------------------------------------------------------ downloads */
+
+  function downloads(d) {
+    var wb = d.manifest.workbook, p = document.getElementById("downloads");
+    if (!p || !wb || !wb.available) return;
+    var a = elem("a", null, "The Excel workbook");
+    a.href = wb.href;
+    a.setAttribute("download", "");
+    p.appendChild(a);
+    text(p, " (" + Math.round(wb.bytes / 1024) + " KB) has every figure above, the source-of-funds " +
+      "reconciliation, the four-election history, and a money-against-results analysis with its caveats. " +
+      "Native Excel charts, no macros.");
   }
 
   document.addEventListener("data:ready", function (ev) {
     var d = ev.detail;
-    var main = document.getElementById("main");
-    [standing, sources, bought, from, outside, history, download].forEach(function (f) {
-      var sec = f(d);
-      if (sec) main.appendChild(sec);
+    [lead, sources, bought, from, outside, history, downloads].forEach(function (fn) {
+      try { fn(d); }
+      catch (e) { console.error(fn.name, e); }
     });
   });
 })();
