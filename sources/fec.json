@@ -1,7 +1,7 @@
 {
   "source": "FEC / OpenFEC API",
   "url": "https://www.fec.gov/data/elections/house/PA/07/2026/",
-  "retrieved_utc": "2026-09-28T23:32:20Z",
+  "retrieved_utc": "2026-10-03T14:53:36Z",
   "cycle": 2026,
   "coverage_through": "2026-06-30",
   "candidates": [
@@ -376,6 +376,15 @@
       "target_candidate": "Bob Brooks"
     },
     {
+      "committee_id": "C00934059",
+      "committee": "SENIORS EMPOWERING AN EFFECTIVE DEMOCRACY (SEED-PAC)",
+      "target_candidate_id": "H6PA07188",
+      "support_oppose": "S",
+      "amount": 24592.37,
+      "filings": 4,
+      "target_candidate": "Bob Brooks"
+    },
+    {
       "committee_id": "C00897363",
       "committee": "BLUE MAJORITY PROJECT",
       "target_candidate_id": "H6PA07188",
@@ -529,6 +538,15 @@
       "target_candidate": "Bob Brooks"
     },
     {
+      "committee_id": "C00489799",
+      "committee": "PLANNED PARENTHOOD VOTES",
+      "target_candidate_id": "H8PA15195",
+      "support_oppose": "O",
+      "amount": 197.19,
+      "filings": 3,
+      "target_candidate": "Ryan Mackenzie"
+    },
+    {
       "committee_id": "C00742205",
       "committee": "SURJ PAC",
       "target_candidate_id": "H6PA07188",
@@ -545,15 +563,6 @@
       "amount": 157.07,
       "filings": 1,
       "target_candidate": "Bob Brooks"
-    },
-    {
-      "committee_id": "C00489799",
-      "committee": "PLANNED PARENTHOOD VOTES",
-      "target_candidate_id": "H8PA15195",
-      "support_oppose": "O",
-      "amount": 156.81,
-      "filings": 2,
-      "target_candidate": "Ryan Mackenzie"
     },
     {
       "committee_id": "C00776419",
@@ -1276,6 +1285,20 @@
       "date": "2025-12-21"
     },
     {
+      "committee_id": "C00934059",
+      "committee": "SENIORS EMPOWERING AN EFFECTIVE DEMOCRACY (SEED-PAC)",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "NEWSPAPER AD",
+      "category": "Other",
+      "payee": "ALLENTOWN MORNING CALL",
+      "payee_city": "ALLENTOWN",
+      "payee_state": "PA",
+      "amount": 11000.0,
+      "date": "2026-08-19"
+    },
+    {
       "committee_id": "C00941724",
       "committee": "INTEGRITY PAC",
       "target_candidate_id": "H6PA07162",
@@ -1302,6 +1325,20 @@
       "payee_state": "IL",
       "amount": 10887.1,
       "date": "2026-04-30"
+    },
+    {
+      "committee_id": "C00934059",
+      "committee": "SENIORS EMPOWERING AN EFFECTIVE DEMOCRACY (SEED-PAC)",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "POSTCARD AD",
+      "category": "Other",
+      "payee": "ALLEGRA",
+      "payee_city": "PHILADELPHIA",
+      "payee_state": "PA",
+      "amount": 10092.37,
+      "date": "2026-09-28"
     },
     {
       "committee_id": "C00936153",
@@ -1596,6 +1633,20 @@
       "payee_state": "PA",
       "amount": 3556.19,
       "date": "2026-05-18"
+    },
+    {
+      "committee_id": "C00934059",
+      "committee": "SENIORS EMPOWERING AN EFFECTIVE DEMOCRACY (SEED-PAC)",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "ADVERTIZING",
+      "category": "Other",
+      "payee": "PURPLEGATOR",
+      "payee_city": "WAYNE",
+      "payee_state": "PA",
+      "amount": 3300.0,
+      "date": "2026-09-22"
     },
     {
       "committee_id": "C00669259",
@@ -2102,6 +2153,20 @@
       "date": "2026-08-13"
     },
     {
+      "committee_id": "C00934059",
+      "committee": "SENIORS EMPOWERING AN EFFECTIVE DEMOCRACY (SEED-PAC)",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "AD FACEBOOK",
+      "category": "Digital advertising",
+      "payee": "PURPLEGATOR",
+      "payee_city": "WAYNE",
+      "payee_state": "PA",
+      "amount": 200.0,
+      "date": "2026-09-21"
+    },
+    {
       "committee_id": "C00909465",
       "committee": "INDIGO PAC",
       "target_candidate_id": "H8PA15195",
@@ -2296,6 +2361,20 @@
       "payee_state": "DC",
       "amount": 50.0,
       "date": "2026-05-21"
+    },
+    {
+      "committee_id": "C00489799",
+      "committee": "PLANNED PARENTHOOD VOTES",
+      "target_candidate_id": "H8PA15195",
+      "target_candidate": "Ryan Mackenzie",
+      "support_oppose": "O",
+      "description": "STAFF TIME FOR VOTER COMMUNICATIONS",
+      "category": "Canvassing and field",
+      "payee": "PLANNED PARENTHOOD ACTION FUND, INC.",
+      "payee_city": "NEW YORK",
+      "payee_state": "NY",
+      "amount": 40.38,
+      "date": "2026-07-19"
     },
     {
       "committee_id": "C00909465",
