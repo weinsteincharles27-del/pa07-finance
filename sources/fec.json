@@ -1,7 +1,7 @@
 {
   "source": "FEC / OpenFEC API",
   "url": "https://www.fec.gov/data/elections/house/PA/07/2026/",
-  "retrieved_utc": "2026-10-03T14:53:36Z",
+  "retrieved_utc": "2026-10-09T17:05:35Z",
   "cycle": 2026,
   "coverage_through": "2026-06-30",
   "candidates": [
@@ -495,6 +495,15 @@
     {
       "committee_id": "C00909994",
       "committee": "FIELD TEAM 6, INC.",
+      "target_candidate_id": "H6PA07188",
+      "support_oppose": "S",
+      "amount": 1299.08,
+      "filings": 6,
+      "target_candidate": "Bob Brooks"
+    },
+    {
+      "committee_id": "C00909994",
+      "committee": "FIELD TEAM 6, INC.",
       "target_candidate_id": "H8PA15195",
       "support_oppose": "O",
       "amount": 1096.69,
@@ -517,15 +526,6 @@
       "support_oppose": "S",
       "amount": 766.66,
       "filings": 2,
-      "target_candidate": "Bob Brooks"
-    },
-    {
-      "committee_id": "C00909994",
-      "committee": "FIELD TEAM 6, INC.",
-      "target_candidate_id": "H6PA07188",
-      "support_oppose": "S",
-      "amount": 638.3,
-      "filings": 1,
       "target_candidate": "Bob Brooks"
     },
     {
@@ -2055,6 +2055,20 @@
       "date": "2026-08-07"
     },
     {
+      "committee_id": "C00909994",
+      "committee": "FIELD TEAM 6, INC.",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "SMS TEXTING",
+      "category": "Texting and phone calls",
+      "payee": "MOMENTOUS OUTREACH INC",
+      "payee_city": "LOS ANGELES",
+      "payee_state": "CA",
+      "amount": 366.83,
+      "date": "2026-08-05"
+    },
+    {
       "committee_id": "C00909465",
       "committee": "INDIGO PAC",
       "target_candidate_id": "H8PA15195",
@@ -2237,6 +2251,20 @@
       "date": "2025-09-29"
     },
     {
+      "committee_id": "C00909994",
+      "committee": "FIELD TEAM 6, INC.",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "EMAIL SERVICES",
+      "category": "Email",
+      "payee": "MOMENTOUS OUTREACH INC",
+      "payee_city": "LOS ANGELES",
+      "payee_state": "CA",
+      "amount": 125.76,
+      "date": "2026-08-05"
+    },
+    {
       "committee_id": "C00640300",
       "committee": "ACTIVATE AMERICA",
       "target_candidate_id": "H8PA15195",
@@ -2277,6 +2305,20 @@
       "payee_state": "CA",
       "amount": 96.45,
       "date": "2025-04-24"
+    },
+    {
+      "committee_id": "C00909994",
+      "committee": "FIELD TEAM 6, INC.",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "EMAIL SERVICES",
+      "category": "Email",
+      "payee": "MOMENTOUS OUTREACH INC",
+      "payee_city": "LOS ANGELES",
+      "payee_state": "CA",
+      "amount": 90.5,
+      "date": "2026-09-01"
     },
     {
       "committee_id": "C00489799",
@@ -2389,6 +2431,34 @@
       "payee_state": "CA",
       "amount": 39.0,
       "date": "2025-09-11"
+    },
+    {
+      "committee_id": "C00909994",
+      "committee": "FIELD TEAM 6, INC.",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "EMAIL SERVICES",
+      "category": "Email",
+      "payee": "MOMENTOUS OUTREACH INC",
+      "payee_city": "LOS ANGELES",
+      "payee_state": "CA",
+      "amount": 38.88,
+      "date": "2026-09-30"
+    },
+    {
+      "committee_id": "C00909994",
+      "committee": "FIELD TEAM 6, INC.",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "EMAIL SERVICES",
+      "category": "Email",
+      "payee": "MOMENTOUS OUTREACH INC",
+      "payee_city": "LOS ANGELES",
+      "payee_state": "CA",
+      "amount": 38.81,
+      "date": "2026-09-30"
     },
     {
       "committee_id": "C00689745",
