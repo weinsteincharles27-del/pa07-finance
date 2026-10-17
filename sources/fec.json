@@ -1,7 +1,7 @@
 {
   "source": "FEC / OpenFEC API",
   "url": "https://www.fec.gov/data/elections/house/PA/07/2026/",
-  "retrieved_utc": "2026-10-16T14:14:36Z",
+  "retrieved_utc": "2026-10-17T13:10:02Z",
   "cycle": 2026,
   "coverage_through": "2026-09-30",
   "candidates": [
@@ -43,8 +43,8 @@
       "filed": true,
       "committee_id": "C00907667",
       "receipts": 1872528.13,
-      "disbursements": 1859323.43,
-      "cash_on_hand": 13204.7,
+      "disbursements": 1859887.39,
+      "cash_on_hand": 12640.74,
       "debts": 0.0,
       "individual_contributions": 1794415.95,
       "individual_itemized": 1386937.14,
@@ -54,8 +54,8 @@
       "transfers_in": 49522.52,
       "self_funding": 0.0,
       "coverage_start": "2025-04-01",
-      "coverage_end": "2026-06-30",
-      "last_report": "JULY QUARTERLY"
+      "coverage_end": "2026-09-30",
+      "last_report": "OCTOBER QUARTERLY"
     },
     {
       "candidate_id": "H6PA07212",
