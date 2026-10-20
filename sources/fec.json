@@ -1,7 +1,7 @@
 {
   "source": "FEC / OpenFEC API",
   "url": "https://www.fec.gov/data/elections/house/PA/07/2026/",
-  "retrieved_utc": "2026-10-17T13:10:02Z",
+  "retrieved_utc": "2026-10-20T14:43:04Z",
   "cycle": 2026,
   "coverage_through": "2026-09-30",
   "candidates": [
@@ -367,6 +367,15 @@
       "target_candidate": "Bob Brooks"
     },
     {
+      "committee_id": "C00647966",
+      "committee": "RURAL FREEDOM NETWORK",
+      "target_candidate_id": "H6PA07188",
+      "support_oppose": "S",
+      "amount": 30756.92,
+      "filings": 5,
+      "target_candidate": "Bob Brooks"
+    },
+    {
       "committee_id": "C00689745",
       "committee": "MAKE THE ROAD ACTION POLITICAL COMMITTEE",
       "target_candidate_id": "H6PA07188",
@@ -374,6 +383,15 @@
       "amount": 30559.95,
       "filings": 9,
       "target_candidate": "Bob Brooks"
+    },
+    {
+      "committee_id": "C00745745",
+      "committee": "IN UNION USA",
+      "target_candidate_id": "H8PA15195",
+      "support_oppose": "O",
+      "amount": 26382.22,
+      "filings": 1,
+      "target_candidate": "Ryan Mackenzie"
     },
     {
       "committee_id": "C00934059",
@@ -391,6 +409,15 @@
       "support_oppose": "S",
       "amount": 16643.34,
       "filings": 3,
+      "target_candidate": "Bob Brooks"
+    },
+    {
+      "committee_id": "C90020231",
+      "committee": "THOMAS PAINE SOCIETY L.L.C.",
+      "target_candidate_id": "H6PA07188",
+      "support_oppose": "S",
+      "amount": 15852.0,
+      "filings": 5,
       "target_candidate": "Bob Brooks"
     },
     {
@@ -552,15 +579,6 @@
       "target_candidate_id": "H6PA07188",
       "support_oppose": "S",
       "amount": 187.51,
-      "filings": 1,
-      "target_candidate": "Bob Brooks"
-    },
-    {
-      "committee_id": "C00647966",
-      "committee": "RURAL FREEDOM NETWORK",
-      "target_candidate_id": "H6PA07188",
-      "support_oppose": "S",
-      "amount": 157.07,
       "filings": 1,
       "target_candidate": "Bob Brooks"
     },
@@ -1019,6 +1037,20 @@
       "date": "2026-04-02"
     },
     {
+      "committee_id": "C00745745",
+      "committee": "IN UNION USA",
+      "target_candidate_id": "H8PA15195",
+      "target_candidate": "Ryan Mackenzie",
+      "support_oppose": "O",
+      "description": "DIRECT MAIL PROGRAM",
+      "category": "Mail and print",
+      "payee": "DELIVER STRATEGIES, LLC",
+      "payee_city": "ARLINGTON",
+      "payee_state": "VA",
+      "amount": 26382.22,
+      "date": "2026-09-25"
+    },
+    {
       "committee_id": "C00936153",
       "committee": "STRONGER TOGETHER PA",
       "target_candidate_id": "H6PA07188",
@@ -1241,6 +1273,34 @@
       "payee_state": "IL",
       "amount": 16315.92,
       "date": "2026-04-30"
+    },
+    {
+      "committee_id": "C00647966",
+      "committee": "RURAL FREEDOM NETWORK",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "BILLBOARDS",
+      "category": "Other",
+      "payee": "ADAMS OUTDOOR ADVERTISING",
+      "payee_city": "CHICAGO",
+      "payee_state": "IL",
+      "amount": 15038.0,
+      "date": "2026-08-10"
+    },
+    {
+      "committee_id": "C00647966",
+      "committee": "RURAL FREEDOM NETWORK",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "RADIO ADVERTISING",
+      "category": "Radio",
+      "payee": "GRAND STRAND ANSWERS",
+      "payee_city": "MYRTLE BEACH",
+      "payee_state": "SC",
+      "amount": 13664.0,
+      "date": "2026-09-14"
     },
     {
       "committee_id": "C00513176",
@@ -1663,6 +1723,76 @@
       "date": "2026-05-18"
     },
     {
+      "committee_id": "C90020231",
+      "committee": "THOMAS PAINE SOCIETY L.L.C.",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "POLITICAL ADVERTISING",
+      "category": "Other",
+      "payee": "THE MORNING CALL",
+      "payee_city": "ALLENTOWN",
+      "payee_state": "PA",
+      "amount": 3170.4,
+      "date": "2026-08-23"
+    },
+    {
+      "committee_id": "C90020231",
+      "committee": "THOMAS PAINE SOCIETY L.L.C.",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "POLITICAL ADVERTISING",
+      "category": "Other",
+      "payee": "THE MORNING CALL",
+      "payee_city": "ALLENTOWN",
+      "payee_state": "PA",
+      "amount": 3170.4,
+      "date": "2026-08-16"
+    },
+    {
+      "committee_id": "C90020231",
+      "committee": "THOMAS PAINE SOCIETY L.L.C.",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "POLITICAL ADVERTISING",
+      "category": "Other",
+      "payee": "THE MORNING CALL",
+      "payee_city": "ALLENTOWN",
+      "payee_state": "PA",
+      "amount": 3170.4,
+      "date": "2026-08-09"
+    },
+    {
+      "committee_id": "C90020231",
+      "committee": "THOMAS PAINE SOCIETY L.L.C.",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "POLITICAL ADVERTISING",
+      "category": "Other",
+      "payee": "THE MORNING CALL",
+      "payee_city": "ALLENTOWN",
+      "payee_state": "PA",
+      "amount": 3170.4,
+      "date": "2026-08-02"
+    },
+    {
+      "committee_id": "C90020231",
+      "committee": "THOMAS PAINE SOCIETY L.L.C.",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "POLITICAL ADVERTISING",
+      "category": "Other",
+      "payee": "THE MORNING CALL",
+      "payee_city": "ALLENTOWN",
+      "payee_state": "PA",
+      "amount": 3170.4,
+      "date": "2026-07-26"
+    },
+    {
       "committee_id": "C00689745",
       "committee": "MAKE THE ROAD ACTION POLITICAL COMMITTEE",
       "target_candidate_id": "H6PA07188",
@@ -1745,6 +1875,20 @@
       "payee_state": "CA",
       "amount": 2001.41,
       "date": "2026-08-13"
+    },
+    {
+      "committee_id": "C00647966",
+      "committee": "RURAL FREEDOM NETWORK",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "PRINTING",
+      "category": "Mail and print",
+      "payee": "ZIPPITYPRINT",
+      "payee_city": "CLEVELAND",
+      "payee_state": "OH",
+      "amount": 1745.97,
+      "date": "2026-09-15"
     },
     {
       "committee_id": "C00924159",
@@ -2235,6 +2379,20 @@
       "payee_state": "CA",
       "amount": 156.0,
       "date": "2025-09-29"
+    },
+    {
+      "committee_id": "C00647966",
+      "committee": "RURAL FREEDOM NETWORK",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "PRINTING",
+      "category": "Mail and print",
+      "payee": "ZIPPITYPRINT",
+      "payee_city": "CLEVELAND",
+      "payee_state": "OH",
+      "amount": 151.88,
+      "date": "2026-07-13"
     },
     {
       "committee_id": "C00909465",
