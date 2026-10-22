@@ -1,6 +1,6 @@
 {
   "source": "OpenFEC API: schedules/schedule_b (itemized disbursements), schedules/schedule_a aggregates by_state, by_size, by_zip, by_occupation",
-  "retrieved_utc": "2026-10-15T12:00:17Z",
+  "retrieved_utc": "2026-10-22T15:09:24Z",
   "cycle": 2026,
   "coverage_through": "2026-09-30",
   "in_district_zip_prefixes": [
@@ -553,7 +553,7 @@
           {
             "size": 0,
             "label": "$200 or less",
-            "amount": 645126.56,
+            "amount": 1113232.8,
             "count": null
           },
           {
@@ -1312,7 +1312,7 @@
           {
             "size": 0,
             "label": "$200 or less",
-            "amount": 734290.36,
+            "amount": 829498.96,
             "count": null
           },
           {

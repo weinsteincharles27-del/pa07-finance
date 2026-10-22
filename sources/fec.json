@@ -1,7 +1,7 @@
 {
   "source": "FEC / OpenFEC API",
   "url": "https://www.fec.gov/data/elections/house/PA/07/2026/",
-  "retrieved_utc": "2026-10-20T14:43:04Z",
+  "retrieved_utc": "2026-10-22T15:08:48Z",
   "cycle": 2026,
   "coverage_through": "2026-09-30",
   "candidates": [
@@ -286,6 +286,15 @@
       "target_candidate": "Lamont McClure"
     },
     {
+      "committee_id": "C00495028",
+      "committee": "HMP",
+      "target_candidate_id": "H8PA15195",
+      "support_oppose": "O",
+      "amount": 556259.93,
+      "filings": 11,
+      "target_candidate": "Ryan Mackenzie"
+    },
+    {
       "committee_id": "C00948208",
       "committee": "LEAD LEFT PAC",
       "target_candidate_id": "H6PA07188",
@@ -385,6 +394,15 @@
       "target_candidate": "Bob Brooks"
     },
     {
+      "committee_id": "C00495028",
+      "committee": "HMP",
+      "target_candidate_id": "H6PA07188",
+      "support_oppose": "S",
+      "amount": 30281.38,
+      "filings": 4,
+      "target_candidate": "Bob Brooks"
+    },
+    {
       "committee_id": "C00745745",
       "committee": "IN UNION USA",
       "target_candidate_id": "H8PA15195",
@@ -400,6 +418,15 @@
       "support_oppose": "S",
       "amount": 24592.37,
       "filings": 4,
+      "target_candidate": "Bob Brooks"
+    },
+    {
+      "committee_id": "C00580068",
+      "committee": "PROGRESSIVE TURNOUT PROJECT",
+      "target_candidate_id": "H6PA07188",
+      "support_oppose": "S",
+      "amount": 23285.26,
+      "filings": 1,
       "target_candidate": "Bob Brooks"
     },
     {
@@ -701,6 +728,34 @@
       "date": "2026-05-15"
     },
     {
+      "committee_id": "C00495028",
+      "committee": "HMP",
+      "target_candidate_id": "H8PA15195",
+      "target_candidate": "Ryan Mackenzie",
+      "support_oppose": "O",
+      "description": "DIGITAL ADVERTISING",
+      "category": "Digital advertising",
+      "payee": "GAMBIT STRATEGIES LLC",
+      "payee_city": "WASHINGTON",
+      "payee_state": "DC",
+      "amount": 130875.0,
+      "date": "2026-09-25"
+    },
+    {
+      "committee_id": "C00495028",
+      "committee": "HMP",
+      "target_candidate_id": "H8PA15195",
+      "target_candidate": "Ryan Mackenzie",
+      "support_oppose": "O",
+      "description": "DIGITAL ADVERTISING",
+      "category": "Digital advertising",
+      "payee": "GAMBIT STRATEGIES LLC",
+      "payee_city": "WASHINGTON",
+      "payee_state": "DC",
+      "amount": 130875.0,
+      "date": "2026-09-23"
+    },
+    {
       "committee_id": "C00513176",
       "committee": "CONGRESSIONAL PROGRESSIVE CAUCUS PAC",
       "target_candidate_id": "H6PA07188",
@@ -727,6 +782,20 @@
       "payee_state": "FL",
       "amount": 125000.0,
       "date": "2026-05-11"
+    },
+    {
+      "committee_id": "C00495028",
+      "committee": "HMP",
+      "target_candidate_id": "H8PA15195",
+      "target_candidate": "Ryan Mackenzie",
+      "support_oppose": "O",
+      "description": "DIGITAL ADVERTISING",
+      "category": "Digital advertising",
+      "payee": "GAMBIT STRATEGIES LLC",
+      "payee_city": "WASHINGTON",
+      "payee_state": "DC",
+      "amount": 117732.94,
+      "date": "2026-09-14"
     },
     {
       "committee_id": "C00936153",
@@ -995,6 +1064,34 @@
       "date": "2026-03-30"
     },
     {
+      "committee_id": "C00495028",
+      "committee": "HMP",
+      "target_candidate_id": "H8PA15195",
+      "target_candidate": "Ryan Mackenzie",
+      "support_oppose": "O",
+      "description": "DIRECT MAIL",
+      "category": "Mail and print",
+      "payee": "MISSION CONTROL, INC.",
+      "payee_city": "GLASTONBURY",
+      "payee_state": "CT",
+      "amount": 41304.46,
+      "date": "2026-09-10"
+    },
+    {
+      "committee_id": "C00495028",
+      "committee": "HMP",
+      "target_candidate_id": "H8PA15195",
+      "target_candidate": "Ryan Mackenzie",
+      "support_oppose": "O",
+      "description": "MEDIA PRODUCTION",
+      "category": "Production",
+      "payee": "CONEXION POLITICAL, LLC",
+      "payee_city": "WASHINGTON",
+      "payee_state": "DC",
+      "amount": 36457.42,
+      "date": "2026-09-30"
+    },
+    {
       "committee_id": "C00606962",
       "committee": "WORKING FAMILIES PARTY PAC",
       "target_candidate_id": "H6PA07188",
@@ -1007,6 +1104,34 @@
       "payee_state": "NY",
       "amount": 32824.6,
       "date": "2026-08-10"
+    },
+    {
+      "committee_id": "C00495028",
+      "committee": "HMP",
+      "target_candidate_id": "H8PA15195",
+      "target_candidate": "Ryan Mackenzie",
+      "support_oppose": "O",
+      "description": "DIRECT MAIL",
+      "category": "Mail and print",
+      "payee": "MISSION CONTROL, INC.",
+      "payee_city": "GLASTONBURY",
+      "payee_state": "CT",
+      "amount": 32626.32,
+      "date": "2026-09-24"
+    },
+    {
+      "committee_id": "C00495028",
+      "committee": "HMP",
+      "target_candidate_id": "H8PA15195",
+      "target_candidate": "Ryan Mackenzie",
+      "support_oppose": "O",
+      "description": "DIRECT MAIL",
+      "category": "Mail and print",
+      "payee": "MISSION CONTROL, INC.",
+      "payee_city": "GLASTONBURY",
+      "payee_state": "CT",
+      "amount": 32575.32,
+      "date": "2026-09-17"
     },
     {
       "committee_id": "C00936153",
@@ -1119,6 +1244,20 @@
       "payee_state": "DE",
       "amount": 23584.25,
       "date": "2026-04-01"
+    },
+    {
+      "committee_id": "C00580068",
+      "committee": "PROGRESSIVE TURNOUT PROJECT",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "FIELD ORGANIZING",
+      "category": "Canvassing and field",
+      "payee": "MERRIMACK SERVICES LLC",
+      "payee_city": "NEWBURYPORT",
+      "payee_state": "MA",
+      "amount": 23285.26,
+      "date": "2026-09-27"
     },
     {
       "committee_id": "C00941724",
@@ -1303,6 +1442,20 @@
       "date": "2026-09-14"
     },
     {
+      "committee_id": "C00495028",
+      "committee": "HMP",
+      "target_candidate_id": "H8PA15195",
+      "target_candidate": "Ryan Mackenzie",
+      "support_oppose": "O",
+      "description": "MEDIA PRODUCTION",
+      "category": "Production",
+      "payee": "4C PARTNERS, LLC",
+      "payee_city": "WASHINGTON",
+      "payee_state": "DC",
+      "amount": 13498.5,
+      "date": "2026-09-23"
+    },
+    {
       "committee_id": "C00513176",
       "committee": "CONGRESSIONAL PROGRESSIVE CAUCUS PAC",
       "target_candidate_id": "H6PA07188",
@@ -1329,6 +1482,20 @@
       "payee_state": "NY",
       "amount": 12062.0,
       "date": "2026-06-01"
+    },
+    {
+      "committee_id": "C00495028",
+      "committee": "HMP",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "MEDIA PRODUCTION",
+      "category": "Production",
+      "payee": "CONEXION POLITICAL, LLC",
+      "payee_city": "WASHINGTON",
+      "payee_state": "DC",
+      "amount": 11831.38,
+      "date": "2026-09-30"
     },
     {
       "committee_id": "C00897363",
@@ -1555,6 +1722,48 @@
       "date": "2026-02-24"
     },
     {
+      "committee_id": "C00495028",
+      "committee": "HMP",
+      "target_candidate_id": "H8PA15195",
+      "target_candidate": "Ryan Mackenzie",
+      "support_oppose": "O",
+      "description": "MEDIA PRODUCTION",
+      "category": "Production",
+      "payee": "GAMBIT STRATEGIES LLC",
+      "payee_city": "WASHINGTON",
+      "payee_state": "DC",
+      "amount": 8834.0,
+      "date": "2026-09-23"
+    },
+    {
+      "committee_id": "C00495028",
+      "committee": "HMP",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "DIGITAL ADVERTISING",
+      "category": "Digital advertising",
+      "payee": "GAMBIT STRATEGIES LLC",
+      "payee_city": "WASHINGTON",
+      "payee_state": "DC",
+      "amount": 6725.0,
+      "date": "2026-09-29"
+    },
+    {
+      "committee_id": "C00495028",
+      "committee": "HMP",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "DIGITAL ADVERTISING",
+      "category": "Digital advertising",
+      "payee": "GAMBIT STRATEGIES LLC",
+      "payee_city": "WASHINGTON",
+      "payee_state": "DC",
+      "amount": 6725.0,
+      "date": "2026-09-23"
+    },
+    {
       "committee_id": "C00689745",
       "committee": "MAKE THE ROAD ACTION POLITICAL COMMITTEE",
       "target_candidate_id": "H6PA07188",
@@ -1569,6 +1778,20 @@
       "date": "2026-04-17"
     },
     {
+      "committee_id": "C00495028",
+      "committee": "HMP",
+      "target_candidate_id": "H8PA15195",
+      "target_candidate": "Ryan Mackenzie",
+      "support_oppose": "O",
+      "description": "RADIO ADVERTISING",
+      "category": "Radio",
+      "payee": "WATERFRONT STRATEGIES INC.",
+      "payee_city": "WASHINGTON",
+      "payee_state": "DC",
+      "amount": 6048.0,
+      "date": "2026-09-29"
+    },
+    {
       "committee_id": "C00832493",
       "committee": "YOUTH SAVE DEMOCRACY PAC",
       "target_candidate_id": "H8PA15195",
@@ -1581,6 +1804,34 @@
       "payee_state": "TX",
       "amount": 6044.0,
       "date": "2025-04-14"
+    },
+    {
+      "committee_id": "C00495028",
+      "committee": "HMP",
+      "target_candidate_id": "H8PA15195",
+      "target_candidate": "Ryan Mackenzie",
+      "support_oppose": "O",
+      "description": "MEDIA PRODUCTION",
+      "category": "Production",
+      "payee": "CONEXION POLITICAL, LLC",
+      "payee_city": "WASHINGTON",
+      "payee_state": "DC",
+      "amount": 5432.97,
+      "date": "2026-09-30"
+    },
+    {
+      "committee_id": "C00495028",
+      "committee": "HMP",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "DIGITAL ADVERTISING",
+      "category": "Digital advertising",
+      "payee": "GAMBIT STRATEGIES LLC",
+      "payee_city": "WASHINGTON",
+      "payee_state": "DC",
+      "amount": 5000.0,
+      "date": "2026-09-14"
     },
     {
       "committee_id": "C00606962",
