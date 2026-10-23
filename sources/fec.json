@@ -1,9 +1,9 @@
 {
   "source": "FEC / OpenFEC API",
   "url": "https://www.fec.gov/data/elections/house/PA/07/2026/",
-  "retrieved_utc": "2026-10-22T15:08:48Z",
+  "retrieved_utc": "2026-10-23T15:03:17Z",
   "cycle": 2026,
-  "coverage_through": "2026-09-30",
+  "coverage_through": "2026-10-14",
   "candidates": [
     {
       "candidate_id": "H6PA07188",
@@ -16,20 +16,20 @@
       "committee_name": "BOB BROOKS FOR CONGRESS",
       "filed": true,
       "committee_id": "C00917096",
-      "receipts": 4991635.39,
-      "disbursements": 3705480.38,
-      "cash_on_hand": 1286155.01,
+      "receipts": 5347353.38,
+      "disbursements": 4605774.87,
+      "cash_on_hand": 741578.51,
       "debts": 15000.0,
-      "individual_contributions": 3916290.29,
-      "individual_itemized": 2848797.27,
-      "individual_unitemized": 1067493.02,
-      "pac_contributions": 596250.03,
+      "individual_contributions": 4181508.28,
+      "individual_itemized": 3013669.38,
+      "individual_unitemized": 1167838.9,
+      "pac_contributions": 634750.03,
       "party_contributions": 6090.07,
-      "transfers_in": 456989.33,
+      "transfers_in": 508989.33,
       "self_funding": 3500.0,
       "coverage_start": "2025-07-01",
-      "coverage_end": "2026-09-30",
-      "last_report": "OCTOBER QUARTERLY"
+      "coverage_end": "2026-10-14",
+      "last_report": "PRE-GENERAL"
     },
     {
       "candidate_id": "H6PA07162",
@@ -146,20 +146,20 @@
       "committee_name": "MACKENZIE FOR CONGRESS COMMITTEE",
       "filed": true,
       "committee_id": "C00846501",
-      "receipts": 5167022.85,
-      "disbursements": 3094595.78,
-      "cash_on_hand": 2175666.98,
-      "debts": 4184.82,
-      "individual_contributions": 1840430.27,
-      "individual_itemized": 1191087.7,
-      "individual_unitemized": 649342.57,
-      "pac_contributions": 1284212.78,
+      "receipts": 5296663.91,
+      "disbursements": 4329911.24,
+      "cash_on_hand": 1069992.58,
+      "debts": 1371.28,
+      "individual_contributions": 1902194.06,
+      "individual_itemized": 1235807.18,
+      "individual_unitemized": 666386.88,
+      "pac_contributions": 1314712.78,
       "party_contributions": 10000.0,
-      "transfers_in": 1982987.65,
+      "transfers_in": 2020364.92,
       "self_funding": 0.0,
       "coverage_start": "2025-01-01",
-      "coverage_end": "2026-09-30",
-      "last_report": "OCTOBER QUARTERLY"
+      "coverage_end": "2026-10-14",
+      "last_report": "PRE-GENERAL"
     },
     {
       "candidate_id": "H6PA07147",
@@ -626,6 +626,24 @@
       "amount": 36.54,
       "filings": 2,
       "target_candidate": "Bob Brooks"
+    },
+    {
+      "committee_id": "C00172361",
+      "committee": "PENNSYLVANIA PRO-LIFE FEDERATION PAC",
+      "target_candidate_id": "H6PA07188",
+      "support_oppose": "O",
+      "amount": 22.94,
+      "filings": 1,
+      "target_candidate": "Bob Brooks"
+    },
+    {
+      "committee_id": "C00172361",
+      "committee": "PENNSYLVANIA PRO-LIFE FEDERATION PAC",
+      "target_candidate_id": "H8PA15195",
+      "support_oppose": "S",
+      "amount": 22.94,
+      "filings": 1,
+      "target_candidate": "Ryan Mackenzie"
     }
   ],
   "outside_itemized": [
@@ -2896,6 +2914,34 @@
       "payee_state": "MD",
       "amount": 32.0,
       "date": "2026-06-25"
+    },
+    {
+      "committee_id": "C00172361",
+      "committee": "PENNSYLVANIA PRO-LIFE FEDERATION PAC",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "O",
+      "description": "POSTAGE FOR 2026 FALL GENERAL ELECTION VOTER'S GUIDE",
+      "category": "Mail and print",
+      "payee": "TRIANGLE PRESS",
+      "payee_city": "HARRISBURG",
+      "payee_state": "PA",
+      "amount": 22.94,
+      "date": "2026-09-22"
+    },
+    {
+      "committee_id": "C00172361",
+      "committee": "PENNSYLVANIA PRO-LIFE FEDERATION PAC",
+      "target_candidate_id": "H8PA15195",
+      "target_candidate": "Ryan Mackenzie",
+      "support_oppose": "S",
+      "description": "POSTAGE FOR 2026 FALL GENERAL ELECTION VOTER'S GUIDE",
+      "category": "Mail and print",
+      "payee": "TRIANGLE PRESS",
+      "payee_city": "HARRISBURG",
+      "payee_state": "PA",
+      "amount": 22.94,
+      "date": "2026-09-22"
     },
     {
       "committee_id": "C00802389",
