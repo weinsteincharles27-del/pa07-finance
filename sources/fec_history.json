@@ -1,6 +1,6 @@
 {
   "source": "OpenFEC API (finance); certified results from sources/results.json",
-  "retrieved_utc": "2026-10-17T13:10:08Z",
+  "retrieved_utc": "2026-10-24T13:15:22Z",
   "district": "PA-07",
   "cycles_covered": [
     2018,
@@ -179,7 +179,7 @@
           "coverage_start": "2021-01-01",
           "coverage_end": "2022-12-31",
           "last_report": "YEAR-END",
-          "ie_supporting": 654900.95,
+          "ie_supporting": 655273.84,
           "ie_opposing": 10853652.49,
           "ie_committees_supporting": 19,
           "ie_committees_opposing": 7,
