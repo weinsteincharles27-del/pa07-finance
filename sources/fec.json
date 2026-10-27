@@ -1,7 +1,7 @@
 {
   "source": "FEC / OpenFEC API",
   "url": "https://www.fec.gov/data/elections/house/PA/07/2026/",
-  "retrieved_utc": "2026-10-24T13:15:11Z",
+  "retrieved_utc": "2026-10-27T16:09:38Z",
   "cycle": 2026,
   "coverage_through": "2026-10-14",
   "candidates": [
@@ -267,6 +267,15 @@
     }
   ],
   "independent_expenditures": [
+    {
+      "committee_id": "C00504530",
+      "committee": "CLF",
+      "target_candidate_id": "H6PA07188",
+      "support_oppose": "O",
+      "amount": 2310915.81,
+      "filings": 5,
+      "target_candidate": "Bob Brooks"
+    },
     {
       "committee_id": "C00936153",
       "committee": "STRONGER TOGETHER PA",
@@ -648,6 +657,34 @@
   ],
   "outside_itemized": [
     {
+      "committee_id": "C00504530",
+      "committee": "CLF",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "O",
+      "description": "MEDIA PLACEMENT",
+      "category": "Television and media buys",
+      "payee": "FLEXPOINT MEDIA",
+      "payee_city": "NEW ALBANY",
+      "payee_state": "OH",
+      "amount": 985499.66,
+      "date": "2026-09-28"
+    },
+    {
+      "committee_id": "C00504530",
+      "committee": "CLF",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "O",
+      "description": "MEDIA PLACEMENT",
+      "category": "Television and media buys",
+      "payee": "FLEXPOINT MEDIA",
+      "payee_city": "NEW ALBANY",
+      "payee_state": "OH",
+      "amount": 912416.15,
+      "date": "2026-09-21"
+    },
+    {
       "committee_id": "C00948208",
       "committee": "LEAD LEFT PAC",
       "target_candidate_id": "H6PA07147",
@@ -702,6 +739,34 @@
       "payee_state": "CA",
       "amount": 249750.0,
       "date": "2026-05-15"
+    },
+    {
+      "committee_id": "C00504530",
+      "committee": "CLF",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "O",
+      "description": "DIGITAL PLACEMENT",
+      "category": "Digital advertising",
+      "payee": "FLEXPOINT MEDIA",
+      "payee_city": "NEW ALBANY",
+      "payee_state": "OH",
+      "amount": 200000.0,
+      "date": "2026-09-25"
+    },
+    {
+      "committee_id": "C00504530",
+      "committee": "CLF",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "O",
+      "description": "DIGITAL PLACEMENT",
+      "category": "Digital advertising",
+      "payee": "FLEXPOINT MEDIA",
+      "payee_city": "NEW ALBANY",
+      "payee_state": "OH",
+      "amount": 200000.0,
+      "date": "2026-09-18"
     },
     {
       "committee_id": "C00936153",
@@ -1472,6 +1537,20 @@
       "payee_state": "DC",
       "amount": 13498.5,
       "date": "2026-09-23"
+    },
+    {
+      "committee_id": "C00504530",
+      "committee": "CLF",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "O",
+      "description": "MEDIA PRODUCTION",
+      "category": "Production",
+      "payee": "MOTIVE MEDIA",
+      "payee_city": "ALEXANDRIA",
+      "payee_state": "VA",
+      "amount": 13000.0,
+      "date": "2026-09-22"
     },
     {
       "committee_id": "C00513176",
