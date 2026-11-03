@@ -1,7 +1,7 @@
 {
   "source": "FEC / OpenFEC API",
   "url": "https://www.fec.gov/data/elections/house/PA/07/2026/",
-  "retrieved_utc": "2026-10-30T15:28:13Z",
+  "retrieved_utc": "2026-11-03T15:26:03Z",
   "cycle": 2026,
   "coverage_through": "2026-10-14",
   "candidates": [
@@ -610,6 +610,15 @@
       "target_candidate": "Bob Brooks"
     },
     {
+      "committee_id": "C00955138",
+      "committee": "BUILDING TOGETHER",
+      "target_candidate_id": "H8PA15195",
+      "support_oppose": "O",
+      "amount": 262.73,
+      "filings": 1,
+      "target_candidate": "Ryan Mackenzie"
+    },
+    {
       "committee_id": "C00489799",
       "committee": "PLANNED PARENTHOOD VOTES",
       "target_candidate_id": "H8PA15195",
@@ -624,6 +633,15 @@
       "target_candidate_id": "H6PA07188",
       "support_oppose": "S",
       "amount": 187.51,
+      "filings": 1,
+      "target_candidate": "Bob Brooks"
+    },
+    {
+      "committee_id": "C00955138",
+      "committee": "BUILDING TOGETHER",
+      "target_candidate_id": "H6PA07188",
+      "support_oppose": "S",
+      "amount": 139.58,
       "filings": 1,
       "target_candidate": "Bob Brooks"
     },
@@ -662,6 +680,15 @@
       "amount": 22.94,
       "filings": 1,
       "target_candidate": "Ryan Mackenzie"
+    },
+    {
+      "committee_id": "C00878025",
+      "committee": "MOMSRISING PAC",
+      "target_candidate_id": "H6PA07188",
+      "support_oppose": "S",
+      "amount": 3.73,
+      "filings": 1,
+      "target_candidate": "Bob Brooks"
     }
   ],
   "outside_itemized": [
@@ -2640,6 +2667,20 @@
       "date": "2025-10-14"
     },
     {
+      "committee_id": "C00955138",
+      "committee": "BUILDING TOGETHER",
+      "target_candidate_id": "H8PA15195",
+      "target_candidate": "Ryan Mackenzie",
+      "support_oppose": "O",
+      "description": "TEXT MESSAGING",
+      "category": "Texting and phone calls",
+      "payee": "MOVEMENT LABS, LLC",
+      "payee_city": "CHICAGO",
+      "payee_state": "IL",
+      "amount": 262.73,
+      "date": "2026-09-30"
+    },
+    {
       "committee_id": "C00640300",
       "committee": "ACTIVATE AMERICA",
       "target_candidate_id": "H8PA15195",
@@ -2778,6 +2819,20 @@
       "payee_state": "OH",
       "amount": 151.88,
       "date": "2026-07-13"
+    },
+    {
+      "committee_id": "C00955138",
+      "committee": "BUILDING TOGETHER",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "TEXT MESSAGING",
+      "category": "Texting and phone calls",
+      "payee": "MOVEMENT LABS, LLC",
+      "payee_city": "CHICAGO",
+      "payee_state": "IL",
+      "amount": 139.58,
+      "date": "2026-09-30"
     },
     {
       "committee_id": "C00909465",
@@ -3072,6 +3127,20 @@
       "payee_state": "MD",
       "amount": 4.54,
       "date": "2026-06-25"
+    },
+    {
+      "committee_id": "C00878025",
+      "committee": "MOMSRISING PAC",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "TEXT MESSAGES - SEE SCHEDULE B",
+      "category": "Texting and phone calls",
+      "payee": "NEW BLUE INTERACTIVE, LLC",
+      "payee_city": "WASHINGTON",
+      "payee_state": "DC",
+      "amount": 3.73,
+      "date": "2026-08-13"
     }
   ],
   "notes": [
