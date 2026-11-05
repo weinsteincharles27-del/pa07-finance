@@ -1,7 +1,7 @@
 {
   "source": "FEC / OpenFEC API",
   "url": "https://www.fec.gov/data/elections/house/PA/07/2026/",
-  "retrieved_utc": "2026-11-03T15:26:03Z",
+  "retrieved_utc": "2026-11-05T16:39:04Z",
   "cycle": 2026,
   "coverage_through": "2026-10-14",
   "candidates": [
@@ -466,6 +466,15 @@
       "target_candidate": "Bob Brooks"
     },
     {
+      "committee_id": "C00800995",
+      "committee": "DEMOCRATIC MESSAGING PROJECT",
+      "target_candidate_id": "H6PA07188",
+      "support_oppose": "S",
+      "amount": 10150.0,
+      "filings": 2,
+      "target_candidate": "Bob Brooks"
+    },
+    {
       "committee_id": "C00704593",
       "committee": "BLUE BATTLEGROUND PROJECT",
       "target_candidate_id": "H6PA07188",
@@ -520,12 +529,30 @@
       "target_candidate": "Bob Brooks"
     },
     {
+      "committee_id": "C00829721",
+      "committee": "EARLY VOTE ACTION PAC",
+      "target_candidate_id": "H8PA15195",
+      "support_oppose": "S",
+      "amount": 3342.14,
+      "filings": 2,
+      "target_candidate": "Ryan Mackenzie"
+    },
+    {
       "committee_id": "C00004036",
       "committee": "SEIU COPE (SERVICE EMPLOYEES INTERNATIONAL UNION COMMITTEE ON POLITICAL EDUCATION)",
       "target_candidate_id": "H6PA07188",
       "support_oppose": "S",
       "amount": 3140.99,
       "filings": 3,
+      "target_candidate": "Bob Brooks"
+    },
+    {
+      "committee_id": "C90023748",
+      "committee": "EQUAL EXCHANGE",
+      "target_candidate_id": "H6PA07188",
+      "support_oppose": "S",
+      "amount": 3060.85,
+      "filings": 8,
       "target_candidate": "Bob Brooks"
     },
     {
@@ -610,6 +637,15 @@
       "target_candidate": "Bob Brooks"
     },
     {
+      "committee_id": "C00878025",
+      "committee": "MOMSRISING PAC",
+      "target_candidate_id": "H6PA07188",
+      "support_oppose": "S",
+      "amount": 303.59,
+      "filings": 2,
+      "target_candidate": "Bob Brooks"
+    },
+    {
       "committee_id": "C00955138",
       "committee": "BUILDING TOGETHER",
       "target_candidate_id": "H8PA15195",
@@ -617,6 +653,15 @@
       "amount": 262.73,
       "filings": 1,
       "target_candidate": "Ryan Mackenzie"
+    },
+    {
+      "committee_id": "C90020058",
+      "committee": "RED WINE AND BLUE",
+      "target_candidate_id": "H6PA07188",
+      "support_oppose": "S",
+      "amount": 236.06,
+      "filings": 2,
+      "target_candidate": "Bob Brooks"
     },
     {
       "committee_id": "C00489799",
@@ -646,21 +691,21 @@
       "target_candidate": "Bob Brooks"
     },
     {
+      "committee_id": "C00802389",
+      "committee": "GIVEGREEN UNITED ACTION",
+      "target_candidate_id": "H6PA07188",
+      "support_oppose": "S",
+      "amount": 110.71,
+      "filings": 5,
+      "target_candidate": "Bob Brooks"
+    },
+    {
       "committee_id": "C00776419",
       "committee": "THE PEOPLE UNITED PAC",
       "target_candidate_id": "H6PA07188",
       "support_oppose": "S",
       "amount": 50.0,
       "filings": 1,
-      "target_candidate": "Bob Brooks"
-    },
-    {
-      "committee_id": "C00802389",
-      "committee": "GIVEGREEN UNITED ACTION",
-      "target_candidate_id": "H6PA07188",
-      "support_oppose": "S",
-      "amount": 36.54,
-      "filings": 2,
       "target_candidate": "Bob Brooks"
     },
     {
@@ -680,15 +725,6 @@
       "amount": 22.94,
       "filings": 1,
       "target_candidate": "Ryan Mackenzie"
-    },
-    {
-      "committee_id": "C00878025",
-      "committee": "MOMSRISING PAC",
-      "target_candidate_id": "H6PA07188",
-      "support_oppose": "S",
-      "amount": 3.73,
-      "filings": 1,
-      "target_candidate": "Bob Brooks"
     }
   ],
   "outside_itemized": [
@@ -1981,6 +2017,34 @@
       "date": "2026-09-30"
     },
     {
+      "committee_id": "C00800995",
+      "committee": "DEMOCRATIC MESSAGING PROJECT",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "BILLBOARDS",
+      "category": "Other",
+      "payee": "ROLLING OUTDOOR MEDIA",
+      "payee_city": "GLENDALE",
+      "payee_state": "CA",
+      "amount": 5075.0,
+      "date": "2026-09-30"
+    },
+    {
+      "committee_id": "C00800995",
+      "committee": "DEMOCRATIC MESSAGING PROJECT",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "BILLBOARDS",
+      "category": "Other",
+      "payee": "ROLLING OUTDOOR MEDIA",
+      "payee_city": "GLENDALE",
+      "payee_state": "CA",
+      "amount": 5075.0,
+      "date": "2026-08-21"
+    },
+    {
       "committee_id": "C00495028",
       "committee": "HMP",
       "target_candidate_id": "H6PA07188",
@@ -2247,6 +2311,20 @@
       "date": "2026-06-01"
     },
     {
+      "committee_id": "C00829721",
+      "committee": "EARLY VOTE ACTION PAC",
+      "target_candidate_id": "H8PA15195",
+      "target_candidate": "Ryan Mackenzie",
+      "support_oppose": "S",
+      "description": "DOOR HANGERS",
+      "category": "Canvassing and field",
+      "payee": "MASTHOF PRESS LLC",
+      "payee_city": "MORGANTOWN",
+      "payee_state": "PA",
+      "amount": 2922.14,
+      "date": "2026-09-25"
+    },
+    {
       "committee_id": "C00941724",
       "committee": "INTEGRITY PAC",
       "target_candidate_id": "H6PA07162",
@@ -2457,6 +2535,20 @@
       "date": "2026-04-20"
     },
     {
+      "committee_id": "C90023748",
+      "committee": "EQUAL EXCHANGE",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "TRAVEL",
+      "category": "Other",
+      "payee": "UNITED AIRLINES",
+      "payee_city": "CHICAGO",
+      "payee_state": "IL",
+      "amount": 1062.87,
+      "date": "2026-09-20"
+    },
+    {
       "committee_id": "C00933796",
       "committee": "BLUE DEMOCRACY NETWORK",
       "target_candidate_id": "H6PA07188",
@@ -2483,6 +2575,20 @@
       "payee_state": "DE",
       "amount": 1000.0,
       "date": "2026-04-20"
+    },
+    {
+      "committee_id": "C90023748",
+      "committee": "EQUAL EXCHANGE",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "MATERIALS/FOOD FOR EVENT",
+      "category": "Other",
+      "payee": "EQUAL EXCHANGE",
+      "payee_city": "W. BRIDGEWATER",
+      "payee_state": "MA",
+      "amount": 921.09,
+      "date": "2026-09-20"
     },
     {
       "committee_id": "C00004036",
@@ -2611,6 +2717,34 @@
       "date": "2026-08-07"
     },
     {
+      "committee_id": "C00829721",
+      "committee": "EARLY VOTE ACTION PAC",
+      "target_candidate_id": "H8PA15195",
+      "target_candidate": "Ryan Mackenzie",
+      "support_oppose": "S",
+      "description": "YARD SIGNS",
+      "category": "Other",
+      "payee": "PIGEON CREEK DESIGNS LLC",
+      "payee_city": "SHOEMAKERSVILLE",
+      "payee_state": "PA",
+      "amount": 420.0,
+      "date": "2026-08-14"
+    },
+    {
+      "committee_id": "C90023748",
+      "committee": "EQUAL EXCHANGE",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "POSTAGE",
+      "category": "Mail and print",
+      "payee": "US POSTAL SERVICE",
+      "payee_city": "CENTER VALLEY",
+      "payee_state": "PA",
+      "amount": 390.0,
+      "date": "2026-09-20"
+    },
+    {
       "committee_id": "C00909994",
       "committee": "FIELD TEAM 6, INC.",
       "target_candidate_id": "H6PA07188",
@@ -2653,6 +2787,20 @@
       "date": "2025-11-03"
     },
     {
+      "committee_id": "C00878025",
+      "committee": "MOMSRISING PAC",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "TEXT MESSAGES - SEE SCHEDULE B",
+      "category": "Texting and phone calls",
+      "payee": "NEW BLUE INTERACTIVE, LLC",
+      "payee_city": "WASHINGTON",
+      "payee_state": "DC",
+      "amount": 299.86,
+      "date": "2026-06-11"
+    },
+    {
       "committee_id": "C00909465",
       "committee": "INDIGO PAC",
       "target_candidate_id": "H8PA15195",
@@ -2679,6 +2827,20 @@
       "payee_state": "IL",
       "amount": 262.73,
       "date": "2026-09-30"
+    },
+    {
+      "committee_id": "C90023748",
+      "committee": "EQUAL EXCHANGE",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "SPACE RENTAL/FOOD FOR EVENT",
+      "category": "Other",
+      "payee": "FEGLYS BREWWORKS",
+      "payee_city": "BETHLEHEM",
+      "payee_state": "PA",
+      "amount": 253.84,
+      "date": "2026-09-20"
     },
     {
       "committee_id": "C00640300",
@@ -2737,6 +2899,20 @@
       "date": "2026-08-13"
     },
     {
+      "committee_id": "C90023748",
+      "committee": "EQUAL EXCHANGE",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "PRINTING",
+      "category": "Mail and print",
+      "payee": "VERENA MARKETING",
+      "payee_city": "W. BRIDGEWATER",
+      "payee_state": "MA",
+      "amount": 202.5,
+      "date": "2026-09-20"
+    },
+    {
       "committee_id": "C00934059",
       "committee": "SENIORS EMPOWERING AN EFFECTIVE DEMOCRACY (SEED-PAC)",
       "target_candidate_id": "H6PA07188",
@@ -2779,6 +2955,20 @@
       "date": "2026-05-29"
     },
     {
+      "committee_id": "C90020058",
+      "committee": "RED WINE AND BLUE",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "STAFF TIME FOR ORGANIZING AND GOTV",
+      "category": "Canvassing and field",
+      "payee": "RED WINE AND BLUE",
+      "payee_city": "CLEVELAND",
+      "payee_state": "OH",
+      "amount": 166.97,
+      "date": "2026-09-25"
+    },
+    {
       "committee_id": "C00647966",
       "committee": "RURAL FREEDOM NETWORK",
       "target_candidate_id": "H6PA07188",
@@ -2791,6 +2981,20 @@
       "payee_state": "OH",
       "amount": 157.07,
       "date": "2026-06-18"
+    },
+    {
+      "committee_id": "C90023748",
+      "committee": "EQUAL EXCHANGE",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "TRAVEL",
+      "category": "Other",
+      "payee": "ENTERPRISE CAR RENTAL",
+      "payee_city": "BLUE BELL",
+      "payee_state": "PA",
+      "amount": 156.0,
+      "date": "2026-09-20"
     },
     {
       "committee_id": "C00909465",
@@ -2961,6 +3165,20 @@
       "date": "2026-05-19"
     },
     {
+      "committee_id": "C90020058",
+      "committee": "RED WINE AND BLUE",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "STAFF TIME FOR DIGITAL VOTING GUIDE DESIGN AND DEVELOPMENT.",
+      "category": "Digital advertising",
+      "payee": "RED WINE AND BLUE",
+      "payee_city": "CLEVELAND",
+      "payee_state": "OH",
+      "amount": 69.09,
+      "date": "2026-09-09"
+    },
+    {
       "committee_id": "C00933796",
       "committee": "BLUE DEMOCRACY NETWORK",
       "target_candidate_id": "H6PA07188",
@@ -2989,6 +3207,20 @@
       "date": "2025-09-15"
     },
     {
+      "committee_id": "C90023748",
+      "committee": "EQUAL EXCHANGE",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "EVENT SPACE RENTAL",
+      "category": "Other",
+      "payee": "ALLENTOWN PUBLIC LIBRARY",
+      "payee_city": "ALLENTOWN",
+      "payee_state": "PA",
+      "amount": 50.0,
+      "date": "2026-09-20"
+    },
+    {
       "committee_id": "C00776419",
       "committee": "THE PEOPLE UNITED PAC",
       "target_candidate_id": "H6PA07188",
@@ -3015,6 +3247,20 @@
       "payee_state": "NY",
       "amount": 40.38,
       "date": "2026-07-19"
+    },
+    {
+      "committee_id": "C00802389",
+      "committee": "GIVEGREEN UNITED ACTION",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "EMAIL MESSAGING",
+      "category": "Email",
+      "payee": "NEW BLUE INTERACTIVE",
+      "payee_city": "BETHESDA",
+      "payee_state": "MD",
+      "amount": 40.0,
+      "date": "2026-09-10"
     },
     {
       "committee_id": "C00909465",
@@ -3087,6 +3333,34 @@
       "date": "2026-06-25"
     },
     {
+      "committee_id": "C00802389",
+      "committee": "GIVEGREEN UNITED ACTION",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "EMAIL MESSAGING",
+      "category": "Email",
+      "payee": "NEW BLUE INTERACTIVE",
+      "payee_city": "BETHESDA",
+      "payee_state": "MD",
+      "amount": 26.67,
+      "date": "2026-09-10"
+    },
+    {
+      "committee_id": "C90023748",
+      "committee": "EQUAL EXCHANGE",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "TRAVEL",
+      "category": "Other",
+      "payee": "SUNOCO GAS",
+      "payee_city": "BLUE BELL",
+      "payee_state": "PA",
+      "amount": 24.55,
+      "date": "2026-09-20"
+    },
+    {
       "committee_id": "C00172361",
       "committee": "PENNSYLVANIA PRO-LIFE FEDERATION PAC",
       "target_candidate_id": "H6PA07188",
@@ -3113,6 +3387,20 @@
       "payee_state": "PA",
       "amount": 22.94,
       "date": "2026-09-22"
+    },
+    {
+      "committee_id": "C00802389",
+      "committee": "GIVEGREEN UNITED ACTION",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "TEXT MESSAGING",
+      "category": "Texting and phone calls",
+      "payee": "NEW BLUE INTERACTIVE",
+      "payee_city": "BETHESDA",
+      "payee_state": "MD",
+      "amount": 7.5,
+      "date": "2026-09-10"
     },
     {
       "committee_id": "C00802389",
