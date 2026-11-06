@@ -1,7 +1,7 @@
 {
   "source": "FEC / OpenFEC API",
   "url": "https://www.fec.gov/data/elections/house/PA/07/2026/",
-  "retrieved_utc": "2026-11-05T16:39:04Z",
+  "retrieved_utc": "2026-11-06T16:55:14Z",
   "cycle": 2026,
   "coverage_through": "2026-10-14",
   "candidates": [
@@ -448,6 +448,15 @@
       "target_candidate": "Bob Brooks"
     },
     {
+      "committee_id": "C90023599",
+      "committee": "CAMPAIGN FOR WORKING CLASS COMMUNITIES",
+      "target_candidate_id": "H6PA07188",
+      "support_oppose": "S",
+      "amount": 17294.56,
+      "filings": 44,
+      "target_candidate": "Bob Brooks"
+    },
+    {
       "committee_id": "C00897363",
       "committee": "BLUE MAJORITY PROJECT",
       "target_candidate_id": "H6PA07188",
@@ -499,6 +508,15 @@
       "support_oppose": "O",
       "amount": 6044.0,
       "filings": 1,
+      "target_candidate": "Ryan Mackenzie"
+    },
+    {
+      "committee_id": "C90023599",
+      "committee": "CAMPAIGN FOR WORKING CLASS COMMUNITIES",
+      "target_candidate_id": "H8PA15195",
+      "support_oppose": "O",
+      "amount": 5779.12,
+      "filings": 11,
       "target_candidate": "Ryan Mackenzie"
     },
     {
@@ -628,11 +646,29 @@
       "target_candidate": "Bob Brooks"
     },
     {
+      "committee_id": "C00640300",
+      "committee": "ACTIVATE AMERICA",
+      "target_candidate_id": "H6PA07188",
+      "support_oppose": "S",
+      "amount": 756.48,
+      "filings": 1,
+      "target_candidate": "Bob Brooks"
+    },
+    {
       "committee_id": "C00738237",
       "committee": "PEOPLE'S ACTION POWER",
       "target_candidate_id": "H6PA07188",
       "support_oppose": "S",
       "amount": 530.05,
+      "filings": 1,
+      "target_candidate": "Bob Brooks"
+    },
+    {
+      "committee_id": "C00902189",
+      "committee": "FREEDOM PA",
+      "target_candidate_id": "H6PA07188",
+      "support_oppose": "S",
+      "amount": 450.0,
       "filings": 1,
       "target_candidate": "Bob Brooks"
     },
@@ -2297,6 +2333,20 @@
       "date": "2026-04-10"
     },
     {
+      "committee_id": "C90023599",
+      "committee": "CAMPAIGN FOR WORKING CLASS COMMUNITIES",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "GOTV CALLS AND TEXTS",
+      "category": "Texting and phone calls",
+      "payee": "SCALE TO WIN",
+      "payee_city": "SAN FRANCISCO",
+      "payee_state": "CA",
+      "amount": 2990.82,
+      "date": "2026-09-27"
+    },
+    {
       "committee_id": "C00689745",
       "committee": "MAKE THE ROAD ACTION POLITICAL COMMITTEE",
       "target_candidate_id": "H6PA07188",
@@ -2325,6 +2375,20 @@
       "date": "2026-09-25"
     },
     {
+      "committee_id": "C90023599",
+      "committee": "CAMPAIGN FOR WORKING CLASS COMMUNITIES",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "GOTV CALLS AND TEXTS",
+      "category": "Texting and phone calls",
+      "payee": "SCALE TO WIN",
+      "payee_city": "SAN FRANCISCO",
+      "payee_state": "CA",
+      "amount": 2554.75,
+      "date": "2026-09-20"
+    },
+    {
       "committee_id": "C00941724",
       "committee": "INTEGRITY PAC",
       "target_candidate_id": "H6PA07162",
@@ -2337,6 +2401,20 @@
       "payee_state": "IL",
       "amount": 2500.0,
       "date": "2026-05-12"
+    },
+    {
+      "committee_id": "C90023599",
+      "committee": "CAMPAIGN FOR WORKING CLASS COMMUNITIES",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "GOTV CONSULTING SERVICES",
+      "category": "Television and media buys",
+      "payee": "QUINN, ZARAH",
+      "payee_city": "EMMAUS",
+      "payee_state": "PA",
+      "amount": 2400.0,
+      "date": "2026-09-15"
     },
     {
       "committee_id": "C00924159",
@@ -2365,6 +2443,20 @@
       "payee_state": "CA",
       "amount": 2001.41,
       "date": "2026-08-13"
+    },
+    {
+      "committee_id": "C90023599",
+      "committee": "CAMPAIGN FOR WORKING CLASS COMMUNITIES",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "GOTV CONSULTING SERVICES",
+      "category": "Television and media buys",
+      "payee": "QUINN, ZARAH",
+      "payee_city": "EMMAUS",
+      "payee_state": "PA",
+      "amount": 1960.0,
+      "date": "2026-09-30"
     },
     {
       "committee_id": "C00647966",
@@ -2449,6 +2541,20 @@
       "payee_state": "DE",
       "amount": 1600.0,
       "date": "2026-04-20"
+    },
+    {
+      "committee_id": "C90023599",
+      "committee": "CAMPAIGN FOR WORKING CLASS COMMUNITIES",
+      "target_candidate_id": "H8PA15195",
+      "target_candidate": "Ryan Mackenzie",
+      "support_oppose": "O",
+      "description": "GOTV CONSULTING SERVICES",
+      "category": "Television and media buys",
+      "payee": "QUINN, ZARAH",
+      "payee_city": "EMMAUS",
+      "payee_state": "PA",
+      "amount": 1520.0,
+      "date": "2026-08-25"
     },
     {
       "committee_id": "C00647966",
@@ -2549,6 +2655,20 @@
       "date": "2026-09-20"
     },
     {
+      "committee_id": "C90023599",
+      "committee": "CAMPAIGN FOR WORKING CLASS COMMUNITIES",
+      "target_candidate_id": "H8PA15195",
+      "target_candidate": "Ryan Mackenzie",
+      "support_oppose": "O",
+      "description": "GOTV CONSULTING SERVICES",
+      "category": "Television and media buys",
+      "payee": "QUINN, ZARAH",
+      "payee_city": "EMMAUS",
+      "payee_state": "PA",
+      "amount": 1040.0,
+      "date": "2026-08-10"
+    },
+    {
       "committee_id": "C00933796",
       "committee": "BLUE DEMOCRACY NETWORK",
       "target_candidate_id": "H6PA07188",
@@ -2633,6 +2753,62 @@
       "date": "2026-03-05"
     },
     {
+      "committee_id": "C90023599",
+      "committee": "CAMPAIGN FOR WORKING CLASS COMMUNITIES",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "GOTV CONSULTING SERVICES",
+      "category": "Television and media buys",
+      "payee": "EMERLE, SARA",
+      "payee_city": "CENTER VALLEY",
+      "payee_state": "PA",
+      "amount": 800.0,
+      "date": "2026-09-30"
+    },
+    {
+      "committee_id": "C90023599",
+      "committee": "CAMPAIGN FOR WORKING CLASS COMMUNITIES",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "GOTV CONSULTING SERVICES",
+      "category": "Television and media buys",
+      "payee": "EMERLE, SARA",
+      "payee_city": "CENTER VALLEY",
+      "payee_state": "PA",
+      "amount": 800.0,
+      "date": "2026-09-15"
+    },
+    {
+      "committee_id": "C90023599",
+      "committee": "CAMPAIGN FOR WORKING CLASS COMMUNITIES",
+      "target_candidate_id": "H8PA15195",
+      "target_candidate": "Ryan Mackenzie",
+      "support_oppose": "O",
+      "description": "GOTV CONSULTING SERVICES",
+      "category": "Television and media buys",
+      "payee": "EMERLE, SARA",
+      "payee_city": "CENTER VALLEY",
+      "payee_state": "PA",
+      "amount": 800.0,
+      "date": "2026-08-10"
+    },
+    {
+      "committee_id": "C00640300",
+      "committee": "ACTIVATE AMERICA",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "VOTER DATA",
+      "category": "Data",
+      "payee": "AMERICA VOTES",
+      "payee_city": "WASHINGTON",
+      "payee_state": "DC",
+      "amount": 756.48,
+      "date": "2026-07-07"
+    },
+    {
       "committee_id": "C00689745",
       "committee": "MAKE THE ROAD ACTION POLITICAL COMMITTEE",
       "target_candidate_id": "H6PA07188",
@@ -2703,6 +2879,20 @@
       "date": "2026-04-30"
     },
     {
+      "committee_id": "C90023599",
+      "committee": "CAMPAIGN FOR WORKING CLASS COMMUNITIES",
+      "target_candidate_id": "H8PA15195",
+      "target_candidate": "Ryan Mackenzie",
+      "support_oppose": "O",
+      "description": "TEXTING AND PHONE BANK",
+      "category": "Texting and phone calls",
+      "payee": "SCALE TO WIN",
+      "payee_city": "SAN FRANCISCO",
+      "payee_state": "CA",
+      "amount": 557.59,
+      "date": "2026-08-04"
+    },
+    {
       "committee_id": "C00738237",
       "committee": "PEOPLE'S ACTION POWER",
       "target_candidate_id": "H6PA07188",
@@ -2715,6 +2905,34 @@
       "payee_state": "CA",
       "amount": 530.05,
       "date": "2026-08-07"
+    },
+    {
+      "committee_id": "C90023599",
+      "committee": "CAMPAIGN FOR WORKING CLASS COMMUNITIES",
+      "target_candidate_id": "H8PA15195",
+      "target_candidate": "Ryan Mackenzie",
+      "support_oppose": "O",
+      "description": "GOTV CONSULTING SERVICES",
+      "category": "Television and media buys",
+      "payee": "QUINN, ZARAH",
+      "payee_city": "EMMAUS",
+      "payee_state": "PA",
+      "amount": 480.0,
+      "date": "2026-07-25"
+    },
+    {
+      "committee_id": "C00902189",
+      "committee": "FREEDOM PA",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "DIGITAL ADVERTISING - ESTIMATE",
+      "category": "Digital advertising",
+      "payee": "OAK CONSULTING LLC",
+      "payee_city": "WARRENVILLE",
+      "payee_state": "IL",
+      "amount": 450.0,
+      "date": "2026-07-31"
     },
     {
       "committee_id": "C00829721",
@@ -2731,6 +2949,48 @@
       "date": "2026-08-14"
     },
     {
+      "committee_id": "C90023599",
+      "committee": "CAMPAIGN FOR WORKING CLASS COMMUNITIES",
+      "target_candidate_id": "H8PA15195",
+      "target_candidate": "Ryan Mackenzie",
+      "support_oppose": "O",
+      "description": "GOTV CONSULTING SERVICES",
+      "category": "Television and media buys",
+      "payee": "EMERLE, SARA",
+      "payee_city": "CENTER VALLEY",
+      "payee_state": "PA",
+      "amount": 400.0,
+      "date": "2026-08-26"
+    },
+    {
+      "committee_id": "C90023599",
+      "committee": "CAMPAIGN FOR WORKING CLASS COMMUNITIES",
+      "target_candidate_id": "H8PA15195",
+      "target_candidate": "Ryan Mackenzie",
+      "support_oppose": "O",
+      "description": "GOTV CONSULTING SERVICES",
+      "category": "Television and media buys",
+      "payee": "EMERLE, SARA",
+      "payee_city": "CENTER VALLEY",
+      "payee_state": "PA",
+      "amount": 400.0,
+      "date": "2026-07-25"
+    },
+    {
+      "committee_id": "C90023599",
+      "committee": "CAMPAIGN FOR WORKING CLASS COMMUNITIES",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "GOTV CALLS",
+      "category": "Television and media buys",
+      "payee": "HOVESKELAND, KAY",
+      "payee_city": "LAWRENCE",
+      "payee_state": "MA",
+      "amount": 392.3,
+      "date": "2026-09-30"
+    },
+    {
       "committee_id": "C90023748",
       "committee": "EQUAL EXCHANGE",
       "target_candidate_id": "H6PA07188",
@@ -2743,6 +3003,20 @@
       "payee_state": "PA",
       "amount": 390.0,
       "date": "2026-09-20"
+    },
+    {
+      "committee_id": "C90023599",
+      "committee": "CAMPAIGN FOR WORKING CLASS COMMUNITIES",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "TEXTING AND PHONE BANK",
+      "category": "Texting and phone calls",
+      "payee": "SCALE TO WIN",
+      "payee_city": "SAN FRANCISCO",
+      "payee_state": "CA",
+      "amount": 368.81,
+      "date": "2026-09-02"
     },
     {
       "committee_id": "C00909994",
@@ -2815,6 +3089,48 @@
       "date": "2025-10-14"
     },
     {
+      "committee_id": "C90023599",
+      "committee": "CAMPAIGN FOR WORKING CLASS COMMUNITIES",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "GOTV CALLS AND TEXTS",
+      "category": "Texting and phone calls",
+      "payee": "SCALE TO WIN",
+      "payee_city": "SAN FRANCISCO",
+      "payee_state": "CA",
+      "amount": 276.56,
+      "date": "2026-09-28"
+    },
+    {
+      "committee_id": "C90023599",
+      "committee": "CAMPAIGN FOR WORKING CLASS COMMUNITIES",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "GOTV CALLS AND TEXTS",
+      "category": "Texting and phone calls",
+      "payee": "SCALE TO WIN",
+      "payee_city": "SAN FRANCISCO",
+      "payee_state": "CA",
+      "amount": 275.56,
+      "date": "2026-09-24"
+    },
+    {
+      "committee_id": "C90023599",
+      "committee": "CAMPAIGN FOR WORKING CLASS COMMUNITIES",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "GOTV CALLS AND TEXTS",
+      "category": "Texting and phone calls",
+      "payee": "SCALE TO WIN",
+      "payee_city": "SAN FRANCISCO",
+      "payee_state": "CA",
+      "amount": 264.46,
+      "date": "2026-09-22"
+    },
+    {
       "committee_id": "C00955138",
       "committee": "BUILDING TOGETHER",
       "target_candidate_id": "H8PA15195",
@@ -2871,6 +3187,48 @@
       "date": "2025-10-07"
     },
     {
+      "committee_id": "C90023599",
+      "committee": "CAMPAIGN FOR WORKING CLASS COMMUNITIES",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "GOTV CALLS",
+      "category": "Television and media buys",
+      "payee": "BALLAS, MELISSA",
+      "payee_city": "CARNEGIE",
+      "payee_state": "PA",
+      "amount": 239.26,
+      "date": "2026-09-30"
+    },
+    {
+      "committee_id": "C90023599",
+      "committee": "CAMPAIGN FOR WORKING CLASS COMMUNITIES",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "GOTV CALLS",
+      "category": "Television and media buys",
+      "payee": "MARTINEZ, LAURA",
+      "payee_city": "SAN FRANCISCO",
+      "payee_state": "CA",
+      "amount": 239.26,
+      "date": "2026-09-30"
+    },
+    {
+      "committee_id": "C90023599",
+      "committee": "CAMPAIGN FOR WORKING CLASS COMMUNITIES",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "GOTV CALLS",
+      "category": "Television and media buys",
+      "payee": "NITSCHKE, KYLE",
+      "payee_city": "FLAGSTAFF",
+      "payee_state": "AZ",
+      "amount": 239.26,
+      "date": "2026-09-30"
+    },
+    {
       "committee_id": "C00909994",
       "committee": "FIELD TEAM 6, INC.",
       "target_candidate_id": "H8PA15195",
@@ -2885,6 +3243,20 @@
       "date": "2026-02-04"
     },
     {
+      "committee_id": "C90023599",
+      "committee": "CAMPAIGN FOR WORKING CLASS COMMUNITIES",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "GOTV CALLS",
+      "category": "Television and media buys",
+      "payee": "KONDO-LISTER, CHRISTINE",
+      "payee_city": "FOLSOM",
+      "payee_state": "CA",
+      "amount": 232.79,
+      "date": "2026-09-30"
+    },
+    {
       "committee_id": "C00004036",
       "committee": "SEIU COPE (SERVICE EMPLOYEES INTERNATIONAL UNION COMMITTEE ON POLITICAL EDUCATION)",
       "target_candidate_id": "H6PA07188",
@@ -2897,6 +3269,48 @@
       "payee_state": "CA",
       "amount": 231.9,
       "date": "2026-08-13"
+    },
+    {
+      "committee_id": "C90023599",
+      "committee": "CAMPAIGN FOR WORKING CLASS COMMUNITIES",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "GOTV CALLS",
+      "category": "Television and media buys",
+      "payee": "ORIHUELA, DAISY",
+      "payee_city": "WINTER GARDEN",
+      "payee_state": "FL",
+      "amount": 219.86,
+      "date": "2026-09-30"
+    },
+    {
+      "committee_id": "C90023599",
+      "committee": "CAMPAIGN FOR WORKING CLASS COMMUNITIES",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "GOTV CALLS",
+      "category": "Television and media buys",
+      "payee": "OSKEYEVA, BAKHYTZHAN",
+      "payee_city": "CORNELIUS",
+      "payee_state": "NC",
+      "amount": 213.39,
+      "date": "2026-09-30"
+    },
+    {
+      "committee_id": "C90023599",
+      "committee": "CAMPAIGN FOR WORKING CLASS COMMUNITIES",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "GOTV CALLS",
+      "category": "Television and media buys",
+      "payee": "MAGUIRE, RYAN",
+      "payee_city": "ROSEVILLE",
+      "payee_state": "CA",
+      "amount": 213.39,
+      "date": "2026-09-30"
     },
     {
       "committee_id": "C90023748",
@@ -2927,6 +3341,20 @@
       "date": "2026-09-21"
     },
     {
+      "committee_id": "C90023599",
+      "committee": "CAMPAIGN FOR WORKING CLASS COMMUNITIES",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "STAFF - GOTV CANVASSING",
+      "category": "Canvassing and field",
+      "payee": "PEHRSON, GREG",
+      "payee_city": "BLOOMINGTON",
+      "payee_state": "IL",
+      "amount": 198.02,
+      "date": "2026-09-30"
+    },
+    {
       "committee_id": "C00909465",
       "committee": "INDIGO PAC",
       "target_candidate_id": "H8PA15195",
@@ -2941,6 +3369,20 @@
       "date": "2025-10-27"
     },
     {
+      "committee_id": "C90023599",
+      "committee": "CAMPAIGN FOR WORKING CLASS COMMUNITIES",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "GOTV CALLS",
+      "category": "Television and media buys",
+      "payee": "CRACKET, JOSHUA",
+      "payee_city": "WILKES BARRE",
+      "payee_state": "PA",
+      "amount": 194.0,
+      "date": "2026-09-30"
+    },
+    {
       "committee_id": "C00742205",
       "committee": "SURJ PAC",
       "target_candidate_id": "H6PA07188",
@@ -2953,6 +3395,34 @@
       "payee_state": "GA",
       "amount": 187.51,
       "date": "2026-05-29"
+    },
+    {
+      "committee_id": "C90023599",
+      "committee": "CAMPAIGN FOR WORKING CLASS COMMUNITIES",
+      "target_candidate_id": "H8PA15195",
+      "target_candidate": "Ryan Mackenzie",
+      "support_oppose": "O",
+      "description": "CAMPAIGN LITERATURE",
+      "category": "Mail and print",
+      "payee": "LV PRINT CENTER",
+      "payee_city": "ALLENTOWN",
+      "payee_state": "PA",
+      "amount": 185.5,
+      "date": "2026-07-17"
+    },
+    {
+      "committee_id": "C90023599",
+      "committee": "CAMPAIGN FOR WORKING CLASS COMMUNITIES",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "GOTV CALLS",
+      "category": "Television and media buys",
+      "payee": "WATSON, TINA",
+      "payee_city": "CONWAY",
+      "payee_state": "NC",
+      "amount": 181.06,
+      "date": "2026-09-30"
     },
     {
       "committee_id": "C90020058",
@@ -3025,6 +3495,76 @@
       "date": "2026-07-13"
     },
     {
+      "committee_id": "C90023599",
+      "committee": "CAMPAIGN FOR WORKING CLASS COMMUNITIES",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "GOTV CALLS",
+      "category": "Television and media buys",
+      "payee": "CRACKET, JOSHUA",
+      "payee_city": "WILKES BARRE",
+      "payee_state": "PA",
+      "amount": 151.17,
+      "date": "2026-09-14"
+    },
+    {
+      "committee_id": "C90023599",
+      "committee": "CAMPAIGN FOR WORKING CLASS COMMUNITIES",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "GOTV CALLS",
+      "category": "Television and media buys",
+      "payee": "DICKEY, KYLE",
+      "payee_city": "WHEELING",
+      "payee_state": "WV",
+      "amount": 148.73,
+      "date": "2026-09-30"
+    },
+    {
+      "committee_id": "C90023599",
+      "committee": "CAMPAIGN FOR WORKING CLASS COMMUNITIES",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "GOTV CALLS",
+      "category": "Television and media buys",
+      "payee": "NITSCHKE, KYLE",
+      "payee_city": "FLAGSTAFF",
+      "payee_state": "AZ",
+      "amount": 142.77,
+      "date": "2026-09-14"
+    },
+    {
+      "committee_id": "C90023599",
+      "committee": "CAMPAIGN FOR WORKING CLASS COMMUNITIES",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "GOTV CALLS",
+      "category": "Television and media buys",
+      "payee": "KONDO-LISTER, CHRISTINE",
+      "payee_city": "FOLSOM",
+      "payee_state": "CA",
+      "amount": 142.77,
+      "date": "2026-09-14"
+    },
+    {
+      "committee_id": "C90023599",
+      "committee": "CAMPAIGN FOR WORKING CLASS COMMUNITIES",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "GOTV CALLS",
+      "category": "Television and media buys",
+      "payee": "MALWAL, ACHWIL",
+      "payee_city": "GOFFSTOWN",
+      "payee_state": "NH",
+      "amount": 142.26,
+      "date": "2026-09-30"
+    },
+    {
       "committee_id": "C00955138",
       "committee": "BUILDING TOGETHER",
       "target_candidate_id": "H6PA07188",
@@ -3053,6 +3593,62 @@
       "date": "2025-09-29"
     },
     {
+      "committee_id": "C90023599",
+      "committee": "CAMPAIGN FOR WORKING CLASS COMMUNITIES",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "GOTV CANVASSING",
+      "category": "Canvassing and field",
+      "payee": "PEHRSON, GREG",
+      "payee_city": "BLOOMINGTON",
+      "payee_state": "IL",
+      "amount": 132.01,
+      "date": "2026-09-15"
+    },
+    {
+      "committee_id": "C90023599",
+      "committee": "CAMPAIGN FOR WORKING CLASS COMMUNITIES",
+      "target_candidate_id": "H8PA15195",
+      "target_candidate": "Ryan Mackenzie",
+      "support_oppose": "O",
+      "description": "GOTV CANVASSING",
+      "category": "Canvassing and field",
+      "payee": "PEHRSON, GREG",
+      "payee_city": "BLOOMINGTON",
+      "payee_state": "IL",
+      "amount": 132.01,
+      "date": "2026-08-30"
+    },
+    {
+      "committee_id": "C90023599",
+      "committee": "CAMPAIGN FOR WORKING CLASS COMMUNITIES",
+      "target_candidate_id": "H8PA15195",
+      "target_candidate": "Ryan Mackenzie",
+      "support_oppose": "O",
+      "description": "GOTV CANVASSING",
+      "category": "Canvassing and field",
+      "payee": "PEHRSON, GREG",
+      "payee_city": "BLOOMINGTON",
+      "payee_state": "IL",
+      "amount": 132.01,
+      "date": "2026-08-15"
+    },
+    {
+      "committee_id": "C90023599",
+      "committee": "CAMPAIGN FOR WORKING CLASS COMMUNITIES",
+      "target_candidate_id": "H8PA15195",
+      "target_candidate": "Ryan Mackenzie",
+      "support_oppose": "O",
+      "description": "GOTV CANVASSING",
+      "category": "Canvassing and field",
+      "payee": "PEHRSON, GREG",
+      "payee_city": "BLOOMINGTON",
+      "payee_state": "IL",
+      "amount": 132.01,
+      "date": "2026-07-31"
+    },
+    {
       "committee_id": "C00909994",
       "committee": "FIELD TEAM 6, INC.",
       "target_candidate_id": "H6PA07188",
@@ -3067,6 +3663,20 @@
       "date": "2026-08-05"
     },
     {
+      "committee_id": "C90023599",
+      "committee": "CAMPAIGN FOR WORKING CLASS COMMUNITIES",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "GOTV CALLS",
+      "category": "Television and media buys",
+      "payee": "MALWAL, ACHWIL",
+      "payee_city": "GOFFSTOWN",
+      "payee_state": "NH",
+      "amount": 125.6,
+      "date": "2026-09-15"
+    },
+    {
       "committee_id": "C00640300",
       "committee": "ACTIVATE AMERICA",
       "target_candidate_id": "H8PA15195",
@@ -3079,6 +3689,48 @@
       "payee_state": "CA",
       "amount": 124.9,
       "date": "2025-06-12"
+    },
+    {
+      "committee_id": "C90023599",
+      "committee": "CAMPAIGN FOR WORKING CLASS COMMUNITIES",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "GOTV CALLS",
+      "category": "Television and media buys",
+      "payee": "ORIHUELA, DAISY",
+      "payee_city": "WINTER GARDEN",
+      "payee_state": "FL",
+      "amount": 117.57,
+      "date": "2026-09-14"
+    },
+    {
+      "committee_id": "C90023599",
+      "committee": "CAMPAIGN FOR WORKING CLASS COMMUNITIES",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "GOTV CALLS",
+      "category": "Television and media buys",
+      "payee": "BARKER, L'YANNA",
+      "payee_city": "WASHINGTON",
+      "payee_state": "DC",
+      "amount": 116.4,
+      "date": "2026-09-30"
+    },
+    {
+      "committee_id": "C90023599",
+      "committee": "CAMPAIGN FOR WORKING CLASS COMMUNITIES",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "GOTV CALLS",
+      "category": "Television and media buys",
+      "payee": "MAGUIRE, RYAN",
+      "payee_city": "ROSEVILLE",
+      "payee_state": "CA",
+      "amount": 100.78,
+      "date": "2026-09-14"
     },
     {
       "committee_id": "C00948109",
@@ -3109,6 +3761,20 @@
       "date": "2025-04-24"
     },
     {
+      "committee_id": "C90023599",
+      "committee": "CAMPAIGN FOR WORKING CLASS COMMUNITIES",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "GOTV CALLS",
+      "category": "Television and media buys",
+      "payee": "MARTINEZ, LAURA",
+      "payee_city": "SAN FRANCISCO",
+      "payee_state": "CA",
+      "amount": 92.38,
+      "date": "2026-09-14"
+    },
+    {
       "committee_id": "C00909994",
       "committee": "FIELD TEAM 6, INC.",
       "target_candidate_id": "H6PA07188",
@@ -3135,6 +3801,20 @@
       "payee_state": "NY",
       "amount": 85.38,
       "date": "2026-06-28"
+    },
+    {
+      "committee_id": "C90023599",
+      "committee": "CAMPAIGN FOR WORKING CLASS COMMUNITIES",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "GOTV CALLS",
+      "category": "Television and media buys",
+      "payee": "BARKER, L'YANNA",
+      "payee_city": "WASHINGTON",
+      "payee_state": "DC",
+      "amount": 79.78,
+      "date": "2026-09-14"
     },
     {
       "committee_id": "C00909465",
@@ -3165,6 +3845,20 @@
       "date": "2026-05-19"
     },
     {
+      "committee_id": "C90023599",
+      "committee": "CAMPAIGN FOR WORKING CLASS COMMUNITIES",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "GOTV CALLS",
+      "category": "Television and media buys",
+      "payee": "JAMES, TASHIA",
+      "payee_city": "HARRISBURG",
+      "payee_state": "PA",
+      "amount": 71.13,
+      "date": "2026-09-30"
+    },
+    {
       "committee_id": "C90020058",
       "committee": "RED WINE AND BLUE",
       "target_candidate_id": "H6PA07188",
@@ -3177,6 +3871,34 @@
       "payee_state": "OH",
       "amount": 69.09,
       "date": "2026-09-09"
+    },
+    {
+      "committee_id": "C90023599",
+      "committee": "CAMPAIGN FOR WORKING CLASS COMMUNITIES",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "GOTV CALLS",
+      "category": "Television and media buys",
+      "payee": "TORRALBA, SELAH",
+      "payee_city": "NASHVILLE",
+      "payee_state": "TN",
+      "amount": 67.19,
+      "date": "2026-09-14"
+    },
+    {
+      "committee_id": "C90023599",
+      "committee": "CAMPAIGN FOR WORKING CLASS COMMUNITIES",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "GOTV CALLS",
+      "category": "Television and media buys",
+      "payee": "MERELLO, ADALINA",
+      "payee_city": "EUGENE",
+      "payee_state": "OR",
+      "amount": 67.19,
+      "date": "2026-09-14"
     },
     {
       "committee_id": "C00933796",
@@ -3193,6 +3915,20 @@
       "date": "2026-04-20"
     },
     {
+      "committee_id": "C90023599",
+      "committee": "CAMPAIGN FOR WORKING CLASS COMMUNITIES",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "GOTV CALLS",
+      "category": "Television and media buys",
+      "payee": "STREHLOW, RYAN",
+      "payee_city": "LOVELAND",
+      "payee_state": "CO",
+      "amount": 58.2,
+      "date": "2026-09-30"
+    },
+    {
       "committee_id": "C00909465",
       "committee": "INDIGO PAC",
       "target_candidate_id": "H8PA15195",
@@ -3205,6 +3941,20 @@
       "payee_state": "CA",
       "amount": 55.0,
       "date": "2025-09-15"
+    },
+    {
+      "committee_id": "C90023599",
+      "committee": "CAMPAIGN FOR WORKING CLASS COMMUNITIES",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "GOTV CALLS",
+      "category": "Television and media buys",
+      "payee": "MERELLO, ADALINA",
+      "payee_city": "EUGENE",
+      "payee_state": "OR",
+      "amount": 51.73,
+      "date": "2026-09-30"
     },
     {
       "committee_id": "C90023748",
@@ -3233,6 +3983,62 @@
       "payee_state": "DC",
       "amount": 50.0,
       "date": "2026-05-21"
+    },
+    {
+      "committee_id": "C90023599",
+      "committee": "CAMPAIGN FOR WORKING CLASS COMMUNITIES",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "GOTV CALLS AND TEXTS",
+      "category": "Texting and phone calls",
+      "payee": "SCALE TO WIN",
+      "payee_city": "SAN FRANCISCO",
+      "payee_state": "CA",
+      "amount": 42.72,
+      "date": "2026-09-21"
+    },
+    {
+      "committee_id": "C90023599",
+      "committee": "CAMPAIGN FOR WORKING CLASS COMMUNITIES",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "GOTV CALLS",
+      "category": "Television and media buys",
+      "payee": "STREHLOW, RYAN",
+      "payee_city": "LOVELAND",
+      "payee_state": "CO",
+      "amount": 41.99,
+      "date": "2026-09-14"
+    },
+    {
+      "committee_id": "C90023599",
+      "committee": "CAMPAIGN FOR WORKING CLASS COMMUNITIES",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "GOTV CALLS",
+      "category": "Television and media buys",
+      "payee": "JAMES, TASHIA",
+      "payee_city": "HARRISBURG",
+      "payee_state": "PA",
+      "amount": 41.99,
+      "date": "2026-09-14"
+    },
+    {
+      "committee_id": "C90023599",
+      "committee": "CAMPAIGN FOR WORKING CLASS COMMUNITIES",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "GOTV CALLS",
+      "category": "Television and media buys",
+      "payee": "DICKEY, KYLE",
+      "payee_city": "WHEELING",
+      "payee_state": "WV",
+      "amount": 41.99,
+      "date": "2026-09-14"
     },
     {
       "committee_id": "C00489799",
@@ -3317,6 +4123,34 @@
       "payee_state": "PA",
       "amount": 35.68,
       "date": "2026-04-02"
+    },
+    {
+      "committee_id": "C90023599",
+      "committee": "CAMPAIGN FOR WORKING CLASS COMMUNITIES",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "GOTV CALLS",
+      "category": "Television and media buys",
+      "payee": "TORRALBA, SELAH",
+      "payee_city": "NASHVILLE",
+      "payee_state": "TN",
+      "amount": 32.33,
+      "date": "2026-09-30"
+    },
+    {
+      "committee_id": "C90023599",
+      "committee": "CAMPAIGN FOR WORKING CLASS COMMUNITIES",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "GOTV CALLS",
+      "category": "Television and media buys",
+      "payee": "ABUNDANT RESISTANCE CONSULTING LLC",
+      "payee_city": "WASHINGTON",
+      "payee_state": "DC",
+      "amount": 32.33,
+      "date": "2026-09-30"
     },
     {
       "committee_id": "C00802389",
