@@ -1,7 +1,7 @@
 {
   "source": "FEC / OpenFEC API",
   "url": "https://www.fec.gov/data/elections/house/PA/07/2026/",
-  "retrieved_utc": "2026-11-06T16:55:14Z",
+  "retrieved_utc": "2026-11-10T17:12:29Z",
   "cycle": 2026,
   "coverage_through": "2026-10-14",
   "candidates": [
@@ -376,6 +376,24 @@
       "target_candidate": "Ryan Crosswell"
     },
     {
+      "committee_id": "C00879510",
+      "committee": "AMERICA PAC",
+      "target_candidate_id": "H6PA07188",
+      "support_oppose": "O",
+      "amount": 69931.97,
+      "filings": 5,
+      "target_candidate": "Bob Brooks"
+    },
+    {
+      "committee_id": "C00879510",
+      "committee": "AMERICA PAC",
+      "target_candidate_id": "H8PA15195",
+      "support_oppose": "S",
+      "amount": 53477.55,
+      "filings": 3,
+      "target_candidate": "Ryan Mackenzie"
+    },
+    {
       "committee_id": "C00573261",
       "committee": "END CITIZENS UNITED",
       "target_candidate_id": "H8PA15195",
@@ -466,6 +484,15 @@
       "target_candidate": "Bob Brooks"
     },
     {
+      "committee_id": "C00612820",
+      "committee": "COMMUNITY CHANGE VOTERS",
+      "target_candidate_id": "H6PA07188",
+      "support_oppose": "S",
+      "amount": 15865.0,
+      "filings": 2,
+      "target_candidate": "Bob Brooks"
+    },
+    {
       "committee_id": "C90020231",
       "committee": "THOMAS PAINE SOCIETY L.L.C.",
       "target_candidate_id": "H6PA07188",
@@ -473,6 +500,15 @@
       "amount": 15852.0,
       "filings": 5,
       "target_candidate": "Bob Brooks"
+    },
+    {
+      "committee_id": "C00879965",
+      "committee": "DRIVING FORCE ACTION",
+      "target_candidate_id": "H8PA15195",
+      "support_oppose": "S",
+      "amount": 10645.0,
+      "filings": 2,
+      "target_candidate": "Ryan Mackenzie"
     },
     {
       "committee_id": "C00800995",
@@ -583,6 +619,15 @@
       "target_candidate": "Bob Brooks"
     },
     {
+      "committee_id": "C00909994",
+      "committee": "FIELD TEAM 6, INC.",
+      "target_candidate_id": "H6PA07188",
+      "support_oppose": "S",
+      "amount": 2441.08,
+      "filings": 14,
+      "target_candidate": "Bob Brooks"
+    },
+    {
       "committee_id": "C00909465",
       "committee": "INDIGO PAC",
       "target_candidate_id": "H8PA15195",
@@ -608,15 +653,6 @@
       "amount": 1517.06,
       "filings": 1,
       "target_candidate": "Ryan Mackenzie"
-    },
-    {
-      "committee_id": "C00909994",
-      "committee": "FIELD TEAM 6, INC.",
-      "target_candidate_id": "H6PA07188",
-      "support_oppose": "S",
-      "amount": 1299.08,
-      "filings": 6,
-      "target_candidate": "Bob Brooks"
     },
     {
       "committee_id": "C00909994",
@@ -1227,6 +1263,20 @@
       "date": "2026-05-07"
     },
     {
+      "committee_id": "C00879510",
+      "committee": "AMERICA PAC",
+      "target_candidate_id": "H8PA15195",
+      "target_candidate": "Ryan Mackenzie",
+      "support_oppose": "S",
+      "description": "MESSAGE PHONE CALLS",
+      "category": "Texting and phone calls",
+      "payee": "CONNECTION STRATEGY LLC",
+      "payee_city": "HUDSON",
+      "payee_state": "WI",
+      "amount": 47089.9,
+      "date": "2026-09-10"
+    },
+    {
       "committee_id": "C00936153",
       "committee": "STRONGER TOGETHER PA",
       "target_candidate_id": "H6PA07188",
@@ -1339,6 +1389,20 @@
       "date": "2026-09-17"
     },
     {
+      "committee_id": "C00879510",
+      "committee": "AMERICA PAC",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "O",
+      "description": "DIGITAL MEDIA",
+      "category": "Digital advertising",
+      "payee": "IMGE LLC",
+      "payee_city": "WASHINGTON",
+      "payee_state": "DC",
+      "amount": 29085.64,
+      "date": "2026-09-24"
+    },
+    {
       "committee_id": "C00936153",
       "committee": "STRONGER TOGETHER PA",
       "target_candidate_id": "H6PA07188",
@@ -1435,6 +1499,20 @@
       "payee_state": "PA",
       "amount": 25000.0,
       "date": "2026-04-16"
+    },
+    {
+      "committee_id": "C00879510",
+      "committee": "AMERICA PAC",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "O",
+      "description": "PRINTING/POSTAGE",
+      "category": "Mail and print",
+      "payee": "STORYTELLERS GROUP LLC",
+      "payee_city": "GALLATIN",
+      "payee_state": "TN",
+      "amount": 24521.5,
+      "date": "2026-09-18"
     },
     {
       "committee_id": "C00895730",
@@ -1731,6 +1809,20 @@
       "date": "2025-12-21"
     },
     {
+      "committee_id": "C00612820",
+      "committee": "COMMUNITY CHANGE VOTERS",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "PERSUASION CALLS",
+      "category": "Other",
+      "payee": "CROWDWAVE CAMPAIGNS, LLC",
+      "payee_city": "SARASOTA",
+      "payee_state": "FL",
+      "amount": 11303.1,
+      "date": "2026-08-27"
+    },
+    {
       "committee_id": "C00934059",
       "committee": "SENIORS EMPOWERING AN EFFECTIVE DEMOCRACY (SEED-PAC)",
       "target_candidate_id": "H6PA07188",
@@ -1955,6 +2047,20 @@
       "date": "2026-09-23"
     },
     {
+      "committee_id": "C00879510",
+      "committee": "AMERICA PAC",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "O",
+      "description": "TEXTING SERVICE",
+      "category": "Texting and phone calls",
+      "payee": "IMGE LLC",
+      "payee_city": "WASHINGTON",
+      "payee_state": "DC",
+      "amount": 7778.75,
+      "date": "2026-09-29"
+    },
+    {
       "committee_id": "C00573261",
       "committee": "END CITIZENS UNITED",
       "target_candidate_id": "H8PA15195",
@@ -2011,6 +2117,20 @@
       "date": "2026-04-17"
     },
     {
+      "committee_id": "C00879965",
+      "committee": "DRIVING FORCE ACTION",
+      "target_candidate_id": "H8PA15195",
+      "target_candidate": "Ryan Mackenzie",
+      "support_oppose": "S",
+      "description": "MEDIA BUY",
+      "category": "Television and media buys",
+      "payee": "OPTIMATES LLC",
+      "payee_city": "ALEXANDRIA",
+      "payee_state": "VA",
+      "amount": 6387.0,
+      "date": "2026-09-30"
+    },
+    {
       "committee_id": "C00495028",
       "committee": "HMP",
       "target_candidate_id": "H8PA15195",
@@ -2037,6 +2157,34 @@
       "payee_state": "TX",
       "amount": 6044.0,
       "date": "2025-04-14"
+    },
+    {
+      "committee_id": "C00879510",
+      "committee": "AMERICA PAC",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "O",
+      "description": "PRINTING",
+      "category": "Mail and print",
+      "payee": "STORYTELLERS GROUP LLC",
+      "payee_city": "GALLATIN",
+      "payee_state": "TN",
+      "amount": 5887.65,
+      "date": "2026-08-21"
+    },
+    {
+      "committee_id": "C00879510",
+      "committee": "AMERICA PAC",
+      "target_candidate_id": "H8PA15195",
+      "target_candidate": "Ryan Mackenzie",
+      "support_oppose": "S",
+      "description": "PRINTING",
+      "category": "Mail and print",
+      "payee": "STORYTELLERS GROUP LLC",
+      "payee_city": "GALLATIN",
+      "payee_state": "TN",
+      "amount": 5887.65,
+      "date": "2026-08-21"
     },
     {
       "committee_id": "C00495028",
@@ -2123,6 +2271,20 @@
       "date": "2026-05-18"
     },
     {
+      "committee_id": "C00612820",
+      "committee": "COMMUNITY CHANGE VOTERS",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "PERSUASION CALLS",
+      "category": "Other",
+      "payee": "CROWDWAVE CAMPAIGNS, LLC",
+      "payee_city": "SARASOTA",
+      "payee_state": "FL",
+      "amount": 4561.9,
+      "date": "2026-08-21"
+    },
+    {
       "committee_id": "C00941724",
       "committee": "INTEGRITY PAC",
       "target_candidate_id": "H6PA07162",
@@ -2135,6 +2297,20 @@
       "payee_state": "IL",
       "amount": 4500.0,
       "date": "2026-05-15"
+    },
+    {
+      "committee_id": "C00879965",
+      "committee": "DRIVING FORCE ACTION",
+      "target_candidate_id": "H8PA15195",
+      "target_candidate": "Ryan Mackenzie",
+      "support_oppose": "S",
+      "description": "MEDIA BUY",
+      "category": "Television and media buys",
+      "payee": "OPTIMATES LLC",
+      "payee_city": "ALEXANDRIA",
+      "payee_state": "VA",
+      "amount": 4258.0,
+      "date": "2026-09-24"
     },
     {
       "committee_id": "C00897363",
@@ -2373,6 +2549,20 @@
       "payee_state": "PA",
       "amount": 2922.14,
       "date": "2026-09-25"
+    },
+    {
+      "committee_id": "C00879510",
+      "committee": "AMERICA PAC",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "O",
+      "description": "TEXTING SERVICE",
+      "category": "Texting and phone calls",
+      "payee": "IMGE LLC",
+      "payee_city": "WASHINGTON",
+      "payee_state": "DC",
+      "amount": 2658.43,
+      "date": "2026-09-24"
     },
     {
       "committee_id": "C90023599",
@@ -2725,6 +2915,20 @@
       "date": "2026-08-13"
     },
     {
+      "committee_id": "C00909994",
+      "committee": "FIELD TEAM 6, INC.",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "SMS TEXTING",
+      "category": "Texting and phone calls",
+      "payee": "MOMENTOUS OUTREACH INC",
+      "payee_city": "LOS ANGELES",
+      "payee_state": "CA",
+      "amount": 897.36,
+      "date": "2026-10-14"
+    },
+    {
       "committee_id": "C00897363",
       "committee": "BLUE MAJORITY PROJECT",
       "target_candidate_id": "H6PA07188",
@@ -2905,6 +3109,20 @@
       "payee_state": "CA",
       "amount": 530.05,
       "date": "2026-08-07"
+    },
+    {
+      "committee_id": "C00879510",
+      "committee": "AMERICA PAC",
+      "target_candidate_id": "H8PA15195",
+      "target_candidate": "Ryan Mackenzie",
+      "support_oppose": "S",
+      "description": "PRINTING",
+      "category": "Mail and print",
+      "payee": "STORYTELLERS GROUP LLC",
+      "payee_city": "GALLATIN",
+      "payee_state": "TN",
+      "amount": 500.0,
+      "date": "2026-08-27"
     },
     {
       "committee_id": "C90023599",
@@ -3593,6 +3811,20 @@
       "date": "2025-09-29"
     },
     {
+      "committee_id": "C00909994",
+      "committee": "FIELD TEAM 6, INC.",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "EMAIL SERVICES",
+      "category": "Email",
+      "payee": "MOMENTOUS OUTREACH INC",
+      "payee_city": "LOS ANGELES",
+      "payee_state": "CA",
+      "amount": 136.35,
+      "date": "2026-10-14"
+    },
+    {
       "committee_id": "C90023599",
       "committee": "CAMPAIGN FOR WORKING CLASS COMMUNITIES",
       "target_candidate_id": "H6PA07188",
@@ -3985,6 +4217,34 @@
       "date": "2026-05-21"
     },
     {
+      "committee_id": "C00909994",
+      "committee": "FIELD TEAM 6, INC.",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "EMAIL SERVICES",
+      "category": "Email",
+      "payee": "MOMENTOUS OUTREACH INC",
+      "payee_city": "LOS ANGELES",
+      "payee_state": "CA",
+      "amount": 46.02,
+      "date": "2026-10-14"
+    },
+    {
+      "committee_id": "C00909994",
+      "committee": "FIELD TEAM 6, INC.",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "EMAIL SERVICES",
+      "category": "Email",
+      "payee": "MOMENTOUS OUTREACH INC",
+      "payee_city": "LOS ANGELES",
+      "payee_state": "CA",
+      "amount": 46.02,
+      "date": "2026-10-14"
+    },
+    {
       "committee_id": "C90023599",
       "committee": "CAMPAIGN FOR WORKING CLASS COMMUNITIES",
       "target_candidate_id": "H6PA07188",
@@ -4223,6 +4483,20 @@
       "date": "2026-09-22"
     },
     {
+      "committee_id": "C00909994",
+      "committee": "FIELD TEAM 6, INC.",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "EMAIL SERVICES",
+      "category": "Email",
+      "payee": "MOMENTOUS OUTREACH INC",
+      "payee_city": "LOS ANGELES",
+      "payee_state": "CA",
+      "amount": 9.83,
+      "date": "2026-10-14"
+    },
+    {
       "committee_id": "C00802389",
       "committee": "GIVEGREEN UNITED ACTION",
       "target_candidate_id": "H6PA07188",
@@ -4235,6 +4509,20 @@
       "payee_state": "MD",
       "amount": 7.5,
       "date": "2026-09-10"
+    },
+    {
+      "committee_id": "C00909994",
+      "committee": "FIELD TEAM 6, INC.",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "EMAIL SERVICES",
+      "category": "Email",
+      "payee": "MOMENTOUS OUTREACH INC",
+      "payee_city": "LOS ANGELES",
+      "payee_state": "CA",
+      "amount": 5.69,
+      "date": "2026-10-14"
     },
     {
       "committee_id": "C00802389",
@@ -4263,6 +4551,34 @@
       "payee_state": "DC",
       "amount": 3.73,
       "date": "2026-08-13"
+    },
+    {
+      "committee_id": "C00909994",
+      "committee": "FIELD TEAM 6, INC.",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "EMAIL SERVICES",
+      "category": "Email",
+      "payee": "MOMENTOUS OUTREACH INC",
+      "payee_city": "LOS ANGELES",
+      "payee_state": "CA",
+      "amount": 0.53,
+      "date": "2026-10-14"
+    },
+    {
+      "committee_id": "C00909994",
+      "committee": "FIELD TEAM 6, INC.",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "EMAIL SERVICES",
+      "category": "Email",
+      "payee": "MOMENTOUS OUTREACH INC",
+      "payee_city": "LOS ANGELES",
+      "payee_state": "CA",
+      "amount": 0.2,
+      "date": "2026-10-14"
     }
   ],
   "notes": [
