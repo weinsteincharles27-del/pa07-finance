@@ -1,7 +1,7 @@
 {
   "source": "FEC / OpenFEC API",
   "url": "https://www.fec.gov/data/elections/house/PA/07/2026/",
-  "retrieved_utc": "2026-11-10T17:12:29Z",
+  "retrieved_utc": "2026-11-12T11:48:39Z",
   "cycle": 2026,
   "coverage_through": "2026-10-14",
   "candidates": [
@@ -331,6 +331,15 @@
       "target_candidate": "Bob Brooks"
     },
     {
+      "committee_id": "C00906701",
+      "committee": "AMERICA FIRST AGRICULTURE ACTION INC.",
+      "target_candidate_id": "H8PA15195",
+      "support_oppose": "S",
+      "amount": 239076.28,
+      "filings": 2,
+      "target_candidate": "Ryan Mackenzie"
+    },
+    {
       "committee_id": "C00513176",
       "committee": "CONGRESSIONAL PROGRESSIVE CAUCUS PAC",
       "target_candidate_id": "H6PA07188",
@@ -484,6 +493,15 @@
       "target_candidate": "Bob Brooks"
     },
     {
+      "committee_id": "C00955104",
+      "committee": "RETIRED AMERICANS ACTION",
+      "target_candidate_id": "H8PA15195",
+      "support_oppose": "O",
+      "amount": 16477.97,
+      "filings": 1,
+      "target_candidate": "Ryan Mackenzie"
+    },
+    {
       "committee_id": "C00612820",
       "committee": "COMMUNITY CHANGE VOTERS",
       "target_candidate_id": "H6PA07188",
@@ -607,6 +625,15 @@
       "support_oppose": "S",
       "amount": 3060.85,
       "filings": 8,
+      "target_candidate": "Bob Brooks"
+    },
+    {
+      "committee_id": "C00755363",
+      "committee": "VOTE FOR EQUALITY",
+      "target_candidate_id": "H6PA07188",
+      "support_oppose": "S",
+      "amount": 3042.32,
+      "filings": 21,
       "target_candidate": "Bob Brooks"
     },
     {
@@ -883,6 +910,20 @@
       "payee_state": "CA",
       "amount": 249750.0,
       "date": "2026-05-15"
+    },
+    {
+      "committee_id": "C00906701",
+      "committee": "AMERICA FIRST AGRICULTURE ACTION INC.",
+      "target_candidate_id": "H8PA15195",
+      "target_candidate": "Ryan Mackenzie",
+      "support_oppose": "S",
+      "description": "DIGITAL ADVERTISING",
+      "category": "Digital advertising",
+      "payee": "STRATEGIC MEDIA PLACEMENT INC.",
+      "payee_city": "DELAWARE",
+      "payee_state": "OH",
+      "amount": 229476.28,
+      "date": "2026-09-16"
     },
     {
       "committee_id": "C00504530",
@@ -1669,6 +1710,20 @@
       "date": "2026-05-13"
     },
     {
+      "committee_id": "C00955104",
+      "committee": "RETIRED AMERICANS ACTION",
+      "target_candidate_id": "H8PA15195",
+      "target_candidate": "Ryan Mackenzie",
+      "support_oppose": "O",
+      "description": "ADVERTISEMENT PRODUCTION",
+      "category": "Production",
+      "payee": "ALPER STRATEGIES",
+      "payee_city": "GROSSE POINTE",
+      "payee_state": "MI",
+      "amount": 16477.97,
+      "date": "2026-09-15"
+    },
+    {
       "committee_id": "C00941724",
       "committee": "INTEGRITY PAC",
       "target_candidate_id": "H6PA07162",
@@ -1905,6 +1960,20 @@
       "payee_state": "PA",
       "amount": 10000.0,
       "date": "2026-05-07"
+    },
+    {
+      "committee_id": "C00906701",
+      "committee": "AMERICA FIRST AGRICULTURE ACTION INC.",
+      "target_candidate_id": "H8PA15195",
+      "target_candidate": "Ryan Mackenzie",
+      "support_oppose": "S",
+      "description": "PRODUCTION COSTS: DIGITAL AD",
+      "category": "Digital advertising",
+      "payee": "STRATEGIC MEDIA PLACEMENT INC.",
+      "payee_city": "DELAWARE",
+      "payee_state": "OH",
+      "amount": 9600.0,
+      "date": "2026-09-16"
     },
     {
       "committee_id": "C00948208",
@@ -3111,6 +3180,34 @@
       "date": "2026-08-07"
     },
     {
+      "committee_id": "C00755363",
+      "committee": "VOTE FOR EQUALITY",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "SALARY",
+      "category": "Other",
+      "payee": "FLEISCHAUER, BARBARA",
+      "payee_city": "MORGANTOWN",
+      "payee_state": "WV",
+      "amount": 500.0,
+      "date": "2026-09-25"
+    },
+    {
+      "committee_id": "C00755363",
+      "committee": "VOTE FOR EQUALITY",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "SALARY",
+      "category": "Other",
+      "payee": "DERING, ADRIANNE",
+      "payee_city": "MORGANTOWN",
+      "payee_state": "WV",
+      "amount": 500.0,
+      "date": "2026-09-25"
+    },
+    {
       "committee_id": "C00879510",
       "committee": "AMERICA PAC",
       "target_candidate_id": "H8PA15195",
@@ -3263,6 +3360,20 @@
       "payee_state": "CA",
       "amount": 346.0,
       "date": "2025-10-20"
+    },
+    {
+      "committee_id": "C00755363",
+      "committee": "VOTE FOR EQUALITY",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "SALARY",
+      "category": "Other",
+      "payee": "KUHN, MAZIE",
+      "payee_city": "WASHINGTON",
+      "payee_state": "DC",
+      "amount": 320.0,
+      "date": "2026-09-25"
     },
     {
       "committee_id": "C00909465",
@@ -3601,6 +3712,20 @@
       "date": "2026-09-30"
     },
     {
+      "committee_id": "C00755363",
+      "committee": "VOTE FOR EQUALITY",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "SALARY",
+      "category": "Other",
+      "payee": "ALEXANDER, SIMONE",
+      "payee_city": "WASHINGTON",
+      "payee_state": "DC",
+      "amount": 192.0,
+      "date": "2026-09-25"
+    },
+    {
       "committee_id": "C00742205",
       "committee": "SURJ PAC",
       "target_candidate_id": "H6PA07188",
@@ -3655,6 +3780,34 @@
       "payee_state": "OH",
       "amount": 166.97,
       "date": "2026-09-25"
+    },
+    {
+      "committee_id": "C00755363",
+      "committee": "VOTE FOR EQUALITY",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "SALARY",
+      "category": "Other",
+      "payee": "BOYER, ABIGAIL",
+      "payee_city": "WASHINGTON",
+      "payee_state": "DC",
+      "amount": 160.0,
+      "date": "2026-09-25"
+    },
+    {
+      "committee_id": "C00755363",
+      "committee": "VOTE FOR EQUALITY",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "SALARY",
+      "category": "Other",
+      "payee": "GUINDI, SAMANTHA",
+      "payee_city": "WASHINGTON",
+      "payee_state": "DC",
+      "amount": 160.0,
+      "date": "2026-09-14"
     },
     {
       "committee_id": "C00647966",
@@ -3741,6 +3894,20 @@
       "date": "2026-09-30"
     },
     {
+      "committee_id": "C00755363",
+      "committee": "VOTE FOR EQUALITY",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "SALARY",
+      "category": "Other",
+      "payee": "GUINDI, SAMANTHA",
+      "payee_city": "WASHINGTON",
+      "payee_state": "DC",
+      "amount": 145.0,
+      "date": "2026-09-25"
+    },
+    {
       "committee_id": "C90023599",
       "committee": "CAMPAIGN FOR WORKING CLASS COMMUNITIES",
       "target_candidate_id": "H6PA07188",
@@ -3781,6 +3948,20 @@
       "payee_state": "NH",
       "amount": 142.26,
       "date": "2026-09-30"
+    },
+    {
+      "committee_id": "C00755363",
+      "committee": "VOTE FOR EQUALITY",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "SALARY",
+      "category": "Other",
+      "payee": "KUHN, MAZIE",
+      "payee_city": "WASHINGTON",
+      "payee_state": "DC",
+      "amount": 141.0,
+      "date": "2026-09-14"
     },
     {
       "committee_id": "C00955138",
@@ -3923,6 +4104,34 @@
       "date": "2025-06-12"
     },
     {
+      "committee_id": "C00755363",
+      "committee": "VOTE FOR EQUALITY",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "SALARY",
+      "category": "Other",
+      "payee": "FRANZ-FALANGO, MELINA",
+      "payee_city": "WASHINGTON",
+      "payee_state": "DC",
+      "amount": 120.32,
+      "date": "2026-09-25"
+    },
+    {
+      "committee_id": "C00755363",
+      "committee": "VOTE FOR EQUALITY",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "SALARY",
+      "category": "Other",
+      "payee": "ADDY, VICTORIA",
+      "payee_city": "WASHINGTON",
+      "payee_state": "DC",
+      "amount": 120.0,
+      "date": "2026-09-25"
+    },
+    {
       "committee_id": "C90023599",
       "committee": "CAMPAIGN FOR WORKING CLASS COMMUNITIES",
       "target_candidate_id": "H6PA07188",
@@ -3949,6 +4158,34 @@
       "payee_state": "DC",
       "amount": 116.4,
       "date": "2026-09-30"
+    },
+    {
+      "committee_id": "C00755363",
+      "committee": "VOTE FOR EQUALITY",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "SALARY",
+      "category": "Other",
+      "payee": "SHENA, GARBRIELLE",
+      "payee_city": "WASHINGTON",
+      "payee_state": "DC",
+      "amount": 116.0,
+      "date": "2026-09-25"
+    },
+    {
+      "committee_id": "C00755363",
+      "committee": "VOTE FOR EQUALITY",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "SALARY",
+      "category": "Other",
+      "payee": "CHOUDHRY, IQRA",
+      "payee_city": "WASHINGTON",
+      "payee_state": "DC",
+      "amount": 112.0,
+      "date": "2026-09-25"
     },
     {
       "committee_id": "C90023599",
@@ -4105,6 +4342,20 @@
       "date": "2026-09-09"
     },
     {
+      "committee_id": "C00755363",
+      "committee": "VOTE FOR EQUALITY",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "SALARY",
+      "category": "Other",
+      "payee": "CHOUDHRY, IQRA",
+      "payee_city": "WASHINGTON",
+      "payee_state": "DC",
+      "amount": 68.0,
+      "date": "2026-09-14"
+    },
+    {
       "committee_id": "C90023599",
       "committee": "CAMPAIGN FOR WORKING CLASS COMMUNITIES",
       "target_candidate_id": "H6PA07188",
@@ -4130,6 +4381,34 @@
       "payee_city": "EUGENE",
       "payee_state": "OR",
       "amount": 67.19,
+      "date": "2026-09-14"
+    },
+    {
+      "committee_id": "C00755363",
+      "committee": "VOTE FOR EQUALITY",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "SALARY",
+      "category": "Other",
+      "payee": "MJAANES, ELIZABETH",
+      "payee_city": "WASHINGTON",
+      "payee_state": "DC",
+      "amount": 64.0,
+      "date": "2026-09-25"
+    },
+    {
+      "committee_id": "C00755363",
+      "committee": "VOTE FOR EQUALITY",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "SALARY",
+      "category": "Other",
+      "payee": "ALEXANDER, SIMONE",
+      "payee_city": "WASHINGTON",
+      "payee_state": "DC",
+      "amount": 64.0,
       "date": "2026-09-14"
     },
     {
@@ -4161,6 +4440,20 @@
       "date": "2026-09-30"
     },
     {
+      "committee_id": "C00755363",
+      "committee": "VOTE FOR EQUALITY",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "SALARY",
+      "category": "Other",
+      "payee": "AXUM, LONDON",
+      "payee_city": "WASHINGTON",
+      "payee_state": "DC",
+      "amount": 56.0,
+      "date": "2026-09-25"
+    },
+    {
       "committee_id": "C00909465",
       "committee": "INDIGO PAC",
       "target_candidate_id": "H8PA15195",
@@ -4173,6 +4466,20 @@
       "payee_state": "CA",
       "amount": 55.0,
       "date": "2025-09-15"
+    },
+    {
+      "committee_id": "C00755363",
+      "committee": "VOTE FOR EQUALITY",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "SALARY",
+      "category": "Other",
+      "payee": "MJAANES, ELIZABETH",
+      "payee_city": "WASHINGTON",
+      "payee_state": "DC",
+      "amount": 52.0,
+      "date": "2026-09-14"
     },
     {
       "committee_id": "C90023599",
@@ -4215,6 +4522,20 @@
       "payee_state": "DC",
       "amount": 50.0,
       "date": "2026-05-21"
+    },
+    {
+      "committee_id": "C00755363",
+      "committee": "VOTE FOR EQUALITY",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "SALARY",
+      "category": "Other",
+      "payee": "GODFREY, JAYLA",
+      "payee_city": "WASHINGTON",
+      "payee_state": "DC",
+      "amount": 48.0,
+      "date": "2026-09-25"
     },
     {
       "committee_id": "C00909994",
@@ -4313,6 +4634,34 @@
       "payee_state": "NY",
       "amount": 40.38,
       "date": "2026-07-19"
+    },
+    {
+      "committee_id": "C00755363",
+      "committee": "VOTE FOR EQUALITY",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "SALARY",
+      "category": "Other",
+      "payee": "WIDDING, JULIA",
+      "payee_city": "WASHINGTON",
+      "payee_state": "DC",
+      "amount": 40.0,
+      "date": "2026-09-14"
+    },
+    {
+      "committee_id": "C00755363",
+      "committee": "VOTE FOR EQUALITY",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "SALARY",
+      "category": "Other",
+      "payee": "WIDDING, JULIA",
+      "payee_city": "WASHINGTON",
+      "payee_state": "DC",
+      "amount": 40.0,
+      "date": "2026-09-14"
     },
     {
       "committee_id": "C00802389",
@@ -4453,6 +4802,20 @@
       "payee_state": "PA",
       "amount": 24.55,
       "date": "2026-09-20"
+    },
+    {
+      "committee_id": "C00755363",
+      "committee": "VOTE FOR EQUALITY",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "SALARY",
+      "category": "Other",
+      "payee": "SHENA, GARBRIELLE",
+      "payee_city": "WASHINGTON",
+      "payee_state": "DC",
+      "amount": 24.0,
+      "date": "2026-09-14"
     },
     {
       "committee_id": "C00172361",
