@@ -1,7 +1,7 @@
 {
   "source": "FEC / OpenFEC API",
   "url": "https://www.fec.gov/data/elections/house/PA/07/2026/",
-  "retrieved_utc": "2026-11-12T11:48:39Z",
+  "retrieved_utc": "2026-11-13T14:55:56Z",
   "cycle": 2026,
   "coverage_through": "2026-10-14",
   "candidates": [
@@ -295,6 +295,15 @@
       "target_candidate": "Lamont McClure"
     },
     {
+      "committee_id": "C00960443",
+      "committee": "SAFETY & AFFORDABILITY PAC INC.",
+      "target_candidate_id": "H6PA07188",
+      "support_oppose": "O",
+      "amount": 750000.0,
+      "filings": 3,
+      "target_candidate": "Bob Brooks"
+    },
+    {
       "committee_id": "C00495028",
       "committee": "HMP",
       "target_candidate_id": "H8PA15195",
@@ -302,6 +311,15 @@
       "amount": 556259.93,
       "filings": 11,
       "target_candidate": "Ryan Mackenzie"
+    },
+    {
+      "committee_id": "C00960435",
+      "committee": "NO GOING BACK PAC INC.",
+      "target_candidate_id": "H6PA07188",
+      "support_oppose": "O",
+      "amount": 331557.0,
+      "filings": 11,
+      "target_candidate": "Bob Brooks"
     },
     {
       "committee_id": "C00948208",
@@ -394,6 +412,15 @@
       "target_candidate": "Bob Brooks"
     },
     {
+      "committee_id": "C00738674",
+      "committee": "REPRODUCTIVE FREEDOM FOR ALL FREEDOM FUND",
+      "target_candidate_id": "H8PA15195",
+      "support_oppose": "O",
+      "amount": 64620.01,
+      "filings": 3,
+      "target_candidate": "Ryan Mackenzie"
+    },
+    {
       "committee_id": "C00879510",
       "committee": "AMERICA PAC",
       "target_candidate_id": "H8PA15195",
@@ -425,9 +452,18 @@
       "committee": "RURAL FREEDOM NETWORK",
       "target_candidate_id": "H6PA07188",
       "support_oppose": "S",
-      "amount": 30756.92,
-      "filings": 5,
+      "amount": 34188.39,
+      "filings": 8,
       "target_candidate": "Bob Brooks"
+    },
+    {
+      "committee_id": "C00879965",
+      "committee": "DRIVING FORCE ACTION",
+      "target_candidate_id": "H8PA15195",
+      "support_oppose": "S",
+      "amount": 31936.0,
+      "filings": 3,
+      "target_candidate": "Ryan Mackenzie"
     },
     {
       "committee_id": "C00689745",
@@ -520,15 +556,6 @@
       "target_candidate": "Bob Brooks"
     },
     {
-      "committee_id": "C00879965",
-      "committee": "DRIVING FORCE ACTION",
-      "target_candidate_id": "H8PA15195",
-      "support_oppose": "S",
-      "amount": 10645.0,
-      "filings": 2,
-      "target_candidate": "Ryan Mackenzie"
-    },
-    {
       "committee_id": "C00800995",
       "committee": "DEMOCRATIC MESSAGING PROJECT",
       "target_candidate_id": "H6PA07188",
@@ -572,6 +599,24 @@
       "amount": 5779.12,
       "filings": 11,
       "target_candidate": "Ryan Mackenzie"
+    },
+    {
+      "committee_id": "C00647966",
+      "committee": "RURAL FREEDOM NETWORK",
+      "target_candidate_id": "H8PA15195",
+      "support_oppose": "O",
+      "amount": 5097.75,
+      "filings": 4,
+      "target_candidate": "Ryan Mackenzie"
+    },
+    {
+      "committee_id": "C00684258",
+      "committee": "UNIDOSUS ACTION PAC",
+      "target_candidate_id": "H6PA07188",
+      "support_oppose": "S",
+      "amount": 5000.0,
+      "filings": 1,
+      "target_candidate": "Bob Brooks"
     },
     {
       "committee_id": "C00948000",
@@ -673,15 +718,6 @@
       "target_candidate": "Ryan Mackenzie"
     },
     {
-      "committee_id": "C00647966",
-      "committee": "RURAL FREEDOM NETWORK",
-      "target_candidate_id": "H8PA15195",
-      "support_oppose": "O",
-      "amount": 1517.06,
-      "filings": 1,
-      "target_candidate": "Ryan Mackenzie"
-    },
-    {
       "committee_id": "C00909994",
       "committee": "FIELD TEAM 6, INC.",
       "target_candidate_id": "H8PA15195",
@@ -736,6 +772,15 @@
       "target_candidate": "Bob Brooks"
     },
     {
+      "committee_id": "C00489799",
+      "committee": "PLANNED PARENTHOOD VOTES",
+      "target_candidate_id": "H8PA15195",
+      "support_oppose": "O",
+      "amount": 342.9,
+      "filings": 5,
+      "target_candidate": "Ryan Mackenzie"
+    },
+    {
       "committee_id": "C00878025",
       "committee": "MOMSRISING PAC",
       "target_candidate_id": "H6PA07188",
@@ -761,15 +806,6 @@
       "amount": 236.06,
       "filings": 2,
       "target_candidate": "Bob Brooks"
-    },
-    {
-      "committee_id": "C00489799",
-      "committee": "PLANNED PARENTHOOD VOTES",
-      "target_candidate_id": "H8PA15195",
-      "support_oppose": "O",
-      "amount": 197.19,
-      "filings": 3,
-      "target_candidate": "Ryan Mackenzie"
     },
     {
       "committee_id": "C00742205",
@@ -896,6 +932,48 @@
       "payee_state": "PA",
       "amount": 272247.0,
       "date": "2026-04-01"
+    },
+    {
+      "committee_id": "C00960443",
+      "committee": "SAFETY & AFFORDABILITY PAC INC.",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "O",
+      "description": "PLACED MEDIA: TV AND CONNECTED TV",
+      "category": "Television and media buys",
+      "payee": "DEL RAY MEDIA LLC",
+      "payee_city": "ALEXANDRIA",
+      "payee_state": "VA",
+      "amount": 250000.0,
+      "date": "2026-10-13"
+    },
+    {
+      "committee_id": "C00960443",
+      "committee": "SAFETY & AFFORDABILITY PAC INC.",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "O",
+      "description": "PLACED MEDIA: TV AND CONNECTED TV",
+      "category": "Television and media buys",
+      "payee": "DEL RAY MEDIA LLC",
+      "payee_city": "ALEXANDRIA",
+      "payee_state": "VA",
+      "amount": 250000.0,
+      "date": "2026-10-05"
+    },
+    {
+      "committee_id": "C00960443",
+      "committee": "SAFETY & AFFORDABILITY PAC INC.",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "O",
+      "description": "PLACED MEDIA: TV AND CONNECTED TV",
+      "category": "Television and media buys",
+      "payee": "DEL RAY MEDIA LLC",
+      "payee_city": "ALEXANDRIA",
+      "payee_state": "VA",
+      "amount": 250000.0,
+      "date": "2026-09-28"
     },
     {
       "committee_id": "C00928374",
@@ -1276,6 +1354,48 @@
       "date": "2026-05-06"
     },
     {
+      "committee_id": "C00960435",
+      "committee": "NO GOING BACK PAC INC.",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "O",
+      "description": "DIRECT MAIL: PRINTING AND POSTAGE",
+      "category": "Mail and print",
+      "payee": "PT STRATEGY LLC",
+      "payee_city": "MCLEAN",
+      "payee_state": "VA",
+      "amount": 63884.0,
+      "date": "2026-10-14"
+    },
+    {
+      "committee_id": "C00960435",
+      "committee": "NO GOING BACK PAC INC.",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "O",
+      "description": "DIRECT MAIL: PRINTING AND POSTAGE",
+      "category": "Mail and print",
+      "payee": "PT STRATEGY LLC",
+      "payee_city": "MCLEAN",
+      "payee_state": "VA",
+      "amount": 63884.0,
+      "date": "2026-10-02"
+    },
+    {
+      "committee_id": "C00960435",
+      "committee": "NO GOING BACK PAC INC.",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "O",
+      "description": "DIRECT MAIL: PRINTING AND POSTAGE",
+      "category": "Mail and print",
+      "payee": "PT STRATEGY LLC",
+      "payee_city": "MCLEAN",
+      "payee_state": "VA",
+      "amount": 63884.0,
+      "date": "2026-09-28"
+    },
+    {
       "committee_id": "C00936153",
       "committee": "STRONGER TOGETHER PA",
       "target_candidate_id": "H6PA07188",
@@ -1358,6 +1478,34 @@
       "payee_state": "DC",
       "amount": 43000.0,
       "date": "2026-10-09"
+    },
+    {
+      "committee_id": "C00960435",
+      "committee": "NO GOING BACK PAC INC.",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "O",
+      "description": "DIRECT MAIL: PRINTING AND POSTAGE",
+      "category": "Mail and print",
+      "payee": "PT STRATEGY LLC",
+      "payee_city": "MCLEAN",
+      "payee_state": "VA",
+      "amount": 42770.0,
+      "date": "2026-09-14"
+    },
+    {
+      "committee_id": "C00960435",
+      "committee": "NO GOING BACK PAC INC.",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "O",
+      "description": "DIRECT MAIL: PRINTING AND POSTAGE",
+      "category": "Mail and print",
+      "payee": "PT STRATEGY LLC",
+      "payee_city": "MCLEAN",
+      "payee_state": "VA",
+      "amount": 42770.0,
+      "date": "2026-09-08"
     },
     {
       "committee_id": "C00495028",
@@ -1584,6 +1732,20 @@
       "date": "2026-09-27"
     },
     {
+      "committee_id": "C00738674",
+      "committee": "REPRODUCTIVE FREEDOM FOR ALL FREEDOM FUND",
+      "target_candidate_id": "H8PA15195",
+      "target_candidate": "Ryan Mackenzie",
+      "support_oppose": "O",
+      "description": "DIGITAL ADVERTISING & PRODUCTION",
+      "category": "Digital advertising",
+      "payee": "GAMBIT STRATEGIES",
+      "payee_city": "BETHESDA",
+      "payee_state": "MD",
+      "amount": 23000.01,
+      "date": "2026-09-16"
+    },
+    {
       "committee_id": "C00941724",
       "committee": "INTEGRITY PAC",
       "target_candidate_id": "H6PA07162",
@@ -1598,6 +1760,48 @@
       "date": "2026-05-12"
     },
     {
+      "committee_id": "C00960435",
+      "committee": "NO GOING BACK PAC INC.",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "O",
+      "description": "DIRECT MAIL: PRINTING AND POSTAGE",
+      "category": "Mail and print",
+      "payee": "PT STRATEGY LLC",
+      "payee_city": "MCLEAN",
+      "payee_state": "VA",
+      "amount": 21385.0,
+      "date": "2026-09-18"
+    },
+    {
+      "committee_id": "C00960435",
+      "committee": "NO GOING BACK PAC INC.",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "O",
+      "description": "DIRECT MAIL: PRINTING AND POSTAGE",
+      "category": "Mail and print",
+      "payee": "PT STRATEGY LLC",
+      "payee_city": "MCLEAN",
+      "payee_state": "VA",
+      "amount": 21385.0,
+      "date": "2026-09-17"
+    },
+    {
+      "committee_id": "C00879965",
+      "committee": "DRIVING FORCE ACTION",
+      "target_candidate_id": "H8PA15195",
+      "target_candidate": "Ryan Mackenzie",
+      "support_oppose": "S",
+      "description": "MEDIA BUY",
+      "category": "Television and media buys",
+      "payee": "OPTIMATES LLC",
+      "payee_city": "ALEXANDRIA",
+      "payee_state": "VA",
+      "amount": 21291.0,
+      "date": "2026-10-02"
+    },
+    {
       "committee_id": "C00936153",
       "committee": "STRONGER TOGETHER PA",
       "target_candidate_id": "H6PA07188",
@@ -1610,6 +1814,34 @@
       "payee_state": "PA",
       "amount": 21000.0,
       "date": "2026-05-13"
+    },
+    {
+      "committee_id": "C00738674",
+      "committee": "REPRODUCTIVE FREEDOM FOR ALL FREEDOM FUND",
+      "target_candidate_id": "H8PA15195",
+      "target_candidate": "Ryan Mackenzie",
+      "support_oppose": "O",
+      "description": "DIGITAL ADVERTISING",
+      "category": "Digital advertising",
+      "payee": "GAMBIT STRATEGIES",
+      "payee_city": "BETHESDA",
+      "payee_state": "MD",
+      "amount": 20810.0,
+      "date": "2026-09-26"
+    },
+    {
+      "committee_id": "C00738674",
+      "committee": "REPRODUCTIVE FREEDOM FOR ALL FREEDOM FUND",
+      "target_candidate_id": "H8PA15195",
+      "target_candidate": "Ryan Mackenzie",
+      "support_oppose": "O",
+      "description": "DIGITAL ADVERTISING",
+      "category": "Digital advertising",
+      "payee": "GAMBIT STRATEGIES",
+      "payee_city": "BETHESDA",
+      "payee_state": "MD",
+      "amount": 20810.0,
+      "date": "2026-09-22"
     },
     {
       "committee_id": "C00895730",
@@ -2256,6 +2488,20 @@
       "date": "2026-08-21"
     },
     {
+      "committee_id": "C00960435",
+      "committee": "NO GOING BACK PAC INC.",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "O",
+      "description": "TEXT MESSAGES",
+      "category": "Texting and phone calls",
+      "payee": "PT STRATEGY LLC",
+      "payee_city": "MCLEAN",
+      "payee_state": "VA",
+      "amount": 5846.0,
+      "date": "2026-10-06"
+    },
+    {
       "committee_id": "C00495028",
       "committee": "HMP",
       "target_candidate_id": "H8PA15195",
@@ -2296,6 +2542,20 @@
       "payee_state": "CA",
       "amount": 5075.0,
       "date": "2026-08-21"
+    },
+    {
+      "committee_id": "C00684258",
+      "committee": "UNIDOSUS ACTION PAC",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "GOTV CANVASS - PARTIAL PAYMENT OF ORIGINAL ESTIMATE OF $55,000 REPORTED 09/28/26",
+      "category": "Canvassing and field",
+      "payee": "BASE BUILDER LLC",
+      "payee_city": "BROOKLYN",
+      "payee_state": "NY",
+      "amount": 5000.0,
+      "date": "2026-09-21"
     },
     {
       "committee_id": "C00495028",
@@ -2634,6 +2894,20 @@
       "date": "2026-09-24"
     },
     {
+      "committee_id": "C00960435",
+      "committee": "NO GOING BACK PAC INC.",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "O",
+      "description": "TEXT MESSAGES",
+      "category": "Texting and phone calls",
+      "payee": "PT STRATEGY LLC",
+      "payee_city": "MCLEAN",
+      "payee_state": "VA",
+      "amount": 2638.0,
+      "date": "2026-09-22"
+    },
+    {
       "committee_id": "C90023599",
       "committee": "CAMPAIGN FOR WORKING CLASS COMMUNITIES",
       "target_candidate_id": "H6PA07188",
@@ -2676,6 +2950,20 @@
       "date": "2026-09-15"
     },
     {
+      "committee_id": "C00960435",
+      "committee": "NO GOING BACK PAC INC.",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "O",
+      "description": "TEXT MESSAGES",
+      "category": "Texting and phone calls",
+      "payee": "PT STRATEGY LLC",
+      "payee_city": "MCLEAN",
+      "payee_state": "VA",
+      "amount": 2303.0,
+      "date": "2026-09-14"
+    },
+    {
       "committee_id": "C00924159",
       "committee": "KITCHEN TABLE VALUES PAC",
       "target_candidate_id": "H6PA07188",
@@ -2702,6 +2990,34 @@
       "payee_state": "CA",
       "amount": 2001.41,
       "date": "2026-08-13"
+    },
+    {
+      "committee_id": "C00647966",
+      "committee": "RURAL FREEDOM NETWORK",
+      "target_candidate_id": "H8PA15195",
+      "target_candidate": "Ryan Mackenzie",
+      "support_oppose": "O",
+      "description": "BILLBOARDS",
+      "category": "Other",
+      "payee": "ADAMS OUTDOOR ADVERTISING",
+      "payee_city": "CHICAGO",
+      "payee_state": "IL",
+      "amount": 2000.0,
+      "date": "2026-10-05"
+    },
+    {
+      "committee_id": "C00647966",
+      "committee": "RURAL FREEDOM NETWORK",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "BILLBOARDS",
+      "category": "Other",
+      "payee": "ADAMS OUTDOOR ADVERTISING",
+      "payee_city": "CHICAGO",
+      "payee_state": "IL",
+      "amount": 2000.0,
+      "date": "2026-10-05"
     },
     {
       "committee_id": "C90023599",
@@ -2914,6 +3230,34 @@
       "date": "2026-09-20"
     },
     {
+      "committee_id": "C00647966",
+      "committee": "RURAL FREEDOM NETWORK",
+      "target_candidate_id": "H8PA15195",
+      "target_candidate": "Ryan Mackenzie",
+      "support_oppose": "O",
+      "description": "BILLBOARDS",
+      "category": "Other",
+      "payee": "ADAMS OUTDOOR ADVERTISING",
+      "payee_city": "CHICAGO",
+      "payee_state": "IL",
+      "amount": 1040.0,
+      "date": "2026-10-05"
+    },
+    {
+      "committee_id": "C00647966",
+      "committee": "RURAL FREEDOM NETWORK",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "BILLBOARDS",
+      "category": "Other",
+      "payee": "ADAMS OUTDOOR ADVERTISING",
+      "payee_city": "CHICAGO",
+      "payee_state": "IL",
+      "amount": 1040.0,
+      "date": "2026-10-05"
+    },
+    {
       "committee_id": "C90023599",
       "committee": "CAMPAIGN FOR WORKING CLASS COMMUNITIES",
       "target_candidate_id": "H8PA15195",
@@ -3024,6 +3368,20 @@
       "payee_state": "CA",
       "amount": 859.88,
       "date": "2026-03-05"
+    },
+    {
+      "committee_id": "C00960435",
+      "committee": "NO GOING BACK PAC INC.",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "O",
+      "description": "TEXT MESSAGES",
+      "category": "Texting and phone calls",
+      "payee": "PT STRATEGY LLC",
+      "payee_city": "MCLEAN",
+      "payee_state": "VA",
+      "amount": 808.0,
+      "date": "2026-09-11"
     },
     {
       "committee_id": "C90023599",
@@ -3166,6 +3524,20 @@
       "date": "2026-08-04"
     },
     {
+      "committee_id": "C00647966",
+      "committee": "RURAL FREEDOM NETWORK",
+      "target_candidate_id": "H8PA15195",
+      "target_candidate": "Ryan Mackenzie",
+      "support_oppose": "O",
+      "description": "PRINTING",
+      "category": "Mail and print",
+      "payee": "ZIPPITYPRINT",
+      "payee_city": "CLEVELAND",
+      "payee_state": "OH",
+      "amount": 540.69,
+      "date": "2026-10-05"
+    },
+    {
       "committee_id": "C00738237",
       "committee": "PEOPLE'S ACTION POWER",
       "target_candidate_id": "H6PA07188",
@@ -3304,6 +3676,20 @@
       "payee_state": "MA",
       "amount": 392.3,
       "date": "2026-09-30"
+    },
+    {
+      "committee_id": "C00647966",
+      "committee": "RURAL FREEDOM NETWORK",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "PRINTING",
+      "category": "Mail and print",
+      "payee": "ZIPPITYPRINT",
+      "payee_city": "CLEVELAND",
+      "payee_state": "OH",
+      "amount": 391.47,
+      "date": "2026-10-05"
     },
     {
       "committee_id": "C90023748",
@@ -4286,6 +4672,20 @@
       "date": "2026-09-14"
     },
     {
+      "committee_id": "C00489799",
+      "committee": "PLANNED PARENTHOOD VOTES",
+      "target_candidate_id": "H8PA15195",
+      "target_candidate": "Ryan Mackenzie",
+      "support_oppose": "O",
+      "description": "ESTIMATED COST OF STAFF TIME FOR VOTER COMMUNICATIONS",
+      "category": "Canvassing and field",
+      "payee": "PLANNED PARENTHOOD ACTION FUND, INC.",
+      "payee_city": "NEW YORK",
+      "payee_state": "NY",
+      "amount": 77.14,
+      "date": "2026-09-27"
+    },
+    {
       "committee_id": "C00909465",
       "committee": "INDIGO PAC",
       "target_candidate_id": "H8PA15195",
@@ -4340,6 +4740,20 @@
       "payee_state": "OH",
       "amount": 69.09,
       "date": "2026-09-09"
+    },
+    {
+      "committee_id": "C00489799",
+      "committee": "PLANNED PARENTHOOD VOTES",
+      "target_candidate_id": "H8PA15195",
+      "target_candidate": "Ryan Mackenzie",
+      "support_oppose": "O",
+      "description": "ESTIMATED COST OF STAFF TIME FOR VOTER COMMUNICATIONS",
+      "category": "Canvassing and field",
+      "payee": "PLANNED PARENTHOOD ACTION FUND, INC.",
+      "payee_city": "NEW YORK",
+      "payee_state": "NY",
+      "amount": 68.57,
+      "date": "2026-09-13"
     },
     {
       "committee_id": "C00755363",
