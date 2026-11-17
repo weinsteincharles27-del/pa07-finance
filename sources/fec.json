@@ -1,7 +1,7 @@
 {
   "source": "FEC / OpenFEC API",
   "url": "https://www.fec.gov/data/elections/house/PA/07/2026/",
-  "retrieved_utc": "2026-11-13T14:55:56Z",
+  "retrieved_utc": "2026-11-17T17:51:44Z",
   "cycle": 2026,
   "coverage_through": "2026-10-14",
   "candidates": [
@@ -511,6 +511,15 @@
       "target_candidate": "Bob Brooks"
     },
     {
+      "committee_id": "C00754051",
+      "committee": "WORKERS VOTE",
+      "target_candidate_id": "H6PA07188",
+      "support_oppose": "S",
+      "amount": 21906.53,
+      "filings": 2,
+      "target_candidate": "Bob Brooks"
+    },
+    {
       "committee_id": "C90023599",
       "committee": "CAMPAIGN FOR WORKING CLASS COMMUNITIES",
       "target_candidate_id": "H6PA07188",
@@ -709,6 +718,15 @@
       "target_candidate": "Ryan Mackenzie"
     },
     {
+      "committee_id": "C00930321",
+      "committee": "NEIGHBOR VOICES PAC",
+      "target_candidate_id": "H6PA07188",
+      "support_oppose": "S",
+      "amount": 1740.0,
+      "filings": 5,
+      "target_candidate": "Bob Brooks"
+    },
+    {
       "committee_id": "C00640300",
       "committee": "ACTIVATE AMERICA",
       "target_candidate_id": "H8PA15195",
@@ -840,6 +858,15 @@
       "target_candidate_id": "H6PA07188",
       "support_oppose": "S",
       "amount": 50.0,
+      "filings": 1,
+      "target_candidate": "Bob Brooks"
+    },
+    {
+      "committee_id": "C00812479",
+      "committee": "TOGETHER WE ELECT PAC",
+      "target_candidate_id": "H6PA07188",
+      "support_oppose": "S",
+      "amount": 29.08,
       "filings": 1,
       "target_candidate": "Bob Brooks"
     },
@@ -1842,6 +1869,20 @@
       "payee_state": "MD",
       "amount": 20810.0,
       "date": "2026-09-22"
+    },
+    {
+      "committee_id": "C00754051",
+      "committee": "WORKERS VOTE",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "IE CANVASSER SALARIES AND TAXES STARTING 9/26/26",
+      "category": "Canvassing and field",
+      "payee": "UNITE HERE",
+      "payee_city": "NEW YORK",
+      "payee_state": "NY",
+      "amount": 20576.01,
+      "date": "2026-09-24"
     },
     {
       "committee_id": "C00895730",
@@ -3160,6 +3201,20 @@
       "date": "2026-04-10"
     },
     {
+      "committee_id": "C00754051",
+      "committee": "WORKERS VOTE",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "IE CANVASSER PENSION BENEFITS STARTING 9/26/26",
+      "category": "Canvassing and field",
+      "payee": "UNITE HERE LOCAL 54",
+      "payee_city": "ATLANTIC CITY",
+      "payee_state": "NJ",
+      "amount": 1330.52,
+      "date": "2026-09-24"
+    },
+    {
       "committee_id": "C00640300",
       "committee": "ACTIVATE AMERICA",
       "target_candidate_id": "H8PA15195",
@@ -3496,6 +3551,20 @@
       "date": "2026-06-24"
     },
     {
+      "committee_id": "C00930321",
+      "committee": "NEIGHBOR VOICES PAC",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "CANVASSING VIA TEXT - SUPPORTING BOB BROOKS",
+      "category": "Texting and phone calls",
+      "payee": "SCALE TO WIN",
+      "payee_city": "SANTA ANA",
+      "payee_state": "CA",
+      "amount": 620.0,
+      "date": "2026-10-13"
+    },
+    {
       "committee_id": "C00941724",
       "committee": "INTEGRITY PAC",
       "target_candidate_id": "H6PA07162",
@@ -3620,6 +3689,20 @@
       "payee_state": "IL",
       "amount": 450.0,
       "date": "2026-07-31"
+    },
+    {
+      "committee_id": "C00930321",
+      "committee": "NEIGHBOR VOICES PAC",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "CANVASSING VIA TEXT - SUPPORTING BOB BROOKS",
+      "category": "Texting and phone calls",
+      "payee": "SCALE TO WIN",
+      "payee_city": "SANTA ANA",
+      "payee_state": "CA",
+      "amount": 420.0,
+      "date": "2026-10-05"
     },
     {
       "committee_id": "C00829721",
@@ -3804,6 +3887,20 @@
       "date": "2025-10-14"
     },
     {
+      "committee_id": "C00930321",
+      "committee": "NEIGHBOR VOICES PAC",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "CANVASSING VIA TEXT - SUPPORTING BOB BROOKS",
+      "category": "Texting and phone calls",
+      "payee": "SCALE TO WIN",
+      "payee_city": "SANTA ANA",
+      "payee_state": "CA",
+      "amount": 280.0,
+      "date": "2026-10-01"
+    },
+    {
       "committee_id": "C90023599",
       "committee": "CAMPAIGN FOR WORKING CLASS COMMUNITIES",
       "target_candidate_id": "H6PA07188",
@@ -3986,6 +4083,20 @@
       "date": "2026-08-13"
     },
     {
+      "committee_id": "C00930321",
+      "committee": "NEIGHBOR VOICES PAC",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "CANVASSING VIA TEXT - SUPPORTING BOB BROOKS",
+      "category": "Texting and phone calls",
+      "payee": "SCALE TO WIN",
+      "payee_city": "SANTA ANA",
+      "payee_state": "CA",
+      "amount": 220.0,
+      "date": "2026-10-08"
+    },
+    {
       "committee_id": "C90023599",
       "committee": "CAMPAIGN FOR WORKING CLASS COMMUNITIES",
       "target_candidate_id": "H6PA07188",
@@ -4040,6 +4151,20 @@
       "payee_state": "MA",
       "amount": 202.5,
       "date": "2026-09-20"
+    },
+    {
+      "committee_id": "C00930321",
+      "committee": "NEIGHBOR VOICES PAC",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "CANVASSING VIA TEXT - SUPPORTING BOB BROOKS",
+      "category": "Texting and phone calls",
+      "payee": "SCALE TO WIN",
+      "payee_city": "SANTA ANA",
+      "payee_state": "CA",
+      "amount": 200.0,
+      "date": "2026-10-13"
     },
     {
       "committee_id": "C00934059",
@@ -5188,6 +5313,20 @@
       "payee_state": "MD",
       "amount": 32.0,
       "date": "2026-06-25"
+    },
+    {
+      "committee_id": "C00812479",
+      "committee": "TOGETHER WE ELECT PAC",
+      "target_candidate_id": "H6PA07188",
+      "target_candidate": "Bob Brooks",
+      "support_oppose": "S",
+      "description": "ONLINE SEARCH ADVERTISING (10/1-10/14/2026)",
+      "category": "Digital advertising",
+      "payee": "GOOGLE ADS",
+      "payee_city": "MOUNTAIN VIEW",
+      "payee_state": "CA",
+      "amount": 29.08,
+      "date": "2026-10-14"
     },
     {
       "committee_id": "C00802389",
