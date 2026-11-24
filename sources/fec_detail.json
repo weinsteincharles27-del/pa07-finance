@@ -1,6 +1,6 @@
 {
   "source": "OpenFEC API: schedules/schedule_b (itemized disbursements), schedules/schedule_a aggregates by_state, by_size, by_zip, by_occupation",
-  "retrieved_utc": "2026-11-17T17:52:24Z",
+  "retrieved_utc": "2026-11-24T21:30:41Z",
   "cycle": 2026,
   "coverage_through": "2026-10-14",
   "in_district_zip_prefixes": [
@@ -16,58 +16,73 @@
       "candidate": "Bob Brooks",
       "party": "DEM",
       "spending": {
-        "itemized_total": 1368655.37,
-        "items": 404,
+        "itemized_total": 3697587.37,
+        "items": 735,
         "by_category": [
           {
             "category": "Television advertising",
-            "amount": 521229.0,
-            "items": 9
-          },
-          {
-            "category": "Digital advertising",
-            "amount": 258938.16,
-            "items": 19
-          },
-          {
-            "category": "Staff and payroll",
-            "amount": 204066.98,
-            "items": 61
-          },
-          {
-            "category": "Fundraising",
-            "amount": 105581.67,
-            "items": 169
-          },
-          {
-            "category": "Office and administrative",
-            "amount": 94451.94,
-            "items": 48
-          },
-          {
-            "category": "Field, phones and texting",
-            "amount": 49977.25,
+            "amount": 1595423.0,
             "items": 16
           },
           {
+            "category": "Digital advertising",
+            "amount": 851121.88,
+            "items": 41
+          },
+          {
+            "category": "Staff and payroll",
+            "amount": 405798.32,
+            "items": 115
+          },
+          {
+            "category": "Fundraising",
+            "amount": 222206.87,
+            "items": 263
+          },
+          {
             "category": "Polling and research",
-            "amount": 41005.0,
-            "items": 8
-          },
-          {
-            "category": "Media production",
-            "amount": 34156.56,
-            "items": 5
-          },
-          {
-            "category": "Mail and printing",
-            "amount": 22167.78,
+            "amount": 145400.19,
             "items": 15
           },
           {
+            "category": "Office and administrative",
+            "amount": 138388.56,
+            "items": 77
+          },
+          {
+            "category": "Field, phones and texting",
+            "amount": 122820.39,
+            "items": 34
+          },
+          {
+            "category": "Media production",
+            "amount": 79156.56,
+            "items": 6
+          },
+          {
+            "category": "Mail and printing",
+            "amount": 59252.98,
+            "items": 40
+          },
+          {
             "category": "Refunds",
-            "amount": 10375.0,
-            "items": 12
+            "amount": 16637.5,
+            "items": 18
+          },
+          {
+            "category": "Travel",
+            "amount": 13991.41,
+            "items": 63
+          },
+          {
+            "category": "Events and meals",
+            "amount": 13433.85,
+            "items": 24
+          },
+          {
+            "category": "Other",
+            "amount": 10210.31,
+            "items": 8
           },
           {
             "category": "Consulting",
@@ -75,24 +90,14 @@
             "items": 1
           },
           {
-            "category": "Travel",
-            "amount": 6186.67,
-            "items": 20
-          },
-          {
-            "category": "Other",
-            "amount": 4318.17,
-            "items": 2
-          },
-          {
-            "category": "Events and meals",
-            "amount": 4117.43,
-            "items": 12
+            "category": "Print and radio advertising",
+            "amount": 9316.79,
+            "items": 3
           },
           {
             "category": "Contributions and donations",
-            "amount": 1333.76,
-            "items": 6
+            "amount": 3678.76,
+            "items": 10
           },
           {
             "category": "Signs and merchandise",
@@ -105,9 +110,17 @@
             "vendor": "LC MEDIA LLC",
             "city": "HUNTINGDON VALLEY",
             "state": "PA",
-            "amount": 543229.0,
-            "items": 11,
+            "amount": 1662423.0,
+            "items": 19,
             "category": "Television advertising"
+          },
+          {
+            "vendor": "GPS IMPACT",
+            "city": "DES MOINES",
+            "state": "IA",
+            "amount": 499051.0,
+            "items": 5,
+            "category": "Digital advertising"
           },
           {
             "vendor": "ASCEND DIGITAL",
@@ -121,33 +134,81 @@
             "vendor": "KAUFMAN, JENNA",
             "city": "BETHLEHEM",
             "state": "PA",
-            "amount": 75187.4,
-            "items": 16,
-            "category": "Staff and payroll"
-          },
-          {
-            "vendor": "WERNER, JACK",
-            "city": "EASTON",
-            "state": "PA",
-            "amount": 58673.23,
-            "items": 17,
+            "amount": 111830.44,
+            "items": 24,
             "category": "Staff and payroll"
           },
           {
             "vendor": "PAYCHEX",
             "city": "ROCHESTER",
             "state": "NY",
-            "amount": 54920.71,
-            "items": 35,
+            "amount": 105053.86,
+            "items": 50,
             "category": "Staff and payroll"
           },
           {
             "vendor": "ACTBLUE TECHNICAL SERVICES",
             "city": "WEST SOMERVILLE",
             "state": "MA",
-            "amount": 54605.66,
-            "items": 76,
+            "amount": 101478.57,
+            "items": 100,
             "category": "Fundraising"
+          },
+          {
+            "vendor": "WERNER, JACK",
+            "city": "EASTON",
+            "state": "PA",
+            "amount": 89411.66,
+            "items": 26,
+            "category": "Staff and payroll"
+          },
+          {
+            "vendor": "GLOBAL STRATEGY GROUP",
+            "city": "WASHINGTON",
+            "state": "DC",
+            "amount": 71352.27,
+            "items": 6,
+            "category": "Polling and research"
+          },
+          {
+            "vendor": "TRUE BLUE DIGITAL",
+            "city": "CHICAGO",
+            "state": "IL",
+            "amount": 69817.13,
+            "items": 13,
+            "category": "Digital advertising"
+          },
+          {
+            "vendor": "WRIGLEY, JOHN",
+            "city": "ALLENTOWN",
+            "state": "PA",
+            "amount": 45396.06,
+            "items": 16,
+            "category": "Staff and payroll"
+          },
+          {
+            "vendor": "JONES MANDEL INC.",
+            "city": "BURKE",
+            "state": "VA",
+            "amount": 43382.69,
+            "items": 3,
+            "category": "Polling and research"
+          },
+          {
+            "vendor": "TRUE BLUE ANALYTICS",
+            "city": "WILMINGTON",
+            "state": "DE",
+            "amount": 43311.33,
+            "items": 6,
+            "category": "Field, phones and texting"
+          },
+          {
+            "vendor": "PINPOINT CAMPAIGNS",
+            "city": "OLNEY",
+            "state": "MD",
+            "amount": 36295.6,
+            "items": 20,
+            "category": "Mail and printing"
           },
           {
             "vendor": "ARC INITIATIVES",
@@ -158,120 +219,84 @@
             "category": "Polling and research"
           },
           {
-            "vendor": "TRUE BLUE DIGITAL",
-            "city": "CHICAGO",
-            "state": "IL",
-            "amount": 34817.13,
-            "items": 8,
-            "category": "Digital advertising"
-          },
-          {
             "vendor": "NGP VAN",
             "city": "AUSTIN",
             "state": "TX",
             "amount": 31749.04,
             "items": 5,
             "category": "Office and administrative"
-          },
-          {
-            "vendor": "CFO COMPLIANCE",
-            "city": "PROVIDENCE",
-            "state": "RI",
-            "amount": 26182.97,
-            "items": 9,
-            "category": "Office and administrative"
-          },
-          {
-            "vendor": "WRIGLEY, JOHN",
-            "city": "ALLENTOWN",
-            "state": "PA",
-            "amount": 22312.0,
-            "items": 8,
-            "category": "Staff and payroll"
-          },
-          {
-            "vendor": "GRASSROOTS ANALYTICS",
-            "city": "WASHINGTON",
-            "state": "DC",
-            "amount": 17832.07,
-            "items": 12,
-            "category": "Fundraising"
-          },
-          {
-            "vendor": "MCCOACH, JAKE",
-            "city": "FREEPORT",
-            "state": "PA",
-            "amount": 15000.0,
-            "items": 3,
-            "category": "Field, phones and texting"
-          },
-          {
-            "vendor": "SEIU PENNSYLVANIA STATE COUNCIL",
-            "city": "HARRISBURG",
-            "state": "PA",
-            "amount": 15000.0,
-            "items": 1,
-            "category": "Field, phones and texting"
-          },
-          {
-            "vendor": "SOUTH STREET DIGITAL",
-            "city": "PHILADELPHIA",
-            "state": "PA",
-            "amount": 14003.2,
-            "items": 3,
-            "category": "Digital advertising"
           }
         ],
         "by_vendor_state": [
           {
             "state": "PA",
-            "amount": 798926.02,
-            "items": 101
+            "amount": 2110298.58,
+            "items": 186
+          },
+          {
+            "state": "IA",
+            "amount": 499051.0,
+            "items": 5
           },
           {
             "state": "DC",
-            "amount": 274955.33,
-            "items": 64
+            "amount": 394842.77,
+            "items": 127
           },
           {
             "state": "NY",
-            "amount": 69953.94,
-            "items": 44
+            "amount": 161554.19,
+            "items": 74
           },
           {
             "state": "MA",
-            "amount": 57354.54,
-            "items": 82
-          },
-          {
-            "state": "CA",
-            "amount": 39080.7,
-            "items": 35
+            "amount": 111709.95,
+            "items": 109
           },
           {
             "state": "IL",
-            "amount": 35315.53,
-            "items": 9
-          },
-          {
-            "state": "TX",
-            "amount": 32737.44,
-            "items": 7
-          },
-          {
-            "state": "RI",
-            "amount": 26182.97,
-            "items": 9
-          },
-          {
-            "state": "MD",
-            "amount": 20343.22,
-            "items": 16
+            "amount": 70315.53,
+            "items": 14
           },
           {
             "state": "DE",
-            "amount": 7398.65,
-            "items": 27
+            "amount": 64789.75,
+            "items": 47
+          },
+          {
+            "state": "CA",
+            "amount": 64454.58,
+            "items": 73
+          },
+          {
+            "state": "MD",
+            "amount": 62179.09,
+            "items": 35
+          },
+          {
+            "state": "VA",
+            "amount": 54961.96,
+            "items": 8
+          },
+          {
+            "state": "TX",
+            "amount": 52252.75,
+            "items": 23
+          },
+          {
+            "state": "RI",
+            "amount": 32186.09,
+            "items": 11
+          },
+          {
+            "state": "MN",
+            "amount": 8783.8,
+            "items": 1
+          },
+          {
+            "state": "NJ",
+            "amount": 2486.25,
+            "items": 1
           },
           {
             "state": "WA",
@@ -279,18 +304,23 @@
             "items": 1
           },
           {
-            "state": "VA",
-            "amount": 1000.0,
-            "items": 1
-          },
-          {
-            "state": "IA",
-            "amount": 800.0,
-            "items": 1
+            "state": "SC",
+            "amount": 1451.63,
+            "items": 2
           },
           {
             "state": "TN",
-            "amount": 750.0,
+            "amount": 957.4,
+            "items": 8
+          },
+          {
+            "state": "NC",
+            "amount": 680.57,
+            "items": 2
+          },
+          {
+            "state": "CO",
+            "amount": 524.45,
             "items": 1
           },
           {
@@ -312,106 +342,161 @@
             "state": "KY",
             "amount": 307.54,
             "items": 2
+          },
+          {
+            "state": "GA",
+            "amount": 250.0,
+            "items": 1
           }
         ]
       },
       "contributions": {
-        "itemized_total": 1362106.16,
+        "itemized_total": 3314917.67,
         "by_state": [
           {
-            "state": "PA",
-            "amount": 290329.06,
-            "count": 687
-          },
-          {
             "state": "NY",
-            "amount": 275445.73,
-            "count": 206
+            "amount": 724142.84,
+            "count": 541
           },
           {
             "state": "CA",
-            "amount": 232104.2,
-            "count": 317
+            "amount": 628041.08,
+            "count": 788
+          },
+          {
+            "state": "PA",
+            "amount": 564404.18,
+            "count": 1465
           },
           {
             "state": "MA",
-            "amount": 162959.5,
-            "count": 254
-          },
-          {
-            "state": "DC",
-            "amount": 50799.84,
-            "count": 70
-          },
-          {
-            "state": "CT",
-            "amount": 42688.16,
-            "count": 41
+            "amount": 272855.93,
+            "count": 459
           },
           {
             "state": "MD",
-            "amount": 41642.14,
-            "count": 81
+            "amount": 113830.2,
+            "count": 226
+          },
+          {
+            "state": "DC",
+            "amount": 112481.5,
+            "count": 164
           },
           {
             "state": "WA",
-            "amount": 40327.81,
-            "count": 46
+            "amount": 100416.8,
+            "count": 154
           },
           {
-            "state": "FL",
-            "amount": 32808.59,
-            "count": 42
+            "state": "CT",
+            "amount": 97247.1,
+            "count": 96
           },
           {
             "state": "IL",
-            "amount": 23197.32,
-            "count": 43
-          },
-          {
-            "state": "NJ",
-            "amount": 20761.76,
-            "count": 25
+            "amount": 82284.02,
+            "count": 113
           },
           {
             "state": "TX",
-            "amount": 16950.0,
-            "count": 14
+            "amount": 65876.75,
+            "count": 114
+          },
+          {
+            "state": "FL",
+            "amount": 63992.95,
+            "count": 109
           },
           {
             "state": "VA",
-            "amount": 14884.19,
-            "count": 72
+            "amount": 59137.48,
+            "count": 200
           },
           {
-            "state": "GA",
-            "amount": 12000.0,
-            "count": 5
-          },
-          {
-            "state": "MN",
-            "amount": 11939.33,
-            "count": 25
-          },
-          {
-            "state": "OR",
-            "amount": 10200.0,
-            "count": 25
-          },
-          {
-            "state": "NH",
-            "amount": 8530.0,
-            "count": 8
+            "state": "NJ",
+            "amount": 57348.38,
+            "count": 113
           },
           {
             "state": "CO",
-            "amount": 7371.65,
-            "count": 45
+            "amount": 56685.49,
+            "count": 102
+          },
+          {
+            "state": "OR",
+            "amount": 48849.0,
+            "count": 75
           },
           {
             "state": "KY",
-            "amount": 7250.0,
-            "count": 3
+            "amount": 21000.0,
+            "count": 8
+          },
+          {
+            "state": "MN",
+            "amount": 20729.33,
+            "count": 38
+          },
+          {
+            "state": "NV",
+            "amount": 20250.0,
+            "count": 7
+          },
+          {
+            "state": "GA",
+            "amount": 19934.92,
+            "count": 15
+          },
+          {
+            "state": "NH",
+            "amount": 17585.99,
+            "count": 17
+          },
+          {
+            "state": "NC",
+            "amount": 15246.52,
+            "count": 30
+          },
+          {
+            "state": "UT",
+            "amount": 14940.9,
+            "count": 20
+          },
+          {
+            "state": "TN",
+            "amount": 13209.7,
+            "count": 15
+          },
+          {
+            "state": "ME",
+            "amount": 12702.5,
+            "count": 13
+          },
+          {
+            "state": "AZ",
+            "amount": 11523.13,
+            "count": 23
+          },
+          {
+            "state": "OH",
+            "amount": 10805.84,
+            "count": 20
+          },
+          {
+            "state": "NM",
+            "amount": 10647.38,
+            "count": 25
+          },
+          {
+            "state": "DE",
+            "amount": 8890.0,
+            "count": 16
+          },
+          {
+            "state": "IN",
+            "amount": 7856.72,
+            "count": 27
           },
           {
             "state": "PR",
@@ -419,109 +504,79 @@
             "count": 2
           },
           {
-            "state": "IN",
-            "amount": 5898.28,
-            "count": 9
+            "state": "MO",
+            "amount": 5814.52,
+            "count": 12
           },
           {
-            "state": "OH",
-            "amount": 5350.0,
-            "count": 5
-          },
-          {
-            "state": "UT",
-            "amount": 4250.0,
-            "count": 4
-          },
-          {
-            "state": "MT",
-            "amount": 3750.0,
-            "count": 2
-          },
-          {
-            "state": "AZ",
-            "amount": 3463.66,
-            "count": 11
-          },
-          {
-            "state": "DE",
-            "amount": 3250.0,
-            "count": 5
-          },
-          {
-            "state": "NC",
-            "amount": 3203.5,
-            "count": 10
-          },
-          {
-            "state": "KS",
-            "amount": 3100.0,
-            "count": 3
-          },
-          {
-            "state": "OK",
-            "amount": 3000.0,
-            "count": 8
-          },
-          {
-            "state": "AK",
-            "amount": 2250.0,
-            "count": 2
-          },
-          {
-            "state": "SC",
-            "amount": 2202.5,
-            "count": 8
-          },
-          {
-            "state": "VT",
-            "amount": 2125.0,
+            "state": "WY",
+            "amount": 5783.34,
             "count": 10
           },
           {
             "state": "RI",
-            "amount": 1850.0,
-            "count": 7
+            "amount": 5485.71,
+            "count": 14
           },
           {
-            "state": "WI",
-            "amount": 1755.0,
-            "count": 15
-          },
-          {
-            "state": "MO",
-            "amount": 1752.39,
-            "count": 5
-          },
-          {
-            "state": "ME",
-            "amount": 1437.5,
+            "state": "MT",
+            "amount": 5427.78,
             "count": 6
           },
           {
-            "state": "MI",
-            "amount": 1150.0,
-            "count": 8
+            "state": "WI",
+            "amount": 4295.0,
+            "count": 38
           },
           {
-            "state": "WY",
-            "amount": 683.34,
-            "count": 5
+            "state": "KS",
+            "amount": 4209.62,
+            "count": 10
           },
           {
             "state": "NE",
-            "amount": 500.0,
-            "count": 1
+            "amount": 4000.0,
+            "count": 2
+          },
+          {
+            "state": "VT",
+            "amount": 3861.34,
+            "count": 18
+          },
+          {
+            "state": "SC",
+            "amount": 3652.5,
+            "count": 12
+          },
+          {
+            "state": "MI",
+            "amount": 3333.13,
+            "count": 35
+          },
+          {
+            "state": "OK",
+            "amount": 3250.0,
+            "count": 13
+          },
+          {
+            "state": "AK",
+            "amount": 2650.0,
+            "count": 9
+          },
+          {
+            "state": "AR",
+            "amount": 1500.0,
+            "count": 2
           },
           {
             "state": "HI",
-            "amount": 335.71,
-            "count": 3
+            "amount": 628.1,
+            "count": 7
           },
           {
             "state": "IA",
-            "amount": 310.0,
-            "count": 4
+            "amount": 340.0,
+            "count": 7
           },
           {
             "state": "VI",
@@ -529,173 +584,163 @@
             "count": 3
           },
           {
-            "state": "NV",
-            "amount": 250.0,
-            "count": 1
-          },
-          {
             "state": "MS",
             "amount": 250.0,
             "count": 1
           },
           {
-            "state": "NM",
-            "amount": 250.0,
-            "count": 1
-          },
-          {
-            "state": "TN",
-            "amount": 250.0,
-            "count": 1
+            "state": "ND",
+            "amount": 220.0,
+            "count": 22
           }
         ],
         "by_size": [
           {
             "size": 0,
             "label": "$200 or less",
-            "amount": 1213578.68,
+            "amount": 1307650.25,
             "count": null
           },
           {
             "size": 200,
             "label": "$200.01 to $499.99",
-            "amount": 122396.32,
-            "count": 453
+            "amount": 277397.99,
+            "count": 1012
           },
           {
             "size": 500,
             "label": "$500 to $999.99",
-            "amount": 151953.87,
-            "count": 292
+            "amount": 363923.04,
+            "count": 681
           },
           {
             "size": 1000,
             "label": "$1,000 to $1,999.99",
-            "amount": 243422.46,
-            "count": 224
+            "amount": 579078.24,
+            "count": 516
           },
           {
             "size": 2000,
             "label": "$2,000 and over",
-            "amount": 798593.73,
-            "count": 246
+            "amount": 1954707.05,
+            "count": 604
           }
         ],
-        "zip_total": 1362106.16,
-        "in_district_amount": 92671.33,
-        "zips": 679,
+        "zip_total": 3314917.67,
+        "in_district_amount": 174608.83,
+        "zips": 1241,
         "top_zips": [
           {
-            "zip": "18064",
-            "amount": 31450.0,
-            "count": 38
-          },
-          {
-            "zip": "19103",
-            "amount": 25050.0,
-            "count": 15
-          },
-          {
-            "zip": "10011",
-            "amount": 24000.0,
-            "count": 9
+            "zip": "10023",
+            "amount": 64709.04,
+            "count": 47
           },
           {
             "zip": "10024",
-            "amount": 22813.08,
-            "count": 27
+            "amount": 64262.02,
+            "count": 58
           },
           {
-            "zip": "06830",
-            "amount": 21500.0,
-            "count": 8
+            "zip": "19103",
+            "amount": 45711.12,
+            "count": 43
           },
           {
-            "zip": "11238",
-            "amount": 20500.0,
-            "count": 9
-          },
-          {
-            "zip": "94027",
-            "amount": 18675.0,
-            "count": 8
-          },
-          {
-            "zip": "10012",
-            "amount": 17750.0,
-            "count": 6
-          },
-          {
-            "zip": "94301",
-            "amount": 17750.0,
-            "count": 6
+            "zip": "10011",
+            "amount": 44388.55,
+            "count": 22
           },
           {
             "zip": "10075",
-            "amount": 17500.0,
-            "count": 5
+            "amount": 42053.95,
+            "count": 16
+          },
+          {
+            "zip": "18064",
+            "amount": 33535.0,
+            "count": 53
+          },
+          {
+            "zip": "10128",
+            "amount": 31811.64,
+            "count": 19
+          },
+          {
+            "zip": "19119",
+            "amount": 30525.0,
+            "count": 42
+          },
+          {
+            "zip": "94027",
+            "amount": 30175.0,
+            "count": 12
+          },
+          {
+            "zip": "10025",
+            "amount": 27661.11,
+            "count": 20
           }
         ],
         "by_occupation": [
           {
             "occupation": "NOT EMPLOYED",
-            "amount": 453408.96,
-            "count": 950
+            "amount": 986779.11,
+            "count": 2331
           },
           {
             "occupation": "RETIRED",
-            "amount": 112066.52,
-            "count": 121
+            "amount": 383313.5,
+            "count": 414
           },
           {
             "occupation": "NO EMPLOYER",
-            "amount": 98780.55,
-            "count": 118
+            "amount": 314372.07,
+            "count": 439
           },
           {
             "occupation": "ATTORNEY",
-            "amount": 58164.13,
-            "count": 77
+            "amount": 142362.23,
+            "count": 167
           },
           {
             "occupation": "CEO",
-            "amount": 44343.9,
-            "count": 21
-          },
-          {
-            "occupation": "PHYSICIAN",
-            "amount": 26135.41,
-            "count": 38
-          },
-          {
-            "occupation": "FIREFIGHTER",
-            "amount": 25304.0,
-            "count": 86
+            "amount": 66692.11,
+            "count": 37
           },
           {
             "occupation": "CONSULTANT",
-            "amount": 25083.33,
-            "count": 53
+            "amount": 60083.16,
+            "count": 103
           },
           {
-            "occupation": "PRESIDENT",
-            "amount": 22300.0,
-            "count": 23
+            "occupation": "PHYSICIAN",
+            "amount": 52847.13,
+            "count": 91
           },
           {
-            "occupation": "NULL",
-            "amount": 20900.0,
-            "count": 17
-          },
-          {
-            "occupation": "MANAGING DIRECTOR",
-            "amount": 16017.85,
-            "count": 7
+            "occupation": "INVESTOR",
+            "amount": 46622.22,
+            "count": 18
           },
           {
             "occupation": "FINANCE",
-            "amount": 14472.22,
-            "count": 6
+            "amount": 36222.22,
+            "count": 17
+          },
+          {
+            "occupation": "PRESIDENT",
+            "amount": 35909.52,
+            "count": 35
+          },
+          {
+            "occupation": "REAL ESTATE",
+            "amount": 31027.78,
+            "count": 14
+          },
+          {
+            "occupation": "EXECUTIVE",
+            "amount": 29736.9,
+            "count": 16
           }
         ]
       }
@@ -705,63 +750,73 @@
       "candidate": "Ryan Mackenzie",
       "party": "REP",
       "spending": {
-        "itemized_total": 1487410.65,
-        "items": 1261,
+        "itemized_total": 3053937.77,
+        "items": 1632,
         "by_category": [
           {
             "category": "Fundraising",
-            "amount": 1017403.05,
-            "items": 508
+            "amount": 1205910.95,
+            "items": 617
           },
           {
-            "category": "Office and administrative",
-            "amount": 107158.6,
-            "items": 252
+            "category": "Print and radio advertising",
+            "amount": 1090470.0,
+            "items": 7
           },
           {
             "category": "Consulting",
-            "amount": 98693.0,
-            "items": 51
-          },
-          {
-            "category": "Events and meals",
-            "amount": 57849.89,
-            "items": 140
+            "amount": 136243.0,
+            "items": 61
           },
           {
             "category": "Polling and research",
-            "amount": 41376.2,
-            "items": 19
+            "amount": 125356.7,
+            "items": 26
           },
           {
-            "category": "Travel",
-            "amount": 36958.81,
-            "items": 91
+            "category": "Office and administrative",
+            "amount": 118936.76,
+            "items": 304
+          },
+          {
+            "category": "Events and meals",
+            "amount": 76784.38,
+            "items": 205
           },
           {
             "category": "Mail and printing",
-            "amount": 36488.46,
-            "items": 102
-          },
-          {
-            "category": "Signs and merchandise",
-            "amount": 24202.36,
-            "items": 12
-          },
-          {
-            "category": "Refunds",
-            "amount": 23204.28,
-            "items": 65
-          },
-          {
-            "category": "Contributions and donations",
-            "amount": 22575.0,
-            "items": 9
+            "amount": 75634.42,
+            "items": 164
           },
           {
             "category": "Media production",
-            "amount": 11600.0,
-            "items": 4
+            "amount": 57000.0,
+            "items": 8
+          },
+          {
+            "category": "Refunds",
+            "amount": 47528.85,
+            "items": 75
+          },
+          {
+            "category": "Travel",
+            "amount": 45050.98,
+            "items": 118
+          },
+          {
+            "category": "Contributions and donations",
+            "amount": 28075.0,
+            "items": 13
+          },
+          {
+            "category": "Signs and merchandise",
+            "amount": 27664.07,
+            "items": 22
+          },
+          {
+            "category": "Digital advertising",
+            "amount": 13831.42,
+            "items": 5
           },
           {
             "category": "Staff and payroll",
@@ -769,14 +824,9 @@
             "items": 2
           },
           {
-            "category": "Print and radio advertising",
-            "amount": 3000.0,
-            "items": 3
-          },
-          {
-            "category": "Digital advertising",
-            "amount": 2586.0,
-            "items": 2
+            "category": "Other",
+            "amount": 1136.24,
+            "items": 4
           },
           {
             "category": "Field, phones and texting",
@@ -786,186 +836,201 @@
         ],
         "top_vendors": [
           {
+            "vendor": "AMERICAN MEDIA & ADVOCACY GROUP",
+            "city": "ALEXANDRIA",
+            "state": "VA",
+            "amount": 1085470.0,
+            "items": 2,
+            "category": "Print and radio advertising"
+          },
+          {
             "vendor": "FRONTLINE STRATEGIES",
             "city": "ELGIN",
             "state": "IL",
-            "amount": 332817.9,
-            "items": 107,
+            "amount": 387354.87,
+            "items": 125,
             "category": "Fundraising"
           },
           {
             "vendor": "DISTRICT CITY CONSULTING",
             "city": "WASHINGTON",
             "state": "DC",
-            "amount": 166301.16,
-            "items": 10,
+            "amount": 191717.06,
+            "items": 11,
             "category": "Fundraising"
           },
           {
             "vendor": "CHRISTY CONSULTING LLC",
             "city": "PHILADELPHIA",
             "state": "PA",
-            "amount": 132892.75,
-            "items": 27,
+            "amount": 145450.56,
+            "items": 30,
             "category": "Fundraising"
           },
           {
             "vendor": "FULFILLMENT SOLUTIONS INC.",
             "city": "STERLING",
             "state": "VA",
-            "amount": 74152.92,
-            "items": 31,
-            "category": "Fundraising"
-          },
-          {
-            "vendor": "DIRECT MAIL FUNDRAISING LLC",
-            "city": "ASHBURN",
-            "state": "VA",
-            "amount": 64451.03,
-            "items": 16,
+            "amount": 99816.81,
+            "items": 42,
             "category": "Fundraising"
           },
           {
             "vendor": "PATHFINDER COMMUNICATIONS, LLC",
             "city": "BERWYN",
             "state": "PA",
-            "amount": 52876.5,
-            "items": 15,
+            "amount": 87194.5,
+            "items": 23,
             "category": "Consulting"
           },
           {
-            "vendor": "WELLER, ANDRES",
-            "city": "EMMAUS",
-            "state": "PA",
-            "amount": 43138.83,
-            "items": 28,
-            "category": "Consulting"
+            "vendor": "THE TARRANCE GROUP",
+            "city": "ALEXANDRIA",
+            "state": "VA",
+            "amount": 72085.0,
+            "items": 4,
+            "category": "Polling and research"
           },
           {
-            "vendor": "WINRED TECHNICAL SERVICES, LLC",
-            "city": "CHEYENNE",
-            "state": "WY",
-            "amount": 41412.94,
-            "items": 83,
+            "vendor": "DIRECT MAIL FUNDRAISING LLC",
+            "city": "ASHBURN",
+            "state": "VA",
+            "amount": 66045.99,
+            "items": 17,
             "category": "Fundraising"
           },
           {
             "vendor": "ELITE CONSULTING",
             "city": "WASHINGTON",
             "state": "DC",
-            "amount": 40643.9,
-            "items": 10,
+            "amount": 65363.18,
+            "items": 16,
             "category": "Fundraising"
           },
           {
-            "vendor": "THE TARRANCE GROUP",
+            "vendor": "WELLER, ANDRES",
+            "city": "TEMPE",
+            "state": "AZ",
+            "amount": 64548.52,
+            "items": 34,
+            "category": "Consulting"
+          },
+          {
+            "vendor": "RED ELEPHANT",
+            "city": "PONTE VEDRA BEACH",
+            "state": "FL",
+            "amount": 54500.0,
+            "items": 4,
+            "category": "Media production"
+          },
+          {
+            "vendor": "GRASSROOTS TARGETING",
             "city": "ALEXANDRIA",
             "state": "VA",
-            "amount": 38124.5,
-            "items": 2,
+            "amount": 50000.0,
+            "items": 1,
             "category": "Polling and research"
+          },
+          {
+            "vendor": "WINRED TECHNICAL SERVICES, LLC",
+            "city": "CHEYENNE",
+            "state": "WY",
+            "amount": 48962.56,
+            "items": 94,
+            "category": "Fundraising"
           },
           {
             "vendor": "RIGHTWAY COMPLIANCE LLC",
             "city": "HARRISBURG",
             "state": "PA",
-            "amount": 36592.58,
-            "items": 18,
+            "amount": 42629.84,
+            "items": 21,
             "category": "Office and administrative"
-          },
-          {
-            "vendor": "MANAGED BY EQUINOX INC",
-            "city": "BETHLEHEM",
-            "state": "PA",
-            "amount": 25875.0,
-            "items": 5,
-            "category": "Office and administrative"
-          },
-          {
-            "vendor": "MARRIOTT GROUP",
-            "city": "LEESBURG",
-            "state": "VA",
-            "amount": 24000.0,
-            "items": 8,
-            "category": "Fundraising"
           },
           {
             "vendor": "ONPOINT DATA STRATEGY LLC",
             "city": "ASHBURN",
             "state": "VA",
-            "amount": 20586.36,
-            "items": 18,
+            "amount": 31994.28,
+            "items": 25,
             "category": "Fundraising"
-          },
-          {
-            "vendor": "MACKENZIE, RYAN",
-            "city": "EMMAUS",
-            "state": "PA",
-            "amount": 20183.55,
-            "items": 36,
-            "category": "Travel"
           }
         ],
         "by_vendor_state": [
           {
+            "state": "VA",
+            "amount": 1540515.23,
+            "items": 267
+          },
+          {
             "state": "PA",
-            "amount": 459357.16,
-            "items": 424
+            "amount": 564220.82,
+            "items": 547
           },
           {
             "state": "IL",
-            "amount": 335283.52,
-            "items": 113
-          },
-          {
-            "state": "VA",
-            "amount": 317942.8,
-            "items": 224
+            "amount": 389993.24,
+            "items": 133
           },
           {
             "state": "DC",
-            "amount": 242504.01,
-            "items": 81
-          },
-          {
-            "state": "NY",
-            "amount": 17435.36,
-            "items": 17
-          },
-          {
-            "state": "GA",
-            "amount": 17061.51,
-            "items": 42
+            "amount": 299910.11,
+            "items": 107
           },
           {
             "state": "FL",
-            "amount": 15855.75,
-            "items": 17
+            "amount": 64355.75,
+            "items": 21
           },
           {
-            "state": "CA",
-            "amount": 15050.7,
-            "items": 59
+            "state": "NY",
+            "amount": 32463.96,
+            "items": 20
           },
           {
-            "state": "TX",
-            "amount": 14439.86,
-            "items": 67
-          },
-          {
-            "state": "DE",
-            "amount": 12170.8,
-            "items": 10
+            "state": "AZ",
+            "amount": 23219.94,
+            "items": 43
           },
           {
             "state": "MA",
-            "amount": 7613.56,
-            "items": 56
+            "amount": 20617.35,
+            "items": 90
+          },
+          {
+            "state": "GA",
+            "amount": 20016.52,
+            "items": 57
+          },
+          {
+            "state": "TX",
+            "amount": 19103.25,
+            "items": 80
+          },
+          {
+            "state": "CA",
+            "amount": 17352.49,
+            "items": 77
           },
           {
             "state": "WY",
-            "amount": 6665.13,
-            "items": 22
+            "amount": 14794.7,
+            "items": 35
+          },
+          {
+            "state": "DE",
+            "amount": 14663.85,
+            "items": 13
+          },
+          {
+            "state": "WA",
+            "amount": 8322.33,
+            "items": 34
+          },
+          {
+            "state": "AR",
+            "amount": 5969.72,
+            "items": 35
           },
           {
             "state": "NH",
@@ -973,19 +1038,14 @@
             "items": 2
           },
           {
-            "state": "WA",
-            "amount": 5101.03,
-            "items": 20
-          },
-          {
             "state": "UT",
             "amount": 4774.52,
             "items": 2
           },
           {
-            "state": "AR",
-            "amount": 2812.22,
-            "items": 25
+            "state": "MD",
+            "amount": 2155.42,
+            "items": 13
           },
           {
             "state": "MT",
@@ -993,24 +1053,14 @@
             "items": 1
           },
           {
-            "state": "MD",
-            "amount": 1705.4,
-            "items": 10
-          },
-          {
-            "state": "AZ",
-            "amount": 1202.74,
-            "items": 28
-          },
-          {
             "state": "AL",
-            "amount": 950.12,
-            "items": 14
+            "amount": 1294.2,
+            "items": 18
           },
           {
             "state": "NJ",
-            "amount": 590.0,
-            "items": 1
+            "amount": 878.4,
+            "items": 2
           },
           {
             "state": "MN",
@@ -1023,164 +1073,174 @@
             "items": 1
           },
           {
+            "state": "KS",
+            "amount": 287.56,
+            "items": 5
+          },
+          {
+            "state": "LA",
+            "amount": 248.3,
+            "items": 17
+          },
+          {
             "state": "CO",
             "amount": 219.98,
             "items": 1
           },
           {
-            "state": "LA",
-            "amount": 136.61,
-            "items": 10
+            "state": "OK",
+            "amount": 144.89,
+            "items": 2
           },
           {
             "state": "MI",
             "amount": 125.25,
             "items": 8
-          },
-          {
-            "state": "OK",
-            "amount": 120.53,
-            "items": 1
-          },
-          {
-            "state": "KS",
-            "amount": 2.1,
-            "items": 4
           }
         ]
       },
       "contributions": {
-        "itemized_total": 2944555.07,
+        "itemized_total": 3421671.03,
         "by_state": [
           {
             "state": "PA",
-            "amount": 705177.53,
-            "count": 1185
+            "amount": 896949.97,
+            "count": 1661
           },
           {
             "state": "FL",
-            "amount": 498858.16,
-            "count": 1923
+            "amount": 538397.18,
+            "count": 2459
           },
           {
             "state": "TX",
-            "amount": 392044.34,
-            "count": 2187
+            "amount": 410620.57,
+            "count": 2474
           },
           {
             "state": "NY",
-            "amount": 219095.46,
-            "count": 420
+            "amount": 284655.59,
+            "count": 474
           },
           {
             "state": "CA",
-            "amount": 189336.51,
-            "count": 1371
+            "amount": 222362.66,
+            "count": 1611
           },
           {
             "state": "LA",
-            "amount": 96564.66,
-            "count": 230
+            "amount": 98679.5,
+            "count": 258
           },
           {
             "state": "IL",
-            "amount": 82720.37,
-            "count": 404
+            "amount": 97058.22,
+            "count": 491
           },
           {
             "state": "VA",
-            "amount": 80077.28,
-            "count": 432
-          },
-          {
-            "state": "TN",
-            "amount": 54019.6,
-            "count": 252
+            "amount": 89890.12,
+            "count": 513
           },
           {
             "state": "MA",
-            "amount": 53894.65,
-            "count": 65
+            "amount": 64312.26,
+            "count": 87
           },
           {
             "state": "MN",
-            "amount": 52964.24,
-            "count": 159
+            "amount": 55419.65,
+            "count": 184
+          },
+          {
+            "state": "TN",
+            "amount": 54635.87,
+            "count": 292
           },
           {
             "state": "CO",
-            "amount": 51439.42,
-            "count": 200
-          },
-          {
-            "state": "OH",
-            "amount": 41255.66,
-            "count": 288
-          },
-          {
-            "state": "MI",
-            "amount": 38953.07,
-            "count": 273
+            "amount": 53345.46,
+            "count": 246
           },
           {
             "state": "CT",
-            "amount": 38941.97,
-            "count": 98
+            "amount": 48686.35,
+            "count": 111
+          },
+          {
+            "state": "MI",
+            "amount": 46439.92,
+            "count": 355
+          },
+          {
+            "state": "OH",
+            "amount": 44725.11,
+            "count": 309
           },
           {
             "state": "NV",
-            "amount": 32861.41,
-            "count": 110
-          },
-          {
-            "state": "DC",
-            "amount": 27297.22,
-            "count": 22
+            "amount": 35413.77,
+            "count": 121
           },
           {
             "state": "MO",
-            "amount": 27274.88,
-            "count": 75
+            "amount": 34635.88,
+            "count": 84
           },
           {
             "state": "AR",
-            "amount": 27266.84,
-            "count": 84
+            "amount": 34553.01,
+            "count": 123
           },
           {
-            "state": "GA",
-            "amount": 24207.04,
-            "count": 226
+            "state": "DC",
+            "amount": 27797.22,
+            "count": 23
           },
           {
             "state": "AZ",
-            "amount": 23455.14,
-            "count": 226
+            "amount": 24583.41,
+            "count": 261
           },
           {
-            "state": "ID",
-            "amount": 18666.86,
-            "count": 67
+            "state": "GA",
+            "amount": 24441.03,
+            "count": 284
+          },
+          {
+            "state": "NJ",
+            "amount": 23841.44,
+            "count": 261
           },
           {
             "state": "MD",
-            "amount": 17205.01,
-            "count": 40
+            "amount": 21982.11,
+            "count": 50
           },
           {
             "state": "PR",
-            "amount": 17000.0,
-            "count": 10
-          },
-          {
-            "state": "WI",
-            "amount": 12261.39,
-            "count": 84
+            "amount": 20500.0,
+            "count": 11
           },
           {
             "state": "WA",
-            "amount": 11460.88,
-            "count": 180
+            "amount": 19592.29,
+            "count": 208
+          },
+          {
+            "state": "ID",
+            "amount": 18791.46,
+            "count": 74
+          },
+          {
+            "state": "WI",
+            "amount": 16021.39,
+            "count": 91
+          },
+          {
+            "state": "SC",
+            "amount": 11557.94,
+            "count": 476
           },
           {
             "state": "NH",
@@ -1188,34 +1248,24 @@
             "count": 6
           },
           {
+            "state": "UT",
+            "amount": 11202.04,
+            "count": 216
+          },
+          {
             "state": "WY",
             "amount": 10726.3,
             "count": 8
           },
           {
-            "state": "UT",
-            "amount": 10723.63,
-            "count": 164
-          },
-          {
             "state": "AL",
-            "amount": 10488.85,
-            "count": 127
-          },
-          {
-            "state": "NJ",
-            "amount": 9871.74,
-            "count": 223
+            "amount": 10683.72,
+            "count": 158
           },
           {
             "state": "IN",
-            "amount": 9372.43,
-            "count": 203
-          },
-          {
-            "state": "SC",
-            "amount": 7790.01,
-            "count": 415
+            "amount": 10265.41,
+            "count": 266
           },
           {
             "state": "NE",
@@ -1224,28 +1274,33 @@
           },
           {
             "state": "MS",
-            "amount": 5904.04,
-            "count": 330
-          },
-          {
-            "state": "NM",
-            "amount": 4627.93,
-            "count": 103
+            "amount": 6375.74,
+            "count": 356
           },
           {
             "state": "NC",
-            "amount": 4480.64,
-            "count": 174
+            "amount": 5016.71,
+            "count": 195
+          },
+          {
+            "state": "NM",
+            "amount": 4633.6,
+            "count": 107
           },
           {
             "state": "MT",
-            "amount": 3462.86,
-            "count": 125
+            "amount": 4121.25,
+            "count": 154
           },
           {
             "state": "KS",
-            "amount": 2739.88,
-            "count": 189
+            "amount": 3939.78,
+            "count": 217
+          },
+          {
+            "state": "OK",
+            "amount": 2514.69,
+            "count": 116
           },
           {
             "state": "SD",
@@ -1253,54 +1308,49 @@
             "count": 12
           },
           {
-            "state": "OK",
-            "amount": 1730.26,
-            "count": 99
-          },
-          {
-            "state": "OR",
-            "amount": 1289.13,
-            "count": 56
-          },
-          {
-            "state": "DE",
-            "amount": 1260.0,
-            "count": 24
-          },
-          {
-            "state": "IA",
-            "amount": 1073.48,
-            "count": 60
-          },
-          {
-            "state": "RI",
-            "amount": 1000.0,
-            "count": 1
+            "state": "ND",
+            "amount": 2040.75,
+            "count": 8
           },
           {
             "state": "WV",
-            "amount": 905.35,
-            "count": 13
+            "amount": 1582.38,
+            "count": 25
           },
           {
-            "state": "ME",
-            "amount": 722.89,
-            "count": 194
+            "state": "DE",
+            "amount": 1468.2,
+            "count": 26
           },
           {
-            "state": "HI",
-            "amount": 640.23,
-            "count": 31
+            "state": "OR",
+            "amount": 1289.45,
+            "count": 57
+          },
+          {
+            "state": "RI",
+            "amount": 1156.15,
+            "count": 4
           },
           {
             "state": "KY",
-            "amount": 557.48,
-            "count": 71
+            "amount": 1154.58,
+            "count": 103
           },
           {
-            "state": "ND",
-            "amount": 250.0,
-            "count": 1
+            "state": "IA",
+            "amount": 1101.63,
+            "count": 62
+          },
+          {
+            "state": "HI",
+            "amount": 965.69,
+            "count": 42
+          },
+          {
+            "state": "ME",
+            "amount": 905.23,
+            "count": 230
           },
           {
             "state": "AK",
@@ -1312,52 +1362,52 @@
           {
             "size": 0,
             "label": "$200 or less",
-            "amount": 846543.27,
+            "amount": 896778.44,
             "count": null
           },
           {
             "size": 200,
             "label": "$200.01 to $499.99",
-            "amount": 101351.85,
-            "count": 372
+            "amount": 130682.08,
+            "count": 477
           },
           {
             "size": 500,
             "label": "$500 to $999.99",
-            "amount": 250771.82,
-            "count": 443
+            "amount": 278949.35,
+            "count": 499
           },
           {
             "size": 1000,
             "label": "$1,000 to $1,999.99",
-            "amount": 598054.96,
-            "count": 482
+            "amount": 672998.5,
+            "count": 550
           },
           {
             "size": 2000,
             "label": "$2,000 and over",
-            "amount": 1814220.05,
-            "count": 607
+            "amount": 2108649.54,
+            "count": 704
           }
         ],
-        "zip_total": 2944555.07,
-        "in_district_amount": 395259.46,
-        "zips": 1088,
+        "zip_total": 3421671.03,
+        "in_district_amount": 518803.97,
+        "zips": 1267,
         "top_zips": [
           {
             "zip": "33480",
-            "amount": 109288.0,
-            "count": 71
+            "amount": 116653.76,
+            "count": 345
           },
           {
             "zip": "18104",
-            "amount": 72871.08,
-            "count": 167
+            "amount": 80551.37,
+            "count": 195
           },
           {
             "zip": "18103",
-            "amount": 65790.87,
-            "count": 85
+            "amount": 72906.37,
+            "count": 99
           },
           {
             "zip": "75225",
@@ -1365,14 +1415,24 @@
             "count": 35
           },
           {
-            "zip": "33139",
-            "amount": 29516.7,
-            "count": 14
+            "zip": "18015",
+            "amount": 42505.59,
+            "count": 45
+          },
+          {
+            "zip": "18045",
+            "amount": 35642.37,
+            "count": 30
           },
           {
             "zip": "32963",
-            "amount": 28365.81,
-            "count": 16
+            "amount": 31992.07,
+            "count": 18
+          },
+          {
+            "zip": "33139",
+            "amount": 29516.7,
+            "count": 14
           },
           {
             "zip": "75219",
@@ -1380,81 +1440,71 @@
             "count": 11
           },
           {
-            "zip": "18015",
-            "amount": 26183.82,
-            "count": 36
-          },
-          {
-            "zip": "33401",
-            "amount": 22088.95,
-            "count": 9
-          },
-          {
-            "zip": "18045",
-            "amount": 21998.57,
-            "count": 20
+            "zip": "18055",
+            "amount": 24670.58,
+            "count": 38
           }
         ],
         "by_occupation": [
           {
             "occupation": "RETIRED",
-            "amount": 757056.16,
-            "count": 10536
+            "amount": 906181.19,
+            "count": 12846
           },
           {
             "occupation": "CEO",
-            "amount": 309337.13,
-            "count": 275
+            "amount": 350682.71,
+            "count": 305
           },
           {
             "occupation": "OWNER",
-            "amount": 169174.26,
-            "count": 142
-          },
-          {
-            "occupation": "CHAIRMAN",
-            "amount": 126323.31,
-            "count": 75
+            "amount": 188470.86,
+            "count": 164
           },
           {
             "occupation": "PRESIDENT",
-            "amount": 124651.54,
-            "count": 94
+            "amount": 147462.8,
+            "count": 107
+          },
+          {
+            "occupation": "CHAIRMAN",
+            "amount": 137538.43,
+            "count": 80
           },
           {
             "occupation": "EXECUTIVE",
-            "amount": 107698.83,
-            "count": 71
+            "amount": 114478.28,
+            "count": 81
           },
           {
             "occupation": "FOUNDER",
-            "amount": 105830.87,
-            "count": 51
-          },
-          {
-            "occupation": "HOMEMAKER",
-            "amount": 76092.81,
-            "count": 49
-          },
-          {
-            "occupation": "INVESTOR",
-            "amount": 75497.97,
-            "count": 58
+            "amount": 111865.8,
+            "count": 53
           },
           {
             "occupation": "ATTORNEY",
-            "amount": 68701.13,
-            "count": 67
+            "amount": 94035.73,
+            "count": 88
+          },
+          {
+            "occupation": "HOMEMAKER",
+            "amount": 85274.84,
+            "count": 53
+          },
+          {
+            "occupation": "INVESTOR",
+            "amount": 75505.87,
+            "count": 64
           },
           {
             "occupation": "MANAGING DIRECTOR",
-            "amount": 30316.26,
-            "count": 15
+            "amount": 30616.26,
+            "count": 16
           },
           {
             "occupation": "CO-CEO",
-            "amount": 23913.33,
-            "count": 8
+            "amount": 27413.33,
+            "count": 9
           }
         ]
       }
